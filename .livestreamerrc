@@ -1,0 +1,3 @@
+twitch-oauth-token=taf50me5uagadpa70zl5rf8vp0j3d96
+player=mpv 
+player-passthrough hls, http, rtmp
