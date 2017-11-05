@@ -4,31 +4,28 @@
 " prepare Vundle
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " This is the Vundle package, which can be found on GitHub.
 " For GitHub repos, you specify plugins using the
 " 'user/repository' format
-Plugin 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
-" We could also add repositories with a ".git" extension
-Plugin 'scrooloose/nerdtree.git'
+Plugin 'Raimondi/delimitMate'
+Plugin 'LaTeX-Box-Team/LaTeX-Box'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'davidhalter/jedi-vim'
 
-" To get plugins from Vim Scripts, you can reference the plugin
-" by name as it appears on the site
-Plugin 'Buffergator'
-
-Plugin 'YouCompleteMe'
-let g:ycm_global_ycm_extra_conf = ".vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
-
-" Now we can turn our filetype functionality back on
+" end of PLugin setups
+call vundle#end()
 filetype plugin indent on
 
-" end of plugin stuff
+" coloring
+syntax on
+colorscheme flattr
 
 " set behavior i like
-syntax on
 set nu
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
