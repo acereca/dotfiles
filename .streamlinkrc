@@ -1,2 +1,9 @@
+# Player options
+player=mpv --volume=50
+
+# Stream options
+default-stream=720p60, best
+
+# Authentication with Twitch
 twitch-oauth-token=1p03g5xypt6h8n6qrscufl9irgmyf6
-player=mpv
+

@@ -1,14 +1,15 @@
-# ZSH Config File 
-# Patrick Nisble 
+# ZSH Config File
+# Patrick Nisble
 # github.com/acereca
 #
 # Version: 5
 
 # PATH setup
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/patrick/bin"
+export PATH="/opt/cuda/bin/:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/patrick/bin"
 
 # EDITOR setup
 export EDITOR=/usr/bin/vim
+export editor=/usr/bin/vim
 
 # keybindings for urxvt + zsh shenanigans
 bindkey  "^[[2~"  quoted-insert
@@ -19,8 +20,15 @@ bindkey  "^[[F"   end-of-line
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+# pwdgen
+aes() {
+    echo -n $1 | openssl enc -e -aes-256-cbc -a -salt
+}
+autoload aes
+
 # aliase
 alias vncstart="sudo x11vnc -xkb -noxrecord -noxfixes -noxdamage -display :0 -auth /var/run/lightdm/root/:0"
+alias minecraft="java -jar /home/patrick/.minecraft/launcher.jar"
 
 alias sv="sudo vim"
 alias v="vim"
@@ -36,15 +44,32 @@ twitch() {
     streamlink twitch.tv/$1 $2
 }
 
+lastedit() {
+    find $1 -type f -printf '%C@ %P\n' | sort -nr | head -1 | cut -d" " -f 2-
+}
+
+mpv_stream() {
+    mpv $(youtube-dl -g $(/home/patrick/github/scripts/getyturl.py $1 $2 ) $3) $4
+}
+
 autoload twitch
+autoload lastedit
+autoload mpv_stream
 alias soaryn="streamlink twitch.tv/soaryn"
 alias amadornes="streamlink twitch.tv/amadornes"
 alias poo="streamlink twitch.tv/grand_poobear"
 alias waffle="streamlink twitch.tv/giantwaffle"
-alias monstercat="streamlink -p 'mpv --volume 50' twitch.tv/monstercat"
+alias monstercat="streamlink twitch.tv/monstercat"
 alias filthy="streamlink twitch.tv/filthyrobot"
-alias magical="/home/patrick/github/scripts/getyturl.py"
-alias goodlife="/home/patrick/github/scripts/getyt_goodlife.py"
+
+#alias magical="/home/patrick/github/scripts/getyturl.py magicalmusicchannel 'Magical Music Radio'"
+#alias goodlife="/home/patrick/github/scripts/getyturl.py sensualmusique1 'Good Life Radio'"
+#alias cym="/home/patrick/github/scripts/getyturl.py chillyourmind 'ChillYourMind Radio'"
+
+alias magical="mpv_stream user/magicalmusicchannel 'Magical Music Radio'"
+alias goodlife="mpv_stream user/sensualmusique1 'Good Life Radio'"
+#alias cym="mpv_stream user/chillyourmind 'ChillYourMind Radio'"
+alias monstafluff="mpv_stream channel/UCMwePVHRpDdfeUcwtDZu2Dw 'Gaming Music Radio'"
 
 autoload -U zmv
 
@@ -69,4 +94,3 @@ if [[ -r $POWERLINE_DIR/powerline/bindings/zsh/powerline.zsh ]]; then
     powerline-daemon -r -q
     source $POWERLINE_DIR/powerline/bindings/zsh/powerline.zsh
 fi
-
