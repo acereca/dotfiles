@@ -21,6 +21,11 @@ if [ ! -n "$(pacman -Qs pacaur)" ]; then
     makepkg PKGBUILD
     sudo pacman -U pacaur*.tar.xz --noconfirm
 fi
+
+rm -r src/
+rm -r pkg/
+rm PKGBUILD
+
 pacaur -S - < aur.pkglist
 
 
@@ -33,5 +38,7 @@ ln -sfv "$DOTFILES_DIR/.vimrc" ~
 ln -sfv "$DOTFILES_DIR/.Xdefaults" ~
 ln -sfv "$DOTFILES_DIR/.zshrc" ~
 ln -sfv "$DOTFILES_DIR/ssh/config" ~/.ssh/
-ln -sfv "$DOTFILES_DIR/i3/config" ~/.config/i3/
-ln -sfv "$DOTFILES_DIR/i3/i3blocks.conf" ~/.config/i3/
+ln -sfv "$DOTFILES_DIR/i3" ~/.config/
+#ln -sfv "$DOTFILES_DIR/i3/config" ~/.config/i3/
+#ln -sfv "$DOTFILES_DIR/i3/i3blocks.conf" ~/.config/i3/
+#ln -sfv "$DOTFILES_DIR/i3/cfg_select" ~/.config/i3/
