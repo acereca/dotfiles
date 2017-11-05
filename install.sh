@@ -42,3 +42,4 @@ ln -sfv "$DOTFILES_DIR/i3" ~/.config/
 #ln -sfv "$DOTFILES_DIR/i3/config" ~/.config/i3/
 #ln -sfv "$DOTFILES_DIR/i3/i3blocks.conf" ~/.config/i3/
 #ln -sfv "$DOTFILES_DIR/i3/cfg_select" ~/.config/i3/
+ln -sfv "$DOTFILES_DIR/ranger" ~/.config/
