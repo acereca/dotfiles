@@ -9,9 +9,7 @@ ranger scope
 vim
 zsh
 livestreamer
-alpine
-
--> kill <-"""
+alpine"""
       ;;
     i)
       while read LINE; do
