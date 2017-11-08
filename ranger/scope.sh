@@ -61,7 +61,8 @@ if [ "$preview_images" = "True" ]; then
         video/*)
             ffmpegthumbnailer -i "$path" -o "$cached" -s 0 && exit 6 || exit 1;;
         application/pdf)
-            convert -density 288 "$path[0]" -alpha off -resize 25% "$cached" && exit 6 || exit 1;;
+            #convert -density 288 "$path[0]" -alpha off -resize 25% "$cached" && exit 6 || exit 1;;
+            evince-thumbnailer -s 900 "$path" "$cached" && exit 6 || exit 1;;
     esac
 fi
 

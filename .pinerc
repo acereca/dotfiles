@@ -367,7 +367,7 @@ mailcap-search-path=
 mimetype-search-path=
 
 # List of programs to open Internet URLs (e.g. http or ftp references).
-url-viewers=
+url-viewers=/usr/bin/chromium
 
 # List of directories that are preferred locations to save or export attachments.
 default-directories=
