@@ -35,8 +35,8 @@ set nobackup
 set nowb
 
 " add convenient shortcuts
-map <silent> <c-f> :NERDTreeToggle<CR>
-nmap <c-r> :!g++ % -o temp.out -lpython2.7 && ./temp.out && rm temp.out<CR>
+"map <silent> <c-f> :NERDTreeToggle<CR>
+"nmap <c-r> :!g++ % -o temp.out -lpython2.7 && ./temp.out && rm temp.out<CR>
 
 " enable Powerline
 set rtp+=/usr/lib/python*/site-packages/powerline/bindings/vim
