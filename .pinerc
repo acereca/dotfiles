@@ -408,7 +408,8 @@ newmail-window-width=
 # Syntax: optnl-label {optnl-imap-host-name}folder-path
 incoming-folders="Private INBOX" {imap-mail.outlook.com/ssl/user=tigerauge96@live.de}INBOX,
 	"Public INBOX" {imap-mail.outlook.com/ssl/user=patrick.nisble@live.de}INBOX,
-	"Student INBOX" {imap.urz.uni-heidelberg.de/ssl/user=bq427}INBOX
+	"Student INBOX" {imap.urz.uni-heidelberg.de/ssl/user=bq427}INBOX,
+	"KIP INBOX" {imap.kip.uni-heidelberg.de/novalidate-cert/user=nisble}INBOX
 
 # List of directories where saved-message folders may be. First one is
 # the default for Saves. Example: Main {host1}mail/[], Desktop mail\[]
@@ -543,6 +544,7 @@ personal-print-category=
 
 # Patterns and their actions are stored here.
 patterns-roles=LIT:pattern="/NICK=Private Role/FLDTYPE=SPEC/FOLDER=Private INBOX" action="/ROLE=1/FROM=\"Patrick N.\" <tigerauge96@live.de>/SMTP=smtp-mail.outlook.com\/tls\/user=tigerauge96@live.de/RTYPE=NC/FTYPE=NC/CTYPE=NC",
+	LIT:pattern="/NICK=KIP Role/FLDTYPE=SPEC/FOLDER=KIP INBOX" action="/ROLE=1/FROM=Patrick Nisble <nisble@kip.uni-heidelberg.de>/RTYPE=NC/FTYPE=NC/CTYPE=NC",
 	LIT:pattern="/NICK=Student Role/FLDTYPE=SPEC/FOLDER=Student INBOX" action="/ROLE=1/FROM=Patrick Nisble <nisble@stud.uni-heidelberg.de>/SMTP=smtp-mail.outlook.com\/tls\/user=patrick.nisble@live.de/RTYPE=NC/FTYPE=NC/CTYPE=NC",
 	LIT:pattern="/NICK=Public Role/FLDTYPE=SPEC/FOLDER=Public INBOX" action="/ROLE=1/FROM=Patrick Nisble <patrick.nisble@live.de>/SMTP=smtp-mail.outlook.com\/tls\/user=patrick.nisble@live.de/RTYPE=NC/FTYPE=NC/CTYPE=NC"
 
