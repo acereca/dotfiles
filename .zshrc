@@ -33,7 +33,7 @@ alias minecraft="java -jar /home/patrick/.minecraft/launcher.jar"
 alias sv="sudo vim"
 alias v="vim"
 alias zshconfig="vim ~/.zshrc"
-alias la="ls -la"
+alias la="ls -la --block-size=k"
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 alias rm="trash"
@@ -98,7 +98,7 @@ bindkey '\e\e' sudo-command-line
 POWERLINE_DIR=$( pip show powerline-status | grep Location | cut -d " " -f2 )
 
 if [[ -r $POWERLINE_DIR/powerline/bindings/zsh/powerline.zsh ]]; then
-    powerline-daemon -r -q
+    powerline-daemon -q
     source $POWERLINE_DIR/powerline/bindings/zsh/powerline.zsh
 fi
 
