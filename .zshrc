@@ -39,6 +39,13 @@ alias grep="grep --color=auto"
 alias rm="trash"
 alias jn="jupyter notebook"
 
+# std aliases
+alias cfz="vim ~/.zshrc"
+alias cfi="vim ~/.config/i3/config"
+alias cfr="vim ~/.config/ranger/rc.conf"
+alias cfv="vim ~/.vimrc"
+
+
 # streamlink aliases
 twitch() {
     streamlink twitch.tv/$1 $2
@@ -94,3 +101,7 @@ if [[ -r $POWERLINE_DIR/powerline/bindings/zsh/powerline.zsh ]]; then
     powerline-daemon -r -q
     source $POWERLINE_DIR/powerline/bindings/zsh/powerline.zsh
 fi
+
+
+# Color
+#export LS_COLORS=$LS_COLORS:di=4
