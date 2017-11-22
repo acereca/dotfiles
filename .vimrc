@@ -40,4 +40,5 @@ set nowb
 
 " enable Powerline
 set rtp+=/usr/lib/python*/site-packages/powerline/bindings/vim
+"let g:powerline_left_sep = "\uE0b4"
 set laststatus=2

@@ -22,5 +22,6 @@ case $option in
     Monstercat) mpv $(youtube-dl -g -f audio_only twitch.tv/monstercat ) ;;
     RelaxBeats) mpv $(youtube-dl -g -f audio_only twitch.tv/relaxbeats ) ;;
     MagicalMusic) mpv $(youtube-dl -g $(/home/patrick/github/scripts/getyturl.py user/magicalmusicchannel 'Magical Music Radio') );;
+    EpicMusic) mpv $(youtube-dl -g $(/home/patrick/github/scripts/getyturl.py user/epicmusicvn 'Live Stream 24/7'))
     '-> kill <-') termite -e "killall mpv";;
 esac

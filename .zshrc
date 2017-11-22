@@ -39,7 +39,15 @@ alias grep="grep --color=auto"
 alias rm="trash"
 alias jn="jupyter notebook"
 
+<<<<<<< HEAD
 alias yt='mpv $(youtube-dl -f 22 -g "$(xclip -selection c -o)")'
+# std aliases
+alias cfz="vim ~/.zshrc"
+alias cfi="vim ~/.config/i3/config"
+alias cfr="vim ~/.config/ranger/rc.conf"
+alias cfv="vim ~/.vimrc"
+
+>>>>>>> 0d0b9180a69892330f384686884d49f4e74be3bd
 
 # streamlink aliases
 twitch() {
@@ -96,3 +104,7 @@ if [[ -r $POWERLINE_DIR/powerline/bindings/zsh/powerline.zsh ]]; then
     powerline-daemon -q
     source $POWERLINE_DIR/powerline/bindings/zsh/powerline.zsh
 fi
+
+
+# Color
+#export LS_COLORS=$LS_COLORS:di=4
