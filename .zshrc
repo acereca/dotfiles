@@ -39,6 +39,8 @@ alias grep="grep --color=auto"
 alias rm="trash"
 alias jn="jupyter notebook"
 
+alias yt='mpv $(youtube-dl -f 22 -g "$(xclip -selection c -o)")'
+
 # streamlink aliases
 twitch() {
     streamlink twitch.tv/$1 $2
