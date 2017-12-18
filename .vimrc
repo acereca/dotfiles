@@ -11,13 +11,14 @@ call vundle#begin()
 " This is the Vundle package, which can be found on GitHub.
 " For GitHub repos, you specify plugins using the
 " 'user/repository' format
-Plugin 'VundleVim/Vundle.vim'
+Plugin 'gmarik/Vundle.vim'
 
 " Github Plugins {{{
 Plugin 'tpope/vim-surround'
 
 Plugin 'Raimondi/delimitMate'
-Plugin 'flazz/vim-colorschemes'
+"Plugin 'flazz/vim-colorschemes'
+Plugin 'AlessandroYorba/Libertine'
 
 "LaTeX
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
@@ -38,13 +39,14 @@ filetype plugin indent on
 " coloring {{{
 let python_highlight_all=1
 syntax on
-colorscheme flattr
+colorscheme libertine 
 " }}}
 
 " set behavior i like
 set nu
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 set splitbelow
+set breakindent
 
 " code folding {{{
 "set foldmethod=indent
@@ -59,6 +61,15 @@ let g:SimpylFold_docstring_preview=1
 set noswapfile
 set nobackup
 set nowb
+
+" Latex-Box {{{
+let g:LatexBox_latexmk_options="-synctex=1 -interaction=nonstopmode -file-line-error -xelatex -shell-escape"
+let g:LatexBox_Folding=1
+let g:LatexBox_fold_sections = [
+                        \ "subsection",
+                        \ "subsubsection"
+                        \ ]
+" }}}
 
 " Powerline {{{
 set rtp+=/usr/lib/python*/site-packages/powerline/bindings/vim
@@ -76,5 +87,6 @@ imap <C-Space> <C-P>
 " }}}
 " filtype dependent keymaps {{{
 autocmd FileType python nnoremap <buffer> <F5> :w !python > /tmp/%:t.out <Enter><Enter>
+autocmd FileType tex nnoremap <buffer> <F5> :w <Enter> :Latexmk <Enter>
 " }}}
 " }}}
