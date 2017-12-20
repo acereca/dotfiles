@@ -18,7 +18,7 @@ Plugin 'tpope/vim-surround'
 
 Plugin 'Raimondi/delimitMate'
 "Plugin 'flazz/vim-colorschemes'
-Plugin 'AlessandroYorba/Libertine'
+Plugin 'AlessandroYorba/Arcadia'
 
 "LaTeX
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
@@ -39,8 +39,8 @@ filetype plugin indent on
 " coloring {{{
 let python_highlight_all=1
 syntax on
-colorscheme libertine 
-" }}}
+colorscheme arcadia 
+" }}} 
 
 " set behavior i like
 set nu
