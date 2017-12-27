@@ -18,6 +18,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'godlygeek/tabular'
 
 Plugin 'Raimondi/delimitMate'
+Plugin 'scrooloose/nerdtree'
 "Plugin 'flazz/vim-colorschemes'
 Plugin 'AlessandroYorba/Arcadia'
 
@@ -64,10 +65,16 @@ set noswapfile
 set nobackup
 set nowb
 
-" Latex-Box {{{
+" NERDTree {{{
+let NERDTreeWinSize=20
+"}}}
+
+ " Latex-Box {{{
+let g:tex_flavor="latex"
 let g:LatexBox_latexmk_options="-synctex=1 -interaction=nonstopmode -file-line-error -xelatex -shell-escape"
 let g:LatexBox_Folding=1
 let g:LatexBox_fold_sections = [
+                        \ "section",
                         \ "subsection",
                         \ "subsubsection"
                         \ ]
@@ -87,9 +94,12 @@ nnoremap <C-k> <C-W><C-K>
 nnoremap <C-h> <C-W><C-H>
 nnoremap <C-l> <C-W><C-L>
 imap <C-Space> <C-P>
+map <C-n> :NERDTreeToggle<CR>
+
 " }}}
 " filtype dependent keymaps {{{
-autocmd FileType python nnoremap <buffer> <F5> :w !python > /tmp/%:t.out <Enter><Enter>
-autocmd FileType tex    nnoremap <buffer> <F5> :w <Enter> :Latexmk <Enter>
+autocmd FileType python nnoremap <buffer> <F5> :w <CR> !python > /tmp/%:t.out <CR><CR>
+autocmd FileType tex    nnoremap <buffer> <F5> :w <CR> :Latexmk <CR>
+autocmd FileType tex    nnoremap <buffer> cc :w <CR> :LatexmkClean <CR>
 " }}}
 " }}}

@@ -18,7 +18,7 @@ URxvt.keysym.End: \033[F
 URxvt.keysym.Del: \033[3~
 
 !! perl extensions
-URxvt.perl-ext-common:      default,url-select,clipboard,resize-font
+URxvt.perl-ext-common:      default,resize-font
 
 ! url-select (part of urxvt-perls package)
 URxvt.keysym.M-u:           perl:url-select:select_next

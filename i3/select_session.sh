@@ -3,7 +3,7 @@
 while getopts ":oi" opt; do
   case $opt in
     o)
-      echo -e "DnD Homebrew"
+        echo -e "D&D Homebrew (Atom)\nD&D Homebrew (VIM)"
       ;;
     i)
       while read LINE; do
@@ -18,9 +18,13 @@ while getopts ":oi" opt; do
 done
 
 case $option in
-    'DnD Homebrew') 
+    'D&D Homebrew (Atom)') 
         i3-msg "append_layout /home/patrick/.config/i3/dnd.json; \
         exec evince /home/patrick/gitlab/dnd/homebrew.pdf; \
         exec atom /home/patrick/gitlab/dnd/";;
+    'D&D Homebrew (VIM)')
+        i3-msg "append_layout /home/patrick/.config/i3/dnd_vim.json; \
+        exec evince /home/patrick/gitlab/dnd/homebrew.pdf; \
+        exec urxvt -cd /home/patrick/gitlab/dnd -e vim +NERDTree ";;
 esac
 

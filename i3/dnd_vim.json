@@ -1,0 +1,47 @@
+// vim:ts=4:sw=4:et
+{
+    "border": "pixel",
+    "current_border_width": 2,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 844,
+       "width": 1154,
+       "x": 0,
+       "y": 0
+    },
+    "name": "urxvt",
+    "percent": 0.5,
+    "swallows": [
+       {
+       "class": "^URxvt$"
+       // "instance": "^urxvt$",
+       // "title": "^urxvt$",
+       // "transient_for": "^$"
+       }
+    ],
+    "type": "con"
+}
+
+{
+    "border": "none",
+    "current_border_width": 2,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 645,
+       "width": 602,
+       "x": 0,
+       "y": 0
+    },
+    "name": "homebrew.pdf",
+    "percent": 0.5,
+    "swallows": [
+       {
+       "class": "^Evince$"
+       // "instance": "^evince$",
+       // "title": "^homebrew\\.pdf$",
+       // "transient_for": "^$"
+       }
+    ],
+    "type": "con"
+}
+
