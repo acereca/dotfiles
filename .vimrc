@@ -15,6 +15,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " Github Plugins {{{
 Plugin 'tpope/vim-surround'
+Plugin 'godlygeek/tabular'
 
 Plugin 'Raimondi/delimitMate'
 "Plugin 'flazz/vim-colorschemes'
@@ -45,6 +46,7 @@ colorscheme arcadia
 " set behavior i like
 set nu
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 set splitbelow
 set breakindent
 
@@ -69,6 +71,7 @@ let g:LatexBox_fold_sections = [
                         \ "subsection",
                         \ "subsubsection"
                         \ ]
+let g:LatexBox_quickfix=4
 " }}}
 
 " Powerline {{{
@@ -87,6 +90,6 @@ imap <C-Space> <C-P>
 " }}}
 " filtype dependent keymaps {{{
 autocmd FileType python nnoremap <buffer> <F5> :w !python > /tmp/%:t.out <Enter><Enter>
-autocmd FileType tex nnoremap <buffer> <F5> :w <Enter> :Latexmk <Enter>
+autocmd FileType tex    nnoremap <buffer> <F5> :w <Enter> :Latexmk <Enter>
 " }}}
 " }}}
