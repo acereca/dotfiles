@@ -18,14 +18,16 @@ URxvt.keysym.End: \033[F
 URxvt.keysym.Del: \033[3~
 
 !! perl extensions
-URxvt.perl-ext-common:      default,resize-font
-
-! url-select (part of urxvt-perls package)
-URxvt.keysym.M-u:           perl:url-select:select_next
-URxvt.url-select.autocopy:  true
-URxvt.url-select.button:    2
+!!URxvt.perl-ext-common:      default,resize-font
+URxvt.perl-ext-common:      default,clipboard,resize-font,url-select,keyboard-select
 URxvt.url-select.launcher:  chromium
 URxvt.url-select.underline: true
+URxvt.url-select.button:    1
+URxvt.keysym.M-u:           perl:url-select:select_next
+URxvt.keysym.M-Escape:      perl:keyboard-select:activate
+URxvt.keysym.M-s:           perl:keyboard-select:search
+
+
 
 ! enable clipboard
 URxvt.keysym.C-v:   perl:clipboard:paste
@@ -40,13 +42,15 @@ URxvt.iso14755: false
 URxvt.iso14755_52: false
 
 !urxvt color scheme:
-URxvt*background: rgba:2f00/3400/3f00/e000
+URxvt*background: [90]#222e3a
 URxvt*foreground: #DEDEDE
+
+URxvt*cursorColor: #ff8a00
 
 URxvt*colorUL: #86a2b0
 
 ! black
-URxvt*color0  : #2E3436
+URxvt*color0  : #222e3a
 URxvt*color8  : #555753
 ! red
 URxvt*color1  : #CC0000

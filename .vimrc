@@ -96,10 +96,13 @@ nnoremap <C-l> <C-W><C-L>
 imap <C-Space> <C-P>
 map <C-n> :NERDTreeToggle<CR>
 
+nnoremap <leader>sc :set spell! spelllang=en,de_de<CR>
+
 " }}}
-" filtype dependent keymaps {{{
-autocmd FileType python nnoremap <buffer> <F5> :w <CR> !python > /tmp/%:t.out <CR><CR>
+ " filtype dependent keymaps {{{
+autocmd FileType python nnoremap <buffer> <F5> :w <CR> :!python > /tmp/%:t.out <CR><CR>
 autocmd FileType tex    nnoremap <buffer> <F5> :w <CR> :Latexmk <CR>
 autocmd FileType tex    nnoremap <buffer> cc :w <CR> :LatexmkClean <CR>
+autocmd FileType html   nnoremap <buffer> <F5> :w <CR> :!chromium % <CR><CR>
 " }}}
 " }}}
