@@ -31,7 +31,10 @@ Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'vim-syntastic/syntastic'
 
+"" Completion
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/UltiSnips'
+Plugin 'honza/vim-snippets'
 " }}}
 
 call vundle#end()
@@ -60,7 +63,7 @@ nnoremap <space> za
 let g:SimpylFold_docstring_preview=1
 " }}}
 
-" turn off swap files
+" turn off swap files, because the suck!!!!!
 set noswapfile
 set nobackup
 set nowb
@@ -71,7 +74,7 @@ let NERDTreeWinSize=20
 
  " Latex-Box {{{
 let g:tex_flavor="latex"
-let g:LatexBox_latexmk_options="-synctex=1 -interaction=nonstopmode -file-line-error -xelatex -shell-escape"
+let g:LatexBox_latexmk_options="-interaction=nonstopmode -file-line-error -xelatex -shell-escape"
 let g:LatexBox_Folding=1
 let g:LatexBox_fold_sections = [
                         \ "section",
@@ -79,6 +82,14 @@ let g:LatexBox_fold_sections = [
                         \ "subsubsection"
                         \ ]
 let g:LatexBox_quickfix=4
+" }}}
+
+" YouCompleteMe {{{
+let g:ycm_key_list_previous_completion=['<Up>']
+" }}}
+
+" UltiSnips {{{
+let g:UltiSnipsExpandTrigger="<s-tab>"
 " }}}
 
 " Powerline {{{
@@ -90,10 +101,18 @@ set laststatus=2
 
 " keymaps {{{
 " general keymaps {{{
-nnoremap <C-j> <C-W><C-J>
-nnoremap <C-k> <C-W><C-K>
-nnoremap <C-h> <C-W><C-H>
-nnoremap <C-l> <C-W><C-L>
+nnoremap <C-S-J> <C-W><C-J>
+nnoremap <C-S-Up> <C-W><Up>
+
+nnoremap <C-S-K> <C-W><C-K>
+nnoremap <C-S-Down> <C-W><Down>
+
+nnoremap <C-S-H> <C-W><C-H>
+nnoremap <C-S-Left> <C-W><Left>
+
+nnoremap <C-S-L> <C-W><C-L>
+nnoremap <C-S-Right> <C-W><Right>
+
 imap <C-Space> <C-P>
 map <C-n> :NERDTreeToggle<CR>
 
