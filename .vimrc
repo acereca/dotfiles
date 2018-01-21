@@ -93,6 +93,7 @@ let g:UltiSnipsExpandTrigger="<s-tab>"
 " }}}
 
 " Powerline {{{
+let g:powerline_pycmd = "py3"
 set rtp+=/usr/lib/python*/site-packages/powerline/bindings/vim
 "let g:powerline_left_sep = "\uE0b4"
 set laststatus=2
