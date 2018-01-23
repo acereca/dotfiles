@@ -1,0 +1,90 @@
+// vim:ts=4:sw=4:et
+{
+    // splitv split container with 2 children
+    "border": "pixel",
+    "floating": "auto_off",
+    "layout": "splitv",
+    "percent": 0.8,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "none",
+            "current_border_width": 2,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 645,
+               "width": 602,
+               "x": 0,
+               "y": 0
+            },
+            "name": "EiTI2016_Skript.pdf",
+            "percent": 0.62,
+            "swallows": [
+               {
+                "class": "^Evince$"
+               // "instance": "^evince$",
+               // "title": "^EiTI2016_Skript\\.pdf$",
+               // "transient_for": "^$"
+               }
+            ],
+            "type": "con"
+        },
+        {
+            // splith split container with 1 children
+            "border": "pixel",
+            "floating": "auto_off",
+            "layout": "splith",
+            "percent": 0.38,
+            "type": "con",
+            "nodes": [
+                {
+                    "border": "pixel",
+                    "current_border_width": 2,
+                    "floating": "auto_off",
+                    "geometry": {
+                       "height": 844,
+                       "width": 1154,
+                       "x": 0,
+                       "y": 0
+                    },
+                    "name": "urxvt",
+                    "percent": 1,
+                    "swallows": [
+                       {
+                        "class": "^URxvt$"
+                       // "instance": "^urxvt$",
+                       // "title": "^urxvt$",
+                       // "transient_for": "^$"
+                       }
+                    ],
+                    "type": "con"
+                }
+            ]
+        }
+    ]
+}
+
+{
+    "border": "pixel",
+    "current_border_width": 2,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 1052,
+       "width": 495,
+       "x": 1423,
+       "y": 2
+    },
+    "name": "ITI_18-01-17.md Preview — ~/gitlab/ITI-WS1718 — Atom",
+    "percent": 0.2,
+    "swallows": [
+       {
+       "class": "^Atom$"
+       // "instance": "^atom$",
+       // "title": "^ITI_18\\-01\\-17\\.md\\ Preview\\ \\—\\ \\~\\/gitlab\\/ITI\\-WS1718\\ \\—\\ Atom$",
+       // "transient_for": "^$",
+       // "window_role": "^browser\\-window$"
+       }
+    ],
+    "type": "con"
+}
+
