@@ -69,7 +69,7 @@ twitch() {
 
 
 mpv_stream() {
-    mpv $(youtube-dl -g $(/home/patrick/github/scripts/getyturl.py $1 $2 ) $3) $4
+    mpv --demuxer-thread=yes --demuxer-readahead-secs=15 $(youtube-dl -g $(/home/patrick/github/scripts/getyturl.py $1 $2 ) $3) $4
 }
 
 autoload twitch

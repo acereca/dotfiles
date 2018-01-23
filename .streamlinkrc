@@ -1,5 +1,6 @@
 # Player options
-player=mpv --volume=50
+player=mpv --volume=50 --cache=1048576 
+#1GB 
 
 # Stream options
 default-stream=720p60, best
