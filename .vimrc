@@ -127,5 +127,6 @@ autocmd FileType python nnoremap <buffer> <F5> :w <CR> :!python > /tmp/%:t.out <
 autocmd FileType tex    nnoremap <buffer> <F5> :w <CR> :Latexmk <CR>
 autocmd FileType tex    nnoremap <buffer> cc :w <CR> :LatexmkClean <CR>
 autocmd FileType html   nnoremap <buffer> <F5> :w <CR> :!chromium % <CR><CR>
+autocmd Filetype rmd    nnoremap <buffer> <F5> :w <CR> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
 " }}}
 " }}}

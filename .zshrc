@@ -44,6 +44,8 @@ alias cfz="vim ~/.zshrc"
 alias cfi="vim ~/.config/i3/config"
 alias cfr="vim ~/.config/ranger/rc.conf"
 alias cfv="vim ~/.vimrc"
+alias cfq="vim ~/.config/qutebrowser/config.py"
+alias cfs="vim ~/github/Startpage/startpage.rmd"
 # }}}
 
 lastedit() {
