@@ -2,7 +2,7 @@
 # Patrick Nisble
 # github.com/acereca
 #
-# Version: 5
+# Version: 6
 
 # PATH setup {{{
 export PATH="/opt/cuda/bin/:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/patrick/bin"
@@ -29,16 +29,13 @@ aes() {
 }
 autoload aes
 
-# aliases
-alias minecraft="java -jar /home/patrick/.minecraft/launcher.jar"
+# aliases {{{
 
-alias sv="sudo vim"
-alias v="vim"
 alias la="ls -la --block-size=k"
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 alias rm="rm -i"
-alias jn="jupyter notebook"
+alias cp="rsync -avh --progress"
 
 alias yt='mpv $(youtube-dl -f 22 -g "$(xclip -selection c -o)")'
 
@@ -47,12 +44,26 @@ alias cfz="vim ~/.zshrc"
 alias cfi="vim ~/.config/i3/config"
 alias cfr="vim ~/.config/ranger/rc.conf"
 alias cfv="vim ~/.vimrc"
+alias cfq="vim ~/.config/qutebrowser/config.py"
+alias cfs="vim ~/github/Startpage/startpage.rmd"
+alias cfp="vim ~/.config/polybar/config"
 # }}}
 
 lastedit() {
     find $1 -type f -printf '%C@ %P\n' | sort -nr | head -1 | cut -d" " -f 2-
 }
 autoload lastedit
+
+todo() {
+    if [[ $# -eq 0 ]];
+    then 
+        vim ~/todo.md
+    else 
+        echo "- [ ] $1" >> ~/todo.md
+    fi
+}
+autoload todo
+
 
 # streamlink aliases {{{
 twitch() {
@@ -73,6 +84,7 @@ alias poo="streamlink twitch.tv/grand_poobear"
 alias waffle="streamlink twitch.tv/giantwaffle"
 alias monstercat="streamlink twitch.tv/monstercat"
 alias filthy="streamlink twitch.tv/filthyrobot"
+# }}}
 # }}}
 
 autoload -U zmv

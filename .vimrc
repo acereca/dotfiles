@@ -45,6 +45,7 @@ filetype plugin indent on
 let python_highlight_all=1
 syntax on
 colorscheme arcadia 
+highlight Normal ctermbg=none
 " }}} 
 
 " set behavior i like
@@ -116,6 +117,8 @@ nnoremap <C-S-Right> <C-W><Right>
 imap <C-Space> <C-P>
 map <C-n> :NERDTreeToggle<CR>
 
+map <C-j> :m-2<CR>
+map <C-k> :m+1<CR> 
 nnoremap <leader>sc :set spell! spelllang=en,de_de<CR>
 
 " }}}

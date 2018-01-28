@@ -1,8 +1,8 @@
 ! urxvt
 
 URxvt*geometry:                115x40
-p
-URxvt*font: xft:Droid Sans Mono for Powerline:pixelsize=17:antialias=true:hinting=true
+
+URxvt*font: xft:Droid Sans Mono for Powerline:pixelsize=17:antialias=true:hinting=true,xft:FontAwesome;pixelsize=17
 URxvt*boldFont: xft:Droid Sans Mono for Powerline:bold:pixelsize=17:antialias=true:hinting=true
 URxvt.letterSpace: -1
 URxvt*depth:                32
@@ -33,8 +33,8 @@ URxvt.keysym.M-s:           perl:keyboard-select:search
 URxvt.keysym.C-v:   perl:clipboard:paste
 URxvt.keysym.C-c:   perl:clipboard:copy
 
-URxvt.resize-font.smaller: C-j
-URxvt.resize-font.bigger: C-k
+URxvt.resize-font.smaller: C-Down
+URxvt.resize-font.bigger: C-Up
 URxvt.resize-font.reset: C-0
 
 ! disable the stupid ctrl+shift 'feature'
