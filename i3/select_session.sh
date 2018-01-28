@@ -31,7 +31,7 @@ case $option in
     'ITI Mitschrieb')
         i3-msg "append_layout /home/patrick/.config/i3/iti.json"
         /usr/bin/urxvt -cd /home/patrick/gitlab/ITI-WS1718 -e vim +NERDTree &
-        /usr/bin/evince /home/patrick/Downloads/uni/EiTI/EiTI2016_Skript.pdf &
+        /usr/bin/evince /home/patrick/Downloads/uni/EiTI/Vorlesung_Rechenarchitektur.pdf &
         atom /home/patrick/gitlab/ITI-WS1718/ &
         ;;
     'Report')

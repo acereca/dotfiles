@@ -46,6 +46,7 @@ alias cfr="vim ~/.config/ranger/rc.conf"
 alias cfv="vim ~/.vimrc"
 alias cfq="vim ~/.config/qutebrowser/config.py"
 alias cfs="vim ~/github/Startpage/startpage.rmd"
+alias cfp="vim ~/.config/polybar/config"
 # }}}
 
 lastedit() {
