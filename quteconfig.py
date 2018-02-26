@@ -67,4 +67,4 @@ c.url.default_page = '/home/patrick/github/Startpage/startpage.html'
 # Type: List of FuzzyUrl, or FuzzyUrl
 c.url.start_pages = '/home/patrick/github/Startpage/startpage.html'
 
-config.bind(';f', 'hint links spawn mpv --ytdl-format=22 {hint-url}')
+config.bind(';f', 'hint links spawn mpv --ytdl-format="best[height<=1080p]" {hint-url}')

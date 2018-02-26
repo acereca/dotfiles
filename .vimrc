@@ -29,7 +29,7 @@ Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
-Plugin 'vim-syntastic/syntastic'
+"Plugin 'vim-syntastic/syntastic'
 
 "" Completion
 Plugin 'Valloric/YouCompleteMe'

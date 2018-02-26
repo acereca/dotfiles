@@ -84,6 +84,8 @@ alias poo="streamlink twitch.tv/grand_poobear"
 alias waffle="streamlink twitch.tv/giantwaffle"
 alias monstercat="streamlink twitch.tv/monstercat"
 alias filthy="streamlink twitch.tv/filthyrobot"
+
+alias youtube-aria='youtube-dl --external-downloader aria2c --external-downloader-args "-c -x5"'
 # }}}
 # }}}
 
