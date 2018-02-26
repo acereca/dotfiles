@@ -2,15 +2,15 @@
 # Patrick Nisble
 # github.com/acereca
 #
-# Version: 6
+# Version: 7
 
 # PATH setup {{{
-export PATH="/opt/cuda/bin/:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/patrick/bin"
+export PATH="/opt/cuda/bin/:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/patrick/bin:/home/patrick/.gem/ruby/2.5.0/bin"
 # }}}
 
 # EDITOR setup {{{
-export EDITOR=/usr/bin/vim
-export editor=/usr/bin/vim
+export EDITOR=/usr/bin/nvim
+export editor=/usr/bin/nvim
 # }}}
 
 # keybindings for urxvt + zsh shenanigans {{{
@@ -36,8 +36,11 @@ alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 alias rm="rm -i"
 alias cp="rsync -avh --progress"
-
+alias mv="rsync -avh --progress --remove-source-files"
 alias yt='mpv $(youtube-dl -f 22 -g "$(xclip -selection c -o)")'
+
+alias vim='nvim'
+alias v='vim'
 
 # std aliases {{{
 alias cfz="vim ~/.zshrc"
@@ -47,6 +50,12 @@ alias cfv="vim ~/.vimrc"
 alias cfq="vim ~/.config/qutebrowser/config.py"
 alias cfs="vim ~/github/Startpage/startpage.rmd"
 alias cfp="vim ~/.config/polybar/config"
+
+alias gh="cd ~/github"
+alias gl="cd ~/gitlab"
+alias gD="cd ~/Downloads"
+alias gd="cd ~/Dokumente"
+alias gV="cd ~/Videos"
 # }}}
 
 lastedit() {
@@ -56,9 +65,9 @@ autoload lastedit
 
 todo() {
     if [[ $# -eq 0 ]];
-    then 
+    then
         vim ~/todo.md
-    else 
+    else
         echo "- [ ] $1" >> ~/todo.md
     fi
 }
@@ -96,7 +105,7 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
 # sudo - <esc> {{{
 sudo-command-line() {
-	LBUFFER="sudo $LBUFFER"
+    LBUFFER="sudo $LBUFFER"
 }
 
 zle -N sudo-command-line

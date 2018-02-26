@@ -1,6 +1,6 @@
 " VIM Config file
 " Patrick Nisble
-" last modified: Dec 2017
+" last modified: Feb 2018
 
 " Plugins {{{
 set nocompatible
@@ -8,12 +8,8 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" This is the Vundle package, which can be found on GitHub.
-" For GitHub repos, you specify plugins using the
-" 'user/repository' format
 Plugin 'gmarik/Vundle.vim'
 
-" Github Plugins {{{
 Plugin 'tpope/vim-surround'
 Plugin 'godlygeek/tabular'
 
@@ -21,12 +17,13 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/nerdtree'
 "Plugin 'flazz/vim-colorschemes'
 Plugin 'AlessandroYorba/Arcadia'
+Plugin 'mboughaba/i3config.vim'
 
 "LaTeX
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 
 " Python
-Plugin 'davidhalter/jedi-vim'
+"Plugin 'davidhalter/jedi-vim'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
 "Plugin 'vim-syntastic/syntastic'
@@ -35,18 +32,29 @@ Plugin 'vim-scripts/indentpython.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/UltiSnips'
 Plugin 'honza/vim-snippets'
-" }}}
+
+"" NeoVim specific
+if has('nvim')
+    Plugin 'vim-airline/vim-airline'
+    Plugin 'vim-airline/vim-airline-themes'
+    Plugin 'Shougo/deoplete.nvim'
+    Plugin 'zchee/deoplete-jedi'
+endif
 
 call vundle#end()
 filetype plugin indent on
 " }}}
 
+let g:deoplete#enable_at_startup = 1
+
 " coloring {{{
 let python_highlight_all=1
 syntax on
-colorscheme arcadia 
+colorscheme arcadia
 highlight Normal ctermbg=none
-" }}} 
+let g:airline_theme='onedark'
+let g:airline_powerline_fonts = 1
+" }}}
 
 " set behavior i like
 set nu
@@ -94,10 +102,12 @@ let g:UltiSnipsExpandTrigger="<s-tab>"
 " }}}
 
 " Powerline {{{
-let g:powerline_pycmd = "py3"
-set rtp+=/usr/lib/python*/site-packages/powerline/bindings/vim
-"let g:powerline_left_sep = "\uE0b4"
-set laststatus=2
+if !has('nvim')
+    let g:powerline_pycmd = "py3"
+    set rtp+=/usr/lib/python*/site-packages/powerline/bindings/vim
+    "let g:powerline_left_sep = "\uE0b4"
+    set laststatus=2
+endif
 " }}}
 
 " keymaps {{{
@@ -118,12 +128,12 @@ imap <C-Space> <C-P>
 map <C-n> :NERDTreeToggle<CR>
 
 map <C-j> :m-2<CR>
-map <C-k> :m+1<CR> 
+map <C-k> :m+1<CR>
 nnoremap <leader>sc :set spell! spelllang=en,de_de<CR>
 
 " }}}
  " filtype dependent keymaps {{{
-autocmd FileType python nnoremap <buffer> <F5> :w <CR> :!python > /tmp/%:t.out <CR><CR>
+autocmd FileType python nnoremap <buffer> <F5> :w <CR> :!python % <CR>
 autocmd FileType tex    nnoremap <buffer> <F5> :w <CR> :Latexmk <CR>
 autocmd FileType tex    nnoremap <buffer> cc :w <CR> :LatexmkClean <CR>
 autocmd FileType html   nnoremap <buffer> <F5> :w <CR> :!chromium % <CR><CR>
