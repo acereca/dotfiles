@@ -1,15 +1,14 @@
 ! urxvt
-
 URxvt*geometry:                115x40
 
-URxvt*font: xft:Droid Sans Mono for Powerline:pixelsize=17:antialias=true:hinting=true,xft:FontAwesome;pixelsize=17
+URxvt*font: xft:Droid Sans Mono for Powerline:pixelsize=18:antialias=true:hinting=true,xft:FontAwesome;pixelsize=17
 URxvt*boldFont: xft:Droid Sans Mono for Powerline:bold:pixelsize=17:antialias=true:hinting=true
 URxvt.letterSpace: -1
 URxvt*depth:                32
 URxvt*borderless: 1
 URxvt*scrollBar:            false
 URxvt*saveLines:  2000
-!URxvt.transparent:      false
+!URxvt.transparent:      true
 !URxvt*.shading: 30
 
 ! redo extra bindings
@@ -20,14 +19,12 @@ URxvt.keysym.Del: \033[3~
 !! perl extensions
 !!URxvt.perl-ext-common:      default,resize-font
 URxvt.perl-ext-common:      default,clipboard,resize-font,url-select,keyboard-select
-URxvt.url-select.launcher:  chromium
+URxvt.url-select.launcher:  firefox
 URxvt.url-select.underline: true
 URxvt.url-select.button:    1
 URxvt.keysym.M-u:           perl:url-select:select_next
 URxvt.keysym.M-Escape:      perl:keyboard-select:activate
 URxvt.keysym.M-s:           perl:keyboard-select:search
-
-
 
 ! enable clipboard
 URxvt.keysym.C-v:   perl:clipboard:paste
@@ -43,6 +40,7 @@ URxvt.iso14755_52: false
 
 !urxvt color scheme:
 URxvt*background: [90]#222e3a
+!URxvt*background: #222e3a
 URxvt*foreground: #DEDEDE
 
 URxvt*cursorColor: #ff8a00
