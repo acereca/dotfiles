@@ -30,7 +30,7 @@ alias grep="grep --color=auto"
 alias rm="rm -i"
 alias cp="rsync -avh --progress"
 alias mv="rsync -avh --progress --remove-source-files"
-alias yt='mpv $(youtube-dl -f 22 -g "$(xclip -selection c -o)")'
+alias yt='mpv "$(xclip -selection c -o)"'
 
 alias vim='nvim'
 alias v='vim'
@@ -38,17 +38,24 @@ alias v='vim'
 # std aliases {{{
 alias cfz="vim ~/.zshrc"
 alias cfi="vim ~/.config/i3/config"
+
 alias cfr="vim ~/.config/ranger/rc.conf"
+alias cfrs="vim ~/.config/ranger/scope.sh"
+alias cfrr="vim ~/.config/ranger/rifle.conf"
+
 alias cfv="vim ~/.vimrc"
 alias cfq="vim ~/.config/qutebrowser/config.py"
 alias cfs="vim ~/github/Startpage/startpage.rmd"
 alias cfp="vim ~/.config/polybar/config"
+
+alias cfS="vim ~/github/st/config.h && make -C ~/github/st && sudo make install -C ~/github/st"
 
 alias gh="cd ~/github"
 alias gl="cd ~/gitlab"
 alias gD="cd ~/Downloads"
 alias gd="cd ~/Dokumente"
 alias gV="cd ~/Videos"
+alias gc="cd ~/.config"
 # }}}
 
 lastedit() {
