@@ -1,3 +1,12 @@
 [user]
 	name = acereca
 	email = tigerauge96@live.de
+[pack]
+	threads = 1
+	windowMemory = 256m
+	packSizeLimit = 256m
+	deltaCacheSize = 256m
+	window = 0
+[core]
+	packedGitLimit = 256m
+	packedGitWindowSize = 256m

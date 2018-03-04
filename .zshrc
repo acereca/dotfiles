@@ -13,6 +13,8 @@ bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
 # }}}
 
+export KEYTIMEOUT=1
+
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
@@ -24,7 +26,7 @@ autoload aes
 
 # aliases {{{
 
-alias la="ls -la --block-size=k"
+alias la="ls -lahp --block-size=k"
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 alias rm="rm -i"

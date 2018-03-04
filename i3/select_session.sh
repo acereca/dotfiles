@@ -1,9 +1,12 @@
 #! /bin/bash
 
+term = '/usb/bin/st'
+EDITOR = '/usr/bin/nvim'
+
 while getopts ":oi" opt; do
   case $opt in
     o)
-        echo -e "D&D Homebrew (Atom)\nD&D Homebrew (VIM)\nITI Mitschrieb\nReport"
+        echo -e "D&D Homebrew (Atom)\nD&D Homebrew (VIM)\nReport"
       ;;
     i)
       while read LINE; do
@@ -26,18 +29,12 @@ case $option in
     'D&D Homebrew (VIM)')
         i3-msg "append_layout /home/patrick/.config/i3/dnd_vim.json"
         /usr/bin/evince /home/patrick/gitlab/dnd/homebrew.pdf &
-        /usr/bin/urxvt -cd /home/patrick/gitlab/dnd -e vim +NERDTree &
-        ;;
-    'ITI Mitschrieb')
-        i3-msg "append_layout /home/patrick/.config/i3/iti.json"
-        /usr/bin/urxvt -cd /home/patrick/gitlab/ITI-WS1718 -e vim +NERDTree &
-        /usr/bin/evince /home/patrick/Downloads/uni/EiTI/Vorlesung_Rechenarchitektur.pdf &
-        atom /home/patrick/gitlab/ITI-WS1718/ &
+        ${term} -cd /home/patrick/gitlab/dnd -e ${EDITOR} +NERDTree &
         ;;
     'Report')
         i3-msg "append_layout /home/patrick/.config/i3/dnd_vim.json"
-        /usr/bin/urxvt -cd /home/patrick/gitlab/intern_rep -e vim +NERDTree &
-        /usr/bin/evince /home/patrick/gitlab/intern_rep/report.pdf &
+        ${term} -cd /home/patrick/gitlab/InternReport -e ${EDITOR} +NERDTree &
+        /usr/bin/evince /home/patrick/gitlab/InternReport/report.pdf &
         ;;
 esac
 

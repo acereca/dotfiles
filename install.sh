@@ -66,6 +66,7 @@ ln -sfvi "$DOTFILES_DIR/.streamlinkrc" ~
 ln -sfvi "$DOTFILES_DIR/.vimrc" ~
 ln -sfvi "$DOTFILES_DIR/.Xdefaults" ~
 ln -sfvi "$DOTFILES_DIR/.zshrc" ~
+ln -sfvi "$DOTFILES_DIR/.zprofile" ~
 ln -sfvi "$DOTFILES_DIR/ssh/config" ~/.ssh/
 ln -sfvi "$DOTFILES_DIR/i3" ~/.config/
 ln -sfvi "$DOTFILES_DIR/ranger" ~/.config/
