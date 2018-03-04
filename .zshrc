@@ -13,11 +13,15 @@ export EDITOR=/usr/bin/nvim
 export editor=/usr/bin/nvim
 # }}}
 
-# keybindings for urxvt + zsh shenanigans {{{
+# urxvt/st + zsh shenanigans {{{
 bindkey  "^[[2~"  quoted-insert
 bindkey  "^[[3~"  delete-char
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
+function zle-line-init () { echoti smkx }
+function zle-line-finish () { echoti rmkx }
+zle -N zle-line-init
+zle -N zle-line-finish
 # }}}
 
 # ssh
@@ -37,6 +41,25 @@ alias grep="grep --color=auto"
 alias rm="rm -i"
 alias cp="rsync -avh --progress"
 alias mv="rsync -avh --progress --remove-source-files"
+#alias sync="rsync --exclude '.rsync' --progress $(cat ./.rsync)"
+
+sync() {
+    if [[ $# != 1 ]]
+    then
+        echo 'err'
+    else
+        if [[ $1 == *"push"* ]]
+        then
+           option=$(awk '/^push/{$1 = ""; $2=""; print $0}' .rsync | sed 's/\ \+\"//' | sed 's/\"//')
+        else
+           option=$(awk '/^pull/{$1 = ""; $2=""; print $0}' .rsync | sed 's/\ \+\"//')
+        fi
+        rsync $(echo ${option})
+    fi
+}
+autoload sync
+
+alias rn="/usr/bin/mv"
 alias yt='mpv "$(xclip -selection c -o)"'
 
 alias vim='nvim'
