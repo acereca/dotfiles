@@ -81,6 +81,7 @@ alias gl="cd ~/gitlab"
 alias gD="cd ~/Downloads"
 alias gd="cd ~/Dokumente"
 alias gV="cd ~/Videos"
+alias gu="cd ~/University"
 alias gc="cd ~/.config"
 # }}}
 
