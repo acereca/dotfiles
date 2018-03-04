@@ -36,7 +36,6 @@ alias grep="grep --color=auto"
 alias rm="rm -i"
 alias cp="rsync -avh --progress"
 alias mv="rsync -avh --progress --remove-source-files"
-#alias sync="rsync --exclude '.rsync' --progress $(cat ./.rsync)"
 
 sync() {
     if [[ $# != 1 ]]
@@ -76,6 +75,8 @@ alias cfp="vim ~/.config/polybar/config"
 alias cfS="vim ~/github/st/config.h && make -C ~/github/st && sudo make install -C ~/github/st"
 
 alias gh="cd ~/github"
+alias ghd="cd ~/github/dotfiles"
+
 alias gl="cd ~/gitlab"
 alias gD="cd ~/Downloads"
 alias gd="cd ~/Dokumente"
