@@ -4,7 +4,7 @@
 #
 # Version: 7
 
-source .zprofile
+source ~/.zprofile
 
 # urxvt/st + zsh shenanigans {{{
 bindkey  "^[[2~"  quoted-insert
