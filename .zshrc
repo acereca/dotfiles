@@ -4,14 +4,7 @@
 #
 # Version: 7
 
-# PATH setup {{{
-export PATH="/opt/cuda/bin/:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/patrick/bin:/home/patrick/.gem/ruby/2.5.0/bin"
-# }}}
-
-# EDITOR setup {{{
-export EDITOR=/usr/bin/nvim
-export editor=/usr/bin/nvim
-# }}}
+source .zprofile
 
 # urxvt/st + zsh shenanigans {{{
 bindkey  "^[[2~"  quoted-insert

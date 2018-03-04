@@ -30,8 +30,12 @@ Plugin 'vim-scripts/indentpython.vim'
 
 "" Completion
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'SirVer/UltiSnips'
-Plugin 'honza/vim-snippets'
+
+"" not NeoVim usage
+if !has('nvim')
+    Plugin 'SirVer/UltiSnips'
+    Plugin 'honza/vim-snippets'
+endif
 
 "" NeoVim specific
 if has('nvim')
@@ -39,6 +43,9 @@ if has('nvim')
     Plugin 'vim-airline/vim-airline-themes'
     Plugin 'Shougo/deoplete.nvim'
     Plugin 'zchee/deoplete-jedi'
+    Plugin 'zchee/deoplete-clang'
+    Plugin 'Shougo/neosnippet.vim'
+    Plugin 'Shougo/neosnippet-snippets'
 endif
 
 call vundle#end()
