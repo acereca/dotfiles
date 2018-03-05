@@ -7,10 +7,15 @@
 source ~/.zprofile
 
 # urxvt/st + zsh shenanigans {{{
-bindkey  "^[[2~"  quoted-insert
-bindkey  "^[[3~"  delete-char
-bindkey  "^[[H"   beginning-of-line
-bindkey  "^[[F"   end-of-line
+bindkey    "^[[2~"  quoted-insert
+bindkey    "^[[3~"  delete-char
+bindkey -a "^[[3~"  delete-char
+bindkey    "^[[H"   beginning-of-line
+bindkey    "^[[1~"   beginning-of-line
+bindkey    "^[[F"   end-of-line
+bindkey    "^[[4~"   end-of-line
+bindkey    "^?"     backward-delete-char
+bindkey -v
 function zle-line-init () { echoti smkx }
 function zle-line-finish () { echoti rmkx }
 zle -N zle-line-init
@@ -33,9 +38,20 @@ autoload aes
 alias la="ls -lahp --block-size=k"
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
-alias rm="rm -i"
+alias rm="trash -v"
+alias rms="rm -i"
 alias cp="rsync -avh --progress"
 alias mv="rsync -avh --progress --remove-source-files"
+
+ffind() {
+    if [[ $# == 2 ]]
+    then
+        grep -rnw $1 -e $2
+    else
+        echo '\033[0;31m usage \033[0m: grep -rnw $1 -e $2'
+    fi
+}
+autoload ffind
 
 sync() {
     if [[ $# != 1 ]]
@@ -83,6 +99,7 @@ alias gd="cd ~/Dokumente"
 alias gV="cd ~/Videos"
 alias gu="cd ~/University"
 alias gc="cd ~/.config"
+alias gt="cd ~/.local/share/Trash"
 # }}}
 
 lastedit() {

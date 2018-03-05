@@ -1,7 +1,8 @@
 #! /bin/bash
 
-term = '/usb/bin/st'
-EDITOR = '/usr/bin/nvim'
+TERM='/usr/local/bin/st'
+EDITOR='/usr/bin/nvim'
+PDFVIEW='/usr/bin/evince'
 
 while getopts ":oi" opt; do
   case $opt in
@@ -22,19 +23,19 @@ done
 
 case $option in
     'D&D Homebrew (Atom)') 
-        i3-msg "append_layout /home/patrick/.config/i3/dnd.json"
-        /usr/bin/evince /home/patrick/gitlab/dnd/homebrew.pdf &
-        atom /home/patrick/gitlab/dnd/ &
+        i3-msg "append_layout ~/.config/i3/dnd.json"
+        ${PDFVIEW} ~/gitlab/dnd/homebrew.pdf &
+        atom ~/gitlab/dnd/ &
         ;;
     'D&D Homebrew (VIM)')
-        i3-msg "append_layout /home/patrick/.config/i3/dnd_vim.json"
-        /usr/bin/evince /home/patrick/gitlab/dnd/homebrew.pdf &
-        ${term} -cd /home/patrick/gitlab/dnd -e ${EDITOR} +NERDTree &
+        i3-msg "append_layout ~/.config/i3/dnd_vim.json"
+        ${PDFVIEW} ~/gitlab/dnd/homebrew.pdf &
+        ${TERM} -e ${EDITOR} -c 'lcd ~/gitlab/InternReport' +NERDTree &
         ;;
     'Report')
-        i3-msg "append_layout /home/patrick/.config/i3/dnd_vim.json"
-        ${term} -cd /home/patrick/gitlab/InternReport -e ${EDITOR} +NERDTree &
-        /usr/bin/evince /home/patrick/gitlab/InternReport/report.pdf &
+        i3-msg "append_layout ~/.config/i3/dnd_vim.json"
+        ${TERM} -e ${EDITOR} -c 'lcd ~/gitlab/InternReport' +NERDTree &
+        ${PDFVIEW} ~/gitlab/InternReport/report.pdf &
         ;;
 esac
 
