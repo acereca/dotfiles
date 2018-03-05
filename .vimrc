@@ -98,6 +98,9 @@ let g:LatexBox_fold_sections = [
                         \ "subsubsection"
                         \ ]
 let g:LatexBox_quickfix=4
+if has('nvim')
+    let g:LatexBox_latexmk_async=1
+endif
 " }}}
 
 " YouCompleteMe {{{
@@ -106,6 +109,14 @@ let g:ycm_key_list_previous_completion=['<Up>']
 
 " UltiSnips {{{
 let g:UltiSnipsExpandTrigger="<s-tab>"
+" }}}
+
+" NeoSnippets.vim {{{
+if has('nvim')
+    imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+    smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+    xmap <C-k>     <Plug>(neosnippet_expand_target)
+endif
 " }}}
 
 " Powerline {{{
