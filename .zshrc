@@ -38,7 +38,7 @@ autoload aes
 alias la="ls -lahp --block-size=k"
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
-alias rm="trash -v"
+alias rm="trash"
 alias rms="rm -i"
 alias cp="rsync -avh --progress"
 alias mv="rsync -avh --progress --remove-source-files"

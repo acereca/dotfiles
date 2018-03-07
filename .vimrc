@@ -8,47 +8,50 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'
+    Plugin 'gmarik/Vundle.vim'
 
-Plugin 'tpope/vim-surround'
-Plugin 'godlygeek/tabular'
+    Plugin 'autoload/acereca'
 
-Plugin 'Raimondi/delimitMate'
-Plugin 'scrooloose/nerdtree'
-"Plugin 'flazz/vim-colorschemes'
-Plugin 'AlessandroYorba/Arcadia'
-Plugin 'mboughaba/i3config.vim'
+    Plugin 'tpope/vim-surround'
+    Plugin 'godlygeek/tabular'
 
-"LaTeX
-Plugin 'LaTeX-Box-Team/LaTeX-Box'
+    Plugin 'Raimondi/delimitMate'
+    Plugin 'scrooloose/nerdtree'
+    "Plugin 'flazz/vim-colorschemes'
+    Plugin 'AlessandroYorba/Arcadia'
+    Plugin 'mboughaba/i3config.vim'
 
-" Python
-"Plugin 'davidhalter/jedi-vim'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'vim-scripts/indentpython.vim'
-"Plugin 'vim-syntastic/syntastic'
+    "LaTeX
+    Plugin 'LaTeX-Box-Team/LaTeX-Box'
 
-"" Completion
-Plugin 'Valloric/YouCompleteMe'
+    " Python
+    "Plugin 'davidhalter/jedi-vim'
+    Plugin 'tmhedberg/SimpylFold'
+    Plugin 'vim-scripts/indentpython.vim'
+    "Plugin 'vim-syntastic/syntastic'
 
-"" not NeoVim usage
-if !has('nvim')
-    Plugin 'SirVer/UltiSnips'
-    Plugin 'honza/vim-snippets'
-endif
+    "" Completion
+    Plugin 'Valloric/YouCompleteMe'
 
-"" NeoVim specific
-if has('nvim')
-    Plugin 'vim-airline/vim-airline'
-    Plugin 'vim-airline/vim-airline-themes'
-    Plugin 'Shougo/deoplete.nvim'
-    Plugin 'zchee/deoplete-jedi'
-    Plugin 'zchee/deoplete-clang'
-    Plugin 'Shougo/neosnippet.vim'
-    Plugin 'Shougo/neosnippet-snippets'
-endif
+    "" not NeoVim usage
+    if !has('nvim')
+        Plugin 'SirVer/UltiSnips'
+        Plugin 'honza/vim-snippets'
+    endif
+
+    "" NeoVim specific
+    if has('nvim')
+        Plugin 'vim-airline/vim-airline'
+        Plugin 'vim-airline/vim-airline-themes'
+        Plugin 'Shougo/deoplete.nvim'
+        Plugin 'zchee/deoplete-jedi'
+        Plugin 'zchee/deoplete-clang'
+        Plugin 'Shougo/neosnippet.vim'
+        Plugin 'Shougo/neosnippet-snippets'
+    endif
 
 call vundle#end()
+
 filetype plugin indent on
 " }}}
 
@@ -71,12 +74,12 @@ set splitbelow
 set breakindent
 
 " code folding {{{
-"set foldmethod=indent
-"set foldlevel=99
-set foldmethod=marker
-set foldlevel=0
+"set fillchars=vert:┃                                                 " Box Drawings Heavy Vertical (U+2503)
+"set fillchars+=fold:·                                                " MIDDLE DOT (U+00B7)
+set foldmethod=indent
+set foldlevelstart=99
 nnoremap <space> za
-let g:SimpylFold_docstring_preview=1
+"set foldtext=acereca#settings#foldtext()
 " }}}
 
 " turn off swap files, because the suck!!!!!
