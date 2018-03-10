@@ -126,25 +126,18 @@ todo() {
 autoload todo
 
 
-# streamlink aliases {{{
+# streams{{{
 twitch() {
-    streamlink twitch.tv/$1 $2
+    mpv "ytdl://twitch.tv/$1" --ytdl-format=$2
 }
-
-
-mpv_stream() {
-    mpv --demuxer-thread=yes --demuxer-readahead-secs=15 $(youtube-dl -g $(/home/patrick/github/scripts/getyturl.py $1 $2 ) $3) $4
-}
-
 autoload twitch
-autoload mpv_stream
 
-alias soaryn="streamlink twitch.tv/soaryn"
-alias amadornes="streamlink twitch.tv/amadornes"
-alias poo="streamlink twitch.tv/grand_poobear"
-alias waffle="streamlink twitch.tv/giantwaffle"
-alias monstercat="streamlink twitch.tv/monstercat"
-alias filthy="streamlink twitch.tv/filthyrobot"
+alias soaryn="mpv ytdl://twitch.tv/soaryn"
+alias amadornes="mpv ytdl://twitch.tv/amadornes"
+alias poo="mpv ytdl://twitch.tv/grand_poobear"
+alias waffle="mpv ytdl://twitch.tv/giantwaffle"
+alias monstercat="mpv ytdl://twitch.tv/monstercat"
+alias filthy="mpv ytdl://twitch.tv/filthyrobot"
 
 alias youtube-aria='youtube-dl --external-downloader aria2c --external-downloader-args "-c -x5"'
 # }}}
@@ -163,7 +156,7 @@ sudo-command-line() {
 zle -N sudo-command-line
 
 # Defined shortcut keys: [Esc] [Esc]
-bindkey '\e\e' sudo-command-line
+bindkey '^\e' sudo-command-line
 
 alias s!!="sudo !!"
 # }}}
@@ -172,7 +165,6 @@ alias s!!="sudo !!"
 POWERLINE_DIR=$( pip show powerline-status | grep Location | cut -d " " -f2 )
 
 if [[ -r $POWERLINE_DIR/powerline/bindings/zsh/powerline.zsh ]]; then
-    powerline-daemon -q
     source $POWERLINE_DIR/powerline/bindings/zsh/powerline.zsh
 fi
 # }}}
