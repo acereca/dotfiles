@@ -4,37 +4,41 @@
 
 " Plugins {{{
 set nocompatible
-filetype off
+filetype plugin on
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
     Plugin 'gmarik/Vundle.vim'
 
-    Plugin 'autoload/acereca'
+    " visual
+    Plugin 'AlessandroYorba/Arcadia'
+    Plugin 'Yggdroot/indentLine'
+    Plugin 'mboughaba/i3config.vim'
 
+    " text formatting
     Plugin 'tpope/vim-surround'
     Plugin 'godlygeek/tabular'
+    "Plugin 'Raimondi/delimitMate'
 
-    Plugin 'Raimondi/delimitMate'
+    " NERDTree
     Plugin 'scrooloose/nerdtree'
-    "Plugin 'flazz/vim-colorschemes'
-    Plugin 'AlessandroYorba/Arcadia'
-    Plugin 'mboughaba/i3config.vim'
 
     "LaTeX
     Plugin 'LaTeX-Box-Team/LaTeX-Box'
 
     " Python
-    "Plugin 'davidhalter/jedi-vim'
     Plugin 'tmhedberg/SimpylFold'
     Plugin 'vim-scripts/indentpython.vim'
-    "Plugin 'vim-syntastic/syntastic'
 
-    "" Completion
-    Plugin 'Valloric/YouCompleteMe'
+    " Cmd-t
+    Plugin 'wincent/command-t'
+
+    "Loupe
+    Plugin 'wincent/loupe'
 
     "" not NeoVim usage
     if !has('nvim')
+        Plugin 'Valloric/YouCompleteMe'
         Plugin 'SirVer/UltiSnips'
         Plugin 'honza/vim-snippets'
     endif
@@ -58,52 +62,74 @@ filetype plugin indent on
 let g:deoplete#enable_at_startup = 1
 
 " coloring {{{
-let python_highlight_all=1
-syntax on
-colorscheme arcadia
-highlight Normal ctermbg=none
-let g:airline_theme='onedark'
-let g:airline_powerline_fonts = 1
+    let python_highlight_all=1
+    syntax on
+    colorscheme arcadia
+    highlight Normal ctermbg=none
+" }}}
+
+" vim-airline {{{
+    let g:airline_powerline_fonts = 1
+    let g:airline_theme = 'minimalist'
+    let g:airline#extensions#tabline#enabled = 1
+
+    if !exists('g:airline_symbols')
+        let g:airline_symbols = {}
+    endif
+    let g:airline_symbols.maxlinenr = 'ℓ'
+" }}}
+
+" loupe {{{
+    nmap <leader>/ <Plug>(LoupeClearHighlight)
 " }}}
 
 " set behavior i like
-set nu
+set number relativenumber
+
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+    autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 set splitbelow
 set breakindent
 
 " code folding {{{
-"set fillchars=vert:┃                                                 " Box Drawings Heavy Vertical (U+2503)
-"set fillchars+=fold:·                                                " MIDDLE DOT (U+00B7)
-set foldmethod=indent
-set foldlevelstart=99
-nnoremap <space> za
-"set foldtext=acereca#settings#foldtext()
+    set fillchars=vert:┃                                                 " Box Drawings Heavy Vertical (U+2503)
+    set fillchars+=fold:·                                                " MIDDLE DOT (U+00B7)
+    set foldmethod=syntax
+    set foldlevelstart=1
+    set foldtext=acereca#settings#foldtext()
+
+    let g:indentLine_char="▏"
+    let g:indentLine_color_term = 0
 " }}}
 
 " turn off swap files, because the suck!!!!!
-set noswapfile
-set nobackup
-set nowb
+    set noswapfile
+    set nobackup
+    set nowb
 
 " NERDTree {{{
-let NERDTreeWinSize=20
+    let NERDTreeWinSize=20
 "}}}
 
  " Latex-Box {{{
-let g:tex_flavor="latex"
-let g:LatexBox_latexmk_options="-interaction=nonstopmode -file-line-error -xelatex -shell-escape"
-let g:LatexBox_Folding=1
-let g:LatexBox_fold_sections = [
-                        \ "section",
-                        \ "subsection",
-                        \ "subsubsection"
-                        \ ]
-let g:LatexBox_quickfix=4
-if has('nvim')
-    let g:LatexBox_latexmk_async=1
-endif
+    let g:tex_flavor="latex"
+    let g:LatexBox_latexmk_options="-interaction=nonstopmode -file-line-error -xelatex -shell-escape"
+    let g:LatexBox_Folding=1
+    let g:LatexBox_fold_sections = [
+        \ "section",
+        \ "subsection",
+        \ "subsubsection"
+    \ ]
+    let g:LatexBox_quickfix=4
+    if has('nvim')
+        let g:LatexBox_latexmk_async=1
+    endif
 " }}}
 
 " YouCompleteMe {{{
@@ -115,49 +141,45 @@ let g:UltiSnipsExpandTrigger="<s-tab>"
 " }}}
 
 " NeoSnippets.vim {{{
-if has('nvim')
-    imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-    smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-    xmap <C-k>     <Plug>(neosnippet_expand_target)
-endif
+    if has('nvim')
+        imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+        smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+        xmap <C-k>     <Plug>(neosnippet_expand_target)
+    endif
 " }}}
 
 " Powerline {{{
-if !has('nvim')
-    let g:powerline_pycmd = "py3"
-    set rtp+=/usr/lib/python*/site-packages/powerline/bindings/vim
-    "let g:powerline_left_sep = "\uE0b4"
-    set laststatus=2
-endif
+    if !has('nvim')
+        let g:powerline_pycmd = "py3"
+        set rtp+=/usr/lib/python*/site-packages/powerline/bindings/vim
+        "let g:powerline_left_sep = "\uE0b4"
+        set laststatus=2
+    endif
 " }}}
 
 " keymaps {{{
-" general keymaps {{{
-nnoremap <C-S-J> <C-W><C-J>
-nnoremap <C-S-Up> <C-W><Up>
 
-nnoremap <C-S-K> <C-W><C-K>
-nnoremap <C-S-Down> <C-W><Down>
+    nnoremap <SPACE> <Nop>
+    let mapleader = "\<Space>"
 
-nnoremap <C-S-H> <C-W><C-H>
-nnoremap <C-S-Left> <C-W><Left>
+    " general keymaps {{{
+        nnoremap <C-S-J> <C-W><C-J>
+        nnoremap <C-S-Up> <C-W><Up>
 
-nnoremap <C-S-L> <C-W><C-L>
-nnoremap <C-S-Right> <C-W><Right>
+        nnoremap <C-S-K> <C-W><C-K>
+        nnoremap <C-S-Down> <C-W><Down>
 
-imap <C-Space> <C-P>
-map <C-n> :NERDTreeToggle<CR>
+        nnoremap <C-S-H> <C-W><C-H>
+        nnoremap <C-S-Left> <C-W><Left>
 
-map <C-j> :m-2<CR>
-map <C-k> :m+1<CR>
-nnoremap <leader>sc :set spell! spelllang=en,de_de<CR>
+        nnoremap <C-S-L> <C-W><C-L>
+        nnoremap <C-S-Right> <C-W><Right>
 
-" }}}
- " filtype dependent keymaps {{{
-autocmd FileType python nnoremap <buffer> <F5> :w <CR> :!python % <CR>
-autocmd FileType tex    nnoremap <buffer> <F5> :w <CR> :Latexmk <CR>
-autocmd FileType tex    nnoremap <buffer> cc :w <CR> :LatexmkClean <CR>
-autocmd FileType html   nnoremap <buffer> <F5> :w <CR> :!chromium % <CR><CR>
-autocmd Filetype rmd    nnoremap <buffer> <F5> :w <CR> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla <CR>
-" }}}
+        imap <C-Space> <C-P>
+        map <leader>n :NERDTreeToggle<CR>
+
+        map <C-j> :m-2<CR>
+        map <C-k> :m+1<CR>
+        nnoremap <leader>sc :set spell! spelllang=en,de_de<CR>
+    " }}}
 " }}}

@@ -2,7 +2,7 @@
 # Patrick Nisble
 # github.com/acereca
 #
-# Version: 7
+# Version: 8
 
 source ~/.zprofile
 
@@ -21,6 +21,11 @@ function zle-line-finish () { echoti rmkx }
 zle -N zle-line-init
 zle -N zle-line-finish
 # }}}
+
+# History
+export HISTSIZE=100000
+export HISTFILE="$HOME/.hisory"
+export SAVEHIST=$HISTSIZE
 
 export KEYTIMEOUT=1
 
@@ -100,6 +105,10 @@ alias gV="cd ~/Videos"
 alias gu="cd ~/University"
 alias gc="cd ~/.config"
 alias gt="cd ~/.local/share/Trash"
+
+# aliases for work at internship
+alias gah="cd ~/gitlab/InternReport/sourcecode/afshome"
+
 # }}}
 
 lastedit() {
