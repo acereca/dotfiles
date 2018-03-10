@@ -2,7 +2,7 @@
 # Patrick Nisble
 # github.com/acereca
 #
-# Version: 8
+# Last modified: 2018|03|10
 
 source ~/.zprofile
 
@@ -45,8 +45,8 @@ alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 alias rm="trash"
 alias rms="rm -i"
-alias cp="rsync -avh --progress"
-alias mv="rsync -avh --progress --remove-source-files"
+alias rcp="rsync -avh --progress"
+alias rmv="rsync -avh --progress --remove-source-files"
 
 ffind() {
     if [[ $# == 2 ]]
@@ -74,7 +74,6 @@ sync() {
 }
 autoload sync
 
-alias rn="/usr/bin/mv"
 alias yt='mpv "$(xclip -selection c -o)"'
 
 alias vim='nvim'
