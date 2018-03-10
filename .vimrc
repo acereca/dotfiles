@@ -106,6 +106,12 @@ set splitbelow
 set breakindent
 "}}}
 
+" global std for stfrtime string {{{
+let g:strfstr = '%Y|%m|%d'
+" run everytime needs to set b:updateModified Date in ftplugin
+autocmd BufWritePre * call acereca#date#updateLastModified()
+" }}}
+
 " code folding {{{
     set fillchars=vert:┃                                                 " Box Drawings Heavy Vertical (U+2503)
     set fillchars+=fold:·                                                " MIDDLE DOT (U+00B7)

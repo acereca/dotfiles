@@ -1,9 +1,11 @@
 # vim: filetype=i3config
 
-# Patrick Nisble's i3 config file (2018-02-08)
+# Patrick Nisble's i3 config file
 # Email: acereca@outlook.de
 # Github: https://github.com/acereca
 # see http://i3wm.org/docs/userguide.html for a complete reference!
+
+# Last modified: 2018|03|10
 
 
 ###--- client independent definitions ---###
