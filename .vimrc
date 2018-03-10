@@ -1,6 +1,6 @@
 " VIM Config file
 " Patrick Nisble
-" last modified: Feb 2018
+" Last modified: 2018|03|10
 
 " Plugins {{{
 set nocompatible
@@ -171,7 +171,7 @@ let g:UltiSnipsExpandTrigger="<s-tab>"
 
     nnoremap <SPACE> <Nop>
     let mapleader = "\<Space>"
-
+ 
     " general keymaps {{{
         nnoremap <C-S-J> <C-W><C-J>
         nnoremap <C-S-Up> <C-W><Up>
