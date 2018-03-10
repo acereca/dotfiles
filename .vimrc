@@ -36,7 +36,7 @@ call vundle#begin()
     "Loupe
     Plugin 'wincent/loupe'
 
-    "" not NeoVim usage
+    "" fallback plugins for non neovim setups
     if !has('nvim')
         Plugin 'Valloric/YouCompleteMe'
         Plugin 'SirVer/UltiSnips'
@@ -59,7 +59,9 @@ call vundle#end()
 filetype plugin indent on
 " }}}
 
+" deoplete {{{
 let g:deoplete#enable_at_startup = 1
+" }}}
 
 " coloring {{{
     let python_highlight_all=1
@@ -83,7 +85,13 @@ let g:deoplete#enable_at_startup = 1
     nmap <leader>/ <Plug>(LoupeClearHighlight)
 " }}}
 
-" set behavior i like
+" command-t {{{
+    let g:CommandTScanDotDirectories = 1
+    let g:CommandTMaxFiles = 500000
+    let g:CommandTFileScanner = 'ruby'
+" }}}
+
+" custom behaviour {{{
 set number relativenumber
 
 augroup numbertoggle
@@ -96,22 +104,24 @@ set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 set splitbelow
 set breakindent
+"}}}
 
 " code folding {{{
     set fillchars=vert:┃                                                 " Box Drawings Heavy Vertical (U+2503)
     set fillchars+=fold:·                                                " MIDDLE DOT (U+00B7)
     set foldmethod=syntax
     set foldlevelstart=1
-    set foldtext=acereca#settings#foldtext()
+    set foldtext=acereca#folding#foldtext()
 
     let g:indentLine_char="▏"
     let g:indentLine_color_term = 0
-" }}}
-
-" turn off swap files, because the suck!!!!!
+"  }}}
+ 
+" turn off swap files {{{
     set noswapfile
     set nobackup
     set nowb
+" }}}
 
 " NERDTree {{{
     let NERDTreeWinSize=20
