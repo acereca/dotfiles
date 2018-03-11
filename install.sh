@@ -20,6 +20,7 @@ done
 ln -sfvi "$DOTFILES_DIR/.ssh/config"    ~/.ssh/
 ln -sfvi "$DOTFILES_DIR/.vim/autoload"  ~/.vim/
 ln -sfvi "$DOTFILES_DIR/.vim/ftplugin"  ~/.vim/
+ln -sfvi "$DOTFILES_DIR/.vim/after"     ~/.vim/
 ln -sfvi "$DOTFILES_DIR/.config/rofi"   ~/.config/
 ln -sfvi "$DOTFILES_DIR/.config/ranger" ~/.config/
 ln -sfvi "$DOTFILES_DIR/.config/i3"     ~/.config/
