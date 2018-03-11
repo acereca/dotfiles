@@ -83,15 +83,16 @@ alias vim='nvim'
 alias v='vim'
 
 # std aliases {{{
-alias cfz="vim ~/.zshrc"
-alias cfi="vim ~/.config/i3/config"
+export DOTFILES_DIR='~/github/dotfiles'
+alias cfz="vim $DOTFILES_DIR/.zshrc -c 'lcd $DOTFILES_DIR'"
+alias cfi="vim $DOTFILES_DIR/.config/i3/config -c 'lcd $DOTFILES_DIR'"
 
-alias cfr="vim ~/.config/ranger/rc.conf"
-alias cfrs="vim ~/.config/ranger/scope.sh"
-alias cfrr="vim ~/.config/ranger/rifle.conf"
+alias cfr="vim $DOTFILES_DIR/.config/ranger/rc.conf -c 'lcd $DOTFILES_DIR'"
+alias cfrs="vim $DOTFILES_DIR/.config/ranger/scope.sh -c 'lcd $DOTFILES_DIR'"
+alias cfrr="vim $DOTFILES_DIR/.config/ranger/rifle.conf -c 'lcd $DOTFILES_DIR'"
 
-alias cfv="vim ~/.vimrc"
-alias cfq="vim ~/.config/qutebrowser/config.py"
+alias cfv="vim $DOTFILES_DIR/.vimrc -c 'lcd $DOTFILES_DIR'"
+alias cfq="vim $DOTFILES_DIR/.config/qutebrowser/config.py -c 'lcd $DOTFILES_DIR'"
 alias cfs="vim ~/github/Startpage/startpage.rmd"
 alias cfp="vim ~/.config/polybar/config"
 

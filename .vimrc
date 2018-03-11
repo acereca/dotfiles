@@ -1,6 +1,6 @@
 " VIM Config file
 " Patrick Nisble
-" Last modified: 2018|03|10
+" Last modified: 2018|03|11
 
 " Plugins {{{
 set nocompatible
@@ -9,6 +9,9 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
     Plugin 'gmarik/Vundle.vim'
+
+    " git
+    Plugin 'tpope/vim-fugitive'
 
     " visual
     Plugin 'AlessandroYorba/Arcadia'
@@ -87,12 +90,12 @@ let g:deoplete#enable_at_startup = 1
 
 " command-t {{{
     let g:CommandTScanDotDirectories = 1
-    let g:CommandTMaxFiles = 500000
+    let g:CommandTMaxFiles = 1000000
     let g:CommandTFileScanner = 'ruby'
 " }}}
 
 " custom behaviour {{{
-set number relativenumber
+set number norelativenumber
 
 augroup numbertoggle
     autocmd!
@@ -122,7 +125,7 @@ autocmd BufWritePre * call acereca#date#updateLastModified()
     let g:indentLine_char="▏"
     let g:indentLine_color_term = 0
 "  }}}
- 
+
 " turn off swap files {{{
     set noswapfile
     set nobackup
@@ -177,20 +180,12 @@ let g:UltiSnipsExpandTrigger="<s-tab>"
 
     nnoremap <SPACE> <Nop>
     let mapleader = "\<Space>"
- 
+
     " general keymaps {{{
-        nnoremap <C-S-J> <C-W><C-J>
-        nnoremap <C-S-Up> <C-W><Up>
-
-        nnoremap <C-S-K> <C-W><C-K>
-        nnoremap <C-S-Down> <C-W><Down>
-
-        nnoremap <C-S-H> <C-W><C-H>
-        nnoremap <C-S-Left> <C-W><Left>
-
-        nnoremap <C-S-L> <C-W><C-L>
-        nnoremap <C-S-Right> <C-W><Right>
-
+        
+        nnoremap <C-Tab> gt
+        nnoremap <S-Tab> gT
+        
         imap <C-Space> <C-P>
         map <leader>n :NERDTreeToggle<CR>
 
