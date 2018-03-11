@@ -2,8 +2,9 @@
 # Patrick Nisble
 # github.com/acereca
 #
-# Last modified: 2018|03|10
+# Last modified: 2018|03|11
 
+# PATH defs
 source ~/.zprofile
 
 # urxvt/st + zsh shenanigans {{{
@@ -20,13 +21,15 @@ function zle-line-init () { echoti smkx }
 function zle-line-finish () { echoti rmkx }
 zle -N zle-line-init
 zle -N zle-line-finish
-# }}}
+# }}} 
 
-# History
+# History {{{
 export HISTSIZE=100000
 export HISTFILE="$HOME/.hisory"
 export SAVEHIST=$HISTSIZE
+# }}}
 
+# reaction time on esc
 export KEYTIMEOUT=1
 
 # ssh
@@ -44,9 +47,9 @@ alias la="ls -lahp --block-size=k"
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 alias rm="trash"
-alias rms="rm -i"
-alias rcp="rsync -avh --progress"
-alias rmv="rsync -avh --progress --remove-source-files"
+alias rmi="rm -i"
+alias rssp="rsync -avh --progress"
+alias rsmv="rsync -avh --progress --remove-source-files"
 
 ffind() {
     if [[ $# == 2 ]]

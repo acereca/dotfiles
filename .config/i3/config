@@ -50,7 +50,7 @@ exec --no-startup-id compton -b -f
 exec_always --no-startup-id feh --bg-max --no-xinerama /home/patrick/Bilder/bg_i3
 
 # i3lock with timout
-set $i3lock-color-vars --insidecolor=ffffff00 --textcolor=ffffffff --ringcolor=ffffff00 --linecolor=ffffffff --separatorcolor=ffffffff --keyhlcolor=ffffffff --insidevercolor=000000ff --timecolor=ffffffff --datecolor=ffffffff
+set $i3lock-color-vars --insidecolor=ffffff00 --textcolor=ffffffff --ringcolor=ffffff00 --linecolor=ffffffff --separatorcolor=ffffffff --keyhlcolor=ffffffff --insidevercolor=ffffffff --timecolor=ffffffff --datecolor=ffffffff --insidewrongcolor=ffffffff --bshlcolor=00000000
 exec_always --no-startup-id xset s 600 && xss-lock -- i3lock -i /home/patrick/Bilder/bg_lock -k  --timestr="%H:%M" --datestr="%Y|%m|%d" $i3lock-color-vars
 
 # brightness control for integrated display
