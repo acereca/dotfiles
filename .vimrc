@@ -1,6 +1,6 @@
 " VIM Config file
 " Patrick Nisble
-" Last modified: 2018|03|11
+" Last modified: 2018|03|14
 
 " Plugins {{{
 set nocompatible
