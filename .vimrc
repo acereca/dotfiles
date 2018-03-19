@@ -1,6 +1,6 @@
 " VIM Config file
 " Patrick Nisble
-" Last modified: 2018|03|11
+" Last modified: 2018|03|15
 
 " Plugins {{{
 set nocompatible
@@ -97,14 +97,8 @@ let g:deoplete#enable_at_startup = 1
 " custom behaviour {{{
 set number norelativenumber
 
-augroup numbertoggle
-    autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-    autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
-
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
-set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<
 set splitbelow
 set breakindent
 "}}}
