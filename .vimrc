@@ -1,6 +1,6 @@
 " VIM Config file
 " Patrick Nisble
-" Last modified: 2018|03|15
+" Last modified: 2018|03|19
 
 " Plugins {{{
 set nocompatible
@@ -26,9 +26,6 @@ call vundle#begin()
     " NERDTree
     Plugin 'scrooloose/nerdtree'
 
-    "LaTeX
-    Plugin 'LaTeX-Box-Team/LaTeX-Box'
-
     " Python
     Plugin 'tmhedberg/SimpylFold'
     Plugin 'vim-scripts/indentpython.vim'
@@ -44,6 +41,9 @@ call vundle#begin()
         Plugin 'Valloric/YouCompleteMe'
         Plugin 'SirVer/UltiSnips'
         Plugin 'honza/vim-snippets'
+
+        "LaTeX
+        Plugin 'LaTeX-Box-Team/LaTeX-Box'
     endif
 
     "" NeoVim specific
@@ -55,6 +55,7 @@ call vundle#begin()
         Plugin 'zchee/deoplete-clang'
         Plugin 'Shougo/neosnippet.vim'
         Plugin 'Shougo/neosnippet-snippets'
+        Plugin 'lervag/vimtex'
     endif
 
 call vundle#end()
