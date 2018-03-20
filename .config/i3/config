@@ -217,6 +217,7 @@ bindsym $mod+d exec "rofi -show run -bw 0
 set $term 'st'
 bindsym $mod+Return exec $term 
 bindsym $mod+Shift+Return exec $term -e su
+bindsym $mod+Ctrl+Return exec "~/.config/i3/select_ssh.sh -o | rofi -dmenu -p 'ssh' | ~/.config/i3/select_ssh.sh -i"
 
 # lock device
 bindsym $mod+Shift+x exec --no-startup-id xset s activate

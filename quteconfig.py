@@ -2,7 +2,7 @@
 # Patrick Nisble
 # github.com/acereca
 #
-# Last modified: 2018|03|10
+# Last modified: 2018|03|13
 #
 # Documentation:
 #   qute://help/configuring.html
@@ -67,6 +67,11 @@ c.fonts.tabs = '12pt monospace'
 # for a blank page.
 # Type: FuzzyUrl
 c.url.default_page = '/home/patrick/github/Startpage/startpage.html'
+
+c.url.searchengines = {
+    "DEFAULT": "https://duckduckgo.com/?q={}",
+    "gh": "https://github.com/search?q={}"
+}
 
 # Page(s) to open at the start.
 # Type: List of FuzzyUrl, or FuzzyUrl

@@ -2,10 +2,18 @@
 # Patrick Nisble
 # github.com/acereca
 #
-# Last modified: 2018|03|11
+# Last modified: 2018|03|16
 
 # PATH defs
 source ~/.zprofile
+
+# todo-list {{{
+if [[ $(grep "\[[ x]\]" todo.md | wc -l) != 0 ]]
+then
+    mdv ~/todo.md -t Lagoona
+fi
+
+# }}}
 
 # urxvt/st + zsh shenanigans {{{
 bindkey    "^[[2~"  quoted-insert

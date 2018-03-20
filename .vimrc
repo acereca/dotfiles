@@ -1,6 +1,6 @@
 " VIM Config file
 " Patrick Nisble
-" Last modified: 2018|03|19
+" Last modified: 2018|03|20
 
 " Plugins {{{
 set nocompatible
@@ -146,6 +146,10 @@ autocmd BufWritePre * call acereca#date#updateLastModified()
     endif
 " }}}
 
+" vimtex {{{
+    let g:vimtex_fold_enabled=1
+" }}}
+
 " YouCompleteMe {{{
 let g:ycm_key_list_previous_completion=['<Up>']
 " }}}
@@ -182,10 +186,11 @@ let g:UltiSnipsExpandTrigger="<s-tab>"
         nnoremap <S-Tab> gT
         
         imap <C-Space> <C-P>
+
         map <leader>n :NERDTreeToggle<CR>
 
-        map <C-j> :m-2<CR>
-        map <C-k> :m+1<CR>
+        map <C-k> :m-2<CR>
+        map <C-j> :m+1<CR>
         nnoremap <leader>sc :set spell! spelllang=en,de_de<CR>
     " }}}
 " }}}
