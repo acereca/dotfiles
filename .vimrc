@@ -179,6 +179,7 @@ let g:UltiSnipsExpandTrigger="<s-tab>"
 
     nnoremap <SPACE> <Nop>
     let mapleader = "\<Space>"
+    set digraph
 
     " general keymaps {{{
         
