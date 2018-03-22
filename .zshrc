@@ -2,13 +2,13 @@
 # Patrick Nisble
 # github.com/acereca
 #
-# Last modified: 2018|03|16
+# Last modified: 2018|03|20
 
 # PATH defs
 source ~/.zprofile
 
 # todo-list {{{
-if [[ $(grep "\[[ x]\]" todo.md | wc -l) != 0 ]]
+if [[ $(grep "\[[ x]\]" ~/todo.md | wc -l) != 0 ]]
 then
     mdv ~/todo.md -t Lagoona
 fi

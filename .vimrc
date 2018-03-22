@@ -1,6 +1,6 @@
 " VIM Config file
 " Patrick Nisble
-" Last modified: 2018|03|20
+" Last modified: 2018|03|22
 
 " Plugins {{{
 set nocompatible
@@ -14,7 +14,8 @@ call vundle#begin()
     Plugin 'tpope/vim-fugitive'
 
     " visual
-    Plugin 'AlessandroYorba/Arcadia'
+    Plugin 'AlessandroYorba/Sierra'
+    Plugin 'altercation/vim-colors-solarized' 
     Plugin 'Yggdroot/indentLine'
     Plugin 'mboughaba/i3config.vim'
 
@@ -70,7 +71,12 @@ let g:deoplete#enable_at_startup = 1
 " coloring {{{
     let python_highlight_all=1
     syntax on
-    colorscheme arcadia
+    if has('nvim')
+        set background=dark
+        colorscheme solarized
+    else
+        colorscheme sierra
+    endif
     highlight Normal ctermbg=none
 " }}}
 
