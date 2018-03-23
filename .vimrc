@@ -1,6 +1,6 @@
 " VIM Config file
 " Patrick Nisble
-" Last modified: 2018|03|22
+" Last modified: 2018|03|23
 
 " Plugins {{{
 set nocompatible
@@ -154,6 +154,24 @@ autocmd BufWritePre * call acereca#date#updateLastModified()
 
 " vimtex {{{
     let g:vimtex_fold_enabled=1
+
+    let g:vimtex_compiler_latexmk = {
+              \ 'backend' : 'nvim', 
+              \ 'background' : 1,
+              \ 'build_dir' : '',
+              \ 'callback' : 1,
+              \ 'continuous' : 1,
+              \ 'executable' : 'latexmk',
+              \ 'options' : [
+              \   '-pdf',
+              \   '-verbose',
+              \   '-file-line-error',
+              \   '-synctex=1',
+              \   '-interaction=nonstopmode',
+              \   '-shell-escape'
+              \ ]
+              \}
+
 " }}}
 
 " YouCompleteMe {{{
