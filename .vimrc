@@ -1,6 +1,6 @@
 " VIM Config file
 " Patrick Nisble
-" Last modified: 2018|03|23
+" Last modified: 2018|03|24
 
 " Plugins {{{
 set nocompatible
@@ -68,18 +68,6 @@ filetype plugin indent on
 let g:deoplete#enable_at_startup = 1
 " }}}
 
-" coloring {{{
-    let python_highlight_all=1
-    syntax on
-    if has('nvim')
-        set background=dark
-        colorscheme solarized
-    else
-        colorscheme sierra
-    endif
-    highlight Normal ctermbg=none
-" }}}
-
 " vim-airline {{{
     let g:airline_powerline_fonts = 1
     let g:airline_theme = 'minimalist'
@@ -99,38 +87,6 @@ let g:deoplete#enable_at_startup = 1
     let g:CommandTScanDotDirectories = 1
     let g:CommandTMaxFiles = 1000000
     let g:CommandTFileScanner = 'ruby'
-" }}}
-
-" custom behaviour {{{
-set number norelativenumber
-
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
-set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<
-set splitbelow
-set breakindent
-"}}}
-
-" global std for stfrtime string {{{
-let g:strfstr = '%Y|%m|%d'
-" run everytime needs to set b:updateModified Date in ftplugin
-autocmd BufWritePre * call acereca#date#updateLastModified()
-" }}}
-
-" code folding {{{
-    set fillchars=vert:┃                                                 " Box Drawings Heavy Vertical (U+2503)
-    set fillchars+=fold:·                                                " MIDDLE DOT (U+00B7)
-    set foldmethod=syntax
-    set foldlevelstart=1
-    set foldtext=acereca#folding#foldtext()
-
-    let g:indentLine_char="▏"
-    let g:indentLine_color_term = 0
-"  }}}
-
-" turn off swap files {{{
-    set noswapfile
-    set nobackup
-    set nowb
 " }}}
 
 " NERDTree {{{
@@ -199,23 +155,92 @@ let g:UltiSnipsExpandTrigger="<s-tab>"
     endif
 " }}}
 
+" custom behaviour {{{
+set number norelativenumber
+set digraph
+
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<
+set splitbelow
+set breakindent
+"}}}
+
+" aliasing {{{
+cnoreabbrev W w
+cnoreabbrev Q q
+"}}}
+
+" global std for stfrtime string {{{
+let g:strfstr = '%Y|%m|%d'
+" run everytime needs to set b:updateModified Date in ftplugin
+autocmd BufWritePre * call acereca#date#updateLastModified()
+" }}}
+
+" code folding {{{
+    set fillchars=vert:┃                                                 " Box Drawings Heavy Vertical (U+2503)
+    set fillchars+=fold:·                                                " MIDDLE DOT (U+00B7)
+    set foldmethod=syntax
+    set foldlevelstart=1
+    set foldtext=acereca#folding#foldtext()
+
+    let g:indentLine_char="▏"
+    let g:indentLine_color_term = 0
+"  }}}
+
+" turn off swap files {{{
+    set noswapfile
+    set nobackup
+    set nowb
+" }}}
+
+" coloring {{{
+    let python_highlight_all=1
+    syntax on
+    if has('nvim')
+        set background=dark
+        colorscheme solarized
+    else
+        colorscheme sierra
+    endif
+    highlight Normal ctermbg=none
+" }}}
+
 " keymaps {{{
 
     nnoremap <SPACE> <Nop>
     let mapleader = "\<Space>"
-    set digraph
 
     " general keymaps {{{
         
         nnoremap <C-Tab> gt
         nnoremap <S-Tab> gT
         
+        nnoremap ; :
+        vnoremap ; :
+        
         imap <C-Space> <C-P>
 
         map <leader>n :NERDTreeToggle<CR>
+        nnoremap <leader><leader> za
 
-        map <C-k> :m-2<CR>
-        map <C-j> :m+1<CR>
+        "map <C-k> :m-2<CR>
+        "map <C-j> :m+1<CR>
         nnoremap <leader>sc :set spell! spelllang=en,de_de<CR>
+
+        " remove arrow bindings
+        map <up> <nop>
+        map <down> <nop>
+        map <left> <nop>
+        map <right> <nop>
+
+        " add minimal movement in insert mode
+        inoremap <c-h> <left>
+        inoremap <c-j> <down>
+        inoremap <c-k> <up>
+        inoremap <c-l> <down>
+
+        noremap <c-s> :update<CR>
+        inoremap <c-s> <c-o>:update<CR><CR>
+        vnoremap <c-s> <c-c>:update<CR><CR>
     " }}}
 " }}}
