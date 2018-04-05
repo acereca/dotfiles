@@ -1,6 +1,6 @@
 " VIM Config file
 " Patrick Nisble
-" Last modified: 2018|03|24
+" Last modified: 2018|04|04
 
 " Plugins {{{
 set nocompatible
@@ -232,15 +232,22 @@ autocmd BufWritePre * call acereca#date#updateLastModified()
         map <down> <nop>
         map <left> <nop>
         map <right> <nop>
+        imap <up> <nop>
+        imap <down> <nop>
+        imap <left> <nop>
+        imap <right> <nop>
 
         " add minimal movement in insert mode
         inoremap <c-h> <left>
         inoremap <c-j> <down>
         inoremap <c-k> <up>
-        inoremap <c-l> <down>
+        inoremap <c-l> <right>
 
+        imap <c-s> <nop>
+        imap <c-u> <nop>
         noremap <c-s> :update<CR>
-        inoremap <c-s> <c-o>:update<CR><CR>
-        vnoremap <c-s> <c-c>:update<CR><CR>
+        inoremap <c-S> <c-o>:update<CR>
+        inoremap <c-s> <esc>:update<CR>
+        vnoremap <c-s> <c-c>:update<CR>
     " }}}
 " }}}

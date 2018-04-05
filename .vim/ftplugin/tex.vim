@@ -10,7 +10,7 @@ if has('nvim')
     nmap <leader>lv <Plug>(vimtex-view)
 endif
 
-inoremap <C-y> <C-k> "digraphs
+inoremap <C-y> <C-k>
 
 setlocal cole=2
 let g:tex_conceal=''

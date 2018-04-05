@@ -3,7 +3,7 @@
 while getopts ":oi" opt; do
   case $opt in
     o)
-      echo -e "MagicalMusic\nMA Lite\nMonstercat\nRelaxBeats\nEpicMusic\n\n-> kill <-"
+      echo -e "Deep House - FHR\nEpicMusic\nFuture House - FHR\nMA Lite\nMagicalMusic\nMonstercat\nRelaxBeats\n\n-> kill <-"
       ;;
     i)
       while read LINE; do
@@ -29,6 +29,8 @@ case $option in
         mpv "ytdl://$(/home/patrick/github/scripts/getyturl.py user/epicmusicvn 'Live Stream 24/7')" --vo=null & ;;
     'MA Lite')
         mpv "ytdl://$(/home/patrick/github/scripts/getyturl.py user/MADrumandBass 'Chill w/ Us')" --vo=null & ;;
+    *' - FHR')
+        mpv "ytdl://$(/home/patrick/github/scripts/getyturl.py channel/UCE7gceSq79z8uW7cTe86UaA ${option% - FHR})" --vo=null & ;;
     '-> kill <-') 
         pkill mpv
         option='';;
