@@ -1,6 +1,6 @@
 " VIM Config file
 " Patrick Nisble
-" Last modified: 2018|03|23
+" Last modified: 2018|04|03
 
 " Plugins {{{
 set nocompatible
@@ -36,6 +36,9 @@ call vundle#begin()
 
     "Loupe
     Plugin 'wincent/loupe'
+
+    " unimPaired
+    Plugin 'tpope/vim-unimpaired'
 
     "" fallback plugins for non neovim setups
     if !has('nvim')
