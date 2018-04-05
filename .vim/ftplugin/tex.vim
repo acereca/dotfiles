@@ -5,7 +5,9 @@ if !has('nvim')
 endif
 
 if has('nvim')
-    nmap <leader>mk <Plug>(vimtex-compile)
+    nmap <leader>ll <Plug>(vimtex-compile)
+    nmap <leader>lc <Plug>(vimtex-clean)
+    nmap <leader>lv <Plug>(vimtex-view)
 endif
 
 inoremap <C-y> <C-k>

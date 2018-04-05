@@ -2,7 +2,7 @@
 # Patrick Nisble
 # github.com/acereca
 #
-# Last modified: 2018|03|20
+# Last modified: 2018|03|30
 
 # PATH defs
 source ~/.zprofile
@@ -56,8 +56,8 @@ alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 alias rm="trash"
 alias rmi="rm -i"
-alias rssp="rsync -avh --progress"
-alias rsmv="rsync -avh --progress --remove-source-files"
+alias rssp="rsync -avhz --progress"
+alias rsmv="rsync -avhz --progress --remove-source-files"
 
 ffind() {
     if [[ $# == 2 ]]
@@ -168,7 +168,7 @@ sudo-command-line() {
 zle -N sudo-command-line
 
 # Defined shortcut keys: [Esc] [Esc]
-bindkey '^\e' sudo-command-line
+#bindkey '^\e' sudo-command-line
 
 alias s!!="sudo !!"
 # }}}
