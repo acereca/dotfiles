@@ -233,7 +233,7 @@ bindsym $mod+$mod2+c exec --no-startup-id firefox
 bindsym $mod+Ctrl+c exec --no-startup-id qutebrowser
 
 # custom menus
-bindsym $mod+Shift+m exec "~/.config/i3/music_select.sh -o | rofi -dmenu -p 'Music' | ~/.config/i3/music_select.sh -i"
+bindsym $mod+Shift+m exec "~/.config/i3/select_music.sh"
 bindsym $mod+Shift+c exec "~/.config/i3/cfg_select.sh -o | rofi -dmenu -p 'open config' | ~/.config/i3/cfg_select.sh -i"
 bindsym $mod+Shift+s exec "~/.config/i3/select_session.sh -o | rofi -dmenu -p 'open Session' | ~/.config/i3/select_session.sh -i"
 

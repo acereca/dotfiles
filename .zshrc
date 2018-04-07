@@ -2,7 +2,7 @@
 # Patrick Nisble
 # github.com/acereca
 #
-# Last modified: 2018|03|30
+# Last modified: 2018|04|07
 
 # PATH defs
 source ~/.zprofile
@@ -106,16 +106,16 @@ alias cfp="vim ~/.config/polybar/config"
 
 alias cfS="vim ~/github/st/config.h && make -C ~/github/st && sudo make install -C ~/github/st"
 
-alias gh="cd ~/github"
-alias ghd="cd ~/github/dotfiles"
+alias gh="ls -la --color ~/github && cd ~/github"
+alias ghd="ls -la --color ~/github/dotfiles && cd ~/github/dotfiles"
 
-alias gl="cd ~/gitlab"
-alias gD="cd ~/Downloads"
-alias gd="cd ~/Dokumente"
-alias gV="cd ~/Videos"
-alias gu="cd ~/University"
-alias gc="cd ~/.config"
-alias gt="cd ~/.local/share/Trash"
+alias gl="ls -la --color ~/gitlab && cd ~/gitlab"
+alias gD="ls -la --color ~/Downloads && cd ~/Downloads"
+alias gd="ls -la --color ~/Dokumente && cd ~/Dokumente"
+alias gV="ls -l --color ~/Videos && cd ~/Videos"
+alias gu="ls -la --color ~/University && cd ~/University"
+alias gc="ls -l --color ~/.config && cd ~/.config"
+alias gt="ls -la --color ~/.local/share/Trash && cd ~/.local/share/Trash"
 
 # aliases for work at internship
 alias gah="cd ~/gitlab/InternReport/sourcecode/afshome"
@@ -151,7 +151,7 @@ alias waffle="mpv ytdl://twitch.tv/giantwaffle"
 alias monstercat="mpv ytdl://twitch.tv/monstercat"
 alias filthy="mpv ytdl://twitch.tv/filthyrobot"
 
-alias youtube-aria='youtube-dl --external-downloader aria2c --external-downloader-args "-c -x5"'
+alias youtube-aria='youtube-dl --external-downloader aria2c --external-downloader-args "-c -j10 -x10 -s10"'
 # }}}
 # }}}
 

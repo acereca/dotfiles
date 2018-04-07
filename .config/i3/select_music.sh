@@ -1,21 +1,8 @@
 #! /bin/bash
 
-while getopts ":oi" opt; do
-  case $opt in
-    o)
-      echo -e "Deep House - FHR\nEpicMusic\nFuture House - FHR\nMA Lite\nMagicalMusic\nMonstercat\nRelaxBeats\n\n-> kill <-"
-      ;;
-    i)
-      while read LINE; do
-        option=${LINE}
-      done
-      echo -e ${option} >&2
-      ;;
-    \?)
-      echo "Invalid option: -$OPTARG" >&2
-      ;;
-  esac
-done
+options="Deep House - FHR\nEpicMusic\nFuture House - FHR\nMA Lite\nMagicalMusic\nMonstercat\nRelaxBeats\n\n-> kill <-"
+ 
+option=$(echo -e ${options} | rofi -dmenu -p 'Musik')
 
 
 case $option in

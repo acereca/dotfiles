@@ -123,6 +123,7 @@ let g:deoplete#enable_at_startup = 1
               \ 'executable' : 'latexmk',
               \ 'options' : [
               \   '-pdf',
+              \   '-bibtex',
               \   '-verbose',
               \   '-file-line-error',
               \   '-synctex=1',
@@ -146,6 +147,9 @@ let g:UltiSnipsExpandTrigger="<s-tab>"
         imap <C-k>     <Plug>(neosnippet_expand_or_jump)
         smap <C-k>     <Plug>(neosnippet_expand_or_jump)
         xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+        smap <expr><Tab> neosnippet#expandable_or_jumpable() ?
+        \ "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
     endif
 " }}}
 

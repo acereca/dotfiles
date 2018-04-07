@@ -13,6 +13,10 @@ export PATH="/opt/cuda/bin/:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/h
 export TEXINPUTS=".:./5E_Template/:"
 # }}}
 
+# PYTHONPATH {{{
+export PYTHONPATH=$PYTHONPATH:/home/patrick/electronicvisions/labcontrol
+# }}}
+
 # EDITOR setup {{{
 export EDITOR=/usr/bin/nvim
 export editor=/usr/bin/nvim
