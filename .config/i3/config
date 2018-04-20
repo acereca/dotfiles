@@ -217,7 +217,7 @@ bindsym $mod+d exec "rofi -show run -bw 0
 set $term 'st'
 bindsym $mod+Return exec $term 
 bindsym $mod+Shift+Return exec $term -e su
-bindsym $mod+Ctrl+Return exec "~/.config/i3/select_ssh.sh -o | rofi -dmenu -p 'ssh' | ~/.config/i3/select_ssh.sh -i"
+bindsym $mod+Ctrl+Return exec "~/.config/i3/select_ssh.sh"
 # interferes with nvim
 #bindsym $mod+$mod2+Return exec $term -e tmux new-session -A -s main
 
@@ -234,8 +234,8 @@ bindsym $mod+Ctrl+c exec --no-startup-id qutebrowser
 
 # custom menus
 bindsym $mod+Shift+m exec "~/.config/i3/select_music.sh"
-bindsym $mod+Shift+c exec "~/.config/i3/cfg_select.sh -o | rofi -dmenu -p 'open config' | ~/.config/i3/cfg_select.sh -i"
-bindsym $mod+Shift+s exec "~/.config/i3/select_session.sh -o | rofi -dmenu -p 'open Session' | ~/.config/i3/select_session.sh -i"
+bindsym $mod+Shift+c exec "~/.config/i3/select_cfg.sh"
+bindsym $mod+Shift+s exec "~/.config/i3/select_session.sh"
 
 # inside terminal
 bindsym $mod+m exec $term -e alpine

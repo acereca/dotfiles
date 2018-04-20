@@ -2,7 +2,7 @@
 # Patrick Nisble
 # github.com/acereca
 #
-# Last modified: 2018|03|13
+# Last modified: 2018|04|08
 #
 # Documentation:
 #   qute://help/configuring.html
@@ -78,3 +78,6 @@ c.url.searchengines = {
 c.url.start_pages = '/home/patrick/github/Startpage/startpage.html'
 
 config.bind('<Ctrl-f>', 'hint links spawn mpv --ytdl-format="best[height<=1080p]" {hint-url}')
+#config.bind('<Ctrl-d>', 'hint links spawn youtube-dl {hint-url}, -o "~/Musik/dnls/%(uploader)s-%(title).%(ext)s" --download-archive ~/Musik/completed.txt --add-metadata -c')
+config.bind('<Ctrl-d>', 'hint links spawn mpv {hint-url}')
+

@@ -4,30 +4,12 @@ TERM='/usr/local/bin/st'
 EDITOR='/usr/bin/nvim'
 PDFVIEW='/usr/bin/evince'
 
-while getopts ":oi" opt; do
-  case $opt in
-    o)
-        echo -e "D&D Homebrew (Atom)\nD&D Homebrew (VIM)\nReport"
-      ;;
-    i)
-      while read LINE; do
-        option=${LINE}
-      done
-      echo -e ${option} >&2
-      ;;
-    \?)
-      echo "Invalid option: -$OPTARG" >&2
-      ;;
-  esac
-done
+options="D&D Homebrew\nReport"
+
+option=$(echo -e ${options} | rofi -dmenu -p "Select Session")
 
 case $option in
-    'D&D Homebrew (Atom)') 
-        i3-msg "append_layout ~/.config/i3/dnd.json"
-        ${PDFVIEW} ~/gitlab/dnd/homebrew.pdf &
-        atom ~/gitlab/dnd/ &
-        ;;
-    'D&D Homebrew (VIM)')
+    'D&D Homebrew')
         i3-msg "append_layout ~/.config/i3/dnd_vim.json"
         ${PDFVIEW} ~/gitlab/dnd/homebrew.pdf &
         ${TERM} -e ${EDITOR} -c 'lcd ~/gitlab/InternReport' +NERDTree &

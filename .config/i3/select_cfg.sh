@@ -1,28 +1,7 @@
 #! /bin/bash
+options="i3wm\nranger keys\nranger scope\nvim\nzsh\nlivestreamer\nalpine"
 
-while getopts ":oi" opt; do
-  case $opt in
-    o)
-      echo """i3wm
-ranger keys
-ranger scope
-vim
-zsh
-livestreamer
-alpine"""
-      ;;
-    i)
-      while read LINE; do
-        option=${LINE}
-      done
-      echo -e ${option} >&2
-      ;;
-    \?)
-      echo "Invalid option: -$OPTARG" >&2
-      ;;
-  esac
-done
-
+option=$(echo -e ${options} | rofi -dmenu -p "Edit Config")
 
 case $option in
     i3wm) termite -e "vim /home/patrick/.config/i3/config";;
