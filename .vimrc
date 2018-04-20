@@ -1,6 +1,6 @@
 " VIM Config file
 " Patrick Nisble
-" Last modified: 2018|04|05
+" Last modified: 2018|04|17
 
 " Plugins {{{
 set nocompatible
@@ -127,8 +127,8 @@ let g:deoplete#enable_at_startup = 1
               \   '-verbose',
               \   '-file-line-error',
               \   '-synctex=1',
-              \   '-interaction=nonstopmode',
-              \   '-shell-escape'
+              \   '-interaction=batchmode',
+              \   '-shell-escape',
               \ ]
               \}
 
@@ -144,9 +144,9 @@ let g:UltiSnipsExpandTrigger="<s-tab>"
 
 " NeoSnippets.vim {{{
     if has('nvim')
-        imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-        smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-        xmap <C-k>     <Plug>(neosnippet_expand_target)
+        inoremap <s-space>     <Plug>(neosnippet_expand_or_jump)
+        smap <C-Tab>     <Plug>(neosnippet_expand_or_jump)
+        xmap <C-Tab>     <Plug>(neosnippet_expand_target)
 
         smap <expr><Tab> neosnippet#expandable_or_jumpable() ?
         \ "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
@@ -219,13 +219,13 @@ autocmd BufWritePre * call acereca#date#updateLastModified()
 
     " general keymaps {{{
         
-        nnoremap <C-Tab> gt
-        nnoremap <S-Tab> gT
+        "nnoremap <C-Tab> gt
+        "nnoremap <S-Tab> gT
         
         nnoremap ; :
         vnoremap ; :
         
-        imap <C-Space> <C-P>
+        "imap <C-Space> <C-P>
 
         map <leader>n :NERDTreeToggle<CR>
         nnoremap <leader><leader> za
