@@ -1,6 +1,6 @@
 " VIM Config file
 " Patrick Nisble
-" Last modified: 2018|04|17
+" Last modified: 2018|04|20
 
 " Plugins {{{
 set nocompatible
@@ -39,6 +39,9 @@ call vundle#begin()
 
     " unimPaired
     Plugin 'tpope/vim-unimpaired'
+
+    " HTML Tags
+    Plugin 'alvan/vim-closetag'
 
     "" fallback plugins for non neovim setups
     if !has('nvim')
