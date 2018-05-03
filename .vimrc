@@ -1,6 +1,6 @@
 " VIM Config file
 " Patrick Nisble
-" Last modified: 2018|04|20
+" Last modified: 2018|04|30
 
 " Plugins {{{
 set nocompatible
@@ -42,6 +42,7 @@ call vundle#begin()
 
     " HTML Tags
     Plugin 'alvan/vim-closetag'
+    Plugin 'mattn/emmet-vim'
 
     "" fallback plugins for non neovim setups
     if !has('nvim')
@@ -147,13 +148,14 @@ let g:UltiSnipsExpandTrigger="<s-tab>"
 
 " NeoSnippets.vim {{{
     if has('nvim')
-        inoremap <s-space>     <Plug>(neosnippet_expand_or_jump)
+        imap <c-tab>     <Plug>(neosnippet_expand_or_jump)
         smap <C-Tab>     <Plug>(neosnippet_expand_or_jump)
         xmap <C-Tab>     <Plug>(neosnippet_expand_target)
 
-        smap <expr><Tab> neosnippet#expandable_or_jumpable() ?
+        imap <expr><Tab> neosnippet#expandable_or_jumpable() ?
         \ "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
     endif
+    let g:neosnippet#snippets_directory="~/.vim/snippets"
 " }}}
 
 " Powerline {{{
