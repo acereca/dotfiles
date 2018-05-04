@@ -2,7 +2,7 @@
 # Patrick Nisble
 # github.com/acereca
 #
-# Last modified: 2018|04|07
+# Last modified: 2018|05|01
 
 # PATH defs
 source ~/.zprofile
@@ -30,6 +30,8 @@ function zle-line-finish () { echoti rmkx }
 zle -N zle-line-init
 zle -N zle-line-finish
 # }}} 
+
+powerline-daemon --quiet --replace
 
 # History {{{
 export HISTSIZE=100000
@@ -128,12 +130,23 @@ lastedit() {
 autoload lastedit
 
 todo() {
-    if [[ $# -eq 0 ]];
-    then
-        vim ~/todo.md
-    else
-        echo "- [ ] $1" >> ~/todo.md
-    fi
+    while getopts ":ael" opt; do
+        case $opt in
+            l)
+                mdv ~/todo.md -t Lagoona
+                ;;
+            e) 
+                vim ~/todo.md
+                ;;
+            a)
+                echo "- [ ] $2" >> ~/todo.md
+                ;;
+            \?)
+                echo "Invalid option: -$OPTARG" >&2
+                ;;
+
+        esac
+    done
 }
 autoload todo
 

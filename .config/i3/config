@@ -236,6 +236,7 @@ bindsym $mod+Ctrl+c exec --no-startup-id qutebrowser
 bindsym $mod+Shift+m exec "~/.config/i3/select_music.sh"
 bindsym $mod+Shift+c exec "~/.config/i3/select_cfg.sh"
 bindsym $mod+Shift+s exec "~/.config/i3/select_session.sh"
+bindsym $mod+Shift+F8 exec "~/.config/i3/select_display.sh"
 
 # inside terminal
 bindsym $mod+m exec $term -e alpine
