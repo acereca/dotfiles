@@ -50,8 +50,8 @@ exec --no-startup-id compton -b -f
 exec_always --no-startup-id feh --bg-max --no-xinerama /home/patrick/Bilder/bg_i3
 
 # i3lock with timout
-set $i3lock-color-vars --insidecolor=ffffff00 --textcolor=ffffffff --ringcolor=ffffff00 --linecolor=ffffffff --separatorcolor=ffffffff --keyhlcolor=ffffffff --insidevercolor=ffffffff --timecolor=ffffffff --datecolor=ffffffff --insidewrongcolor=ffffffff --bshlcolor=00000000
-exec_always --no-startup-id xset s 600 && xss-lock -- i3lock -i /home/patrick/Bilder/bg_lock -k  --timestr="%H:%M" --datestr="%Y|%m|%d" $i3lock-color-vars
+set $i3lock-color-vars --insidecolor=ffffff00 --ringcolor=ffffff00 --linecolor=ffffffff --separatorcolor=ffffffff --keyhlcolor=ffffffff --insidevercolor=ffffffff --timecolor=ffffffff --datecolor=ffffffff --insidewrongcolor=ffffffff --bshlcolor=00000000
+exec_always --no-startup-id xset s 600 && xss-lock -- i3lock -i /home/patrick/Bilder/bg_lock -k  --timestr="%H:%M" --datestr="%Y|%m|%d" $i3lock-color-vars -u
 
 # brightness control for integrated display
 exec_always xbacklight -set $(cat /home/patrick/.config/i3/brightness)
@@ -239,5 +239,5 @@ bindsym $mod+Shift+s exec "~/.config/i3/select_session.sh"
 bindsym $mod+Shift+F8 exec "~/.config/i3/select_display.sh"
 
 # inside terminal
-bindsym $mod+m exec $term -e alpine
+bindsym $mod+m exec "~/.config/i3/select_mail.sh"
 bindsym $mod+r exec $term -e ranger

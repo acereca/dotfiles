@@ -1,2 +1,4 @@
 .config/i3/brightness
+.config/ranger/bookmarks
 ssh/
+*.private
