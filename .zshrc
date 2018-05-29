@@ -2,7 +2,7 @@
 # Patrick Nisble
 # github.com/acereca
 #
-# Last modified: 2018|05|13
+# Last modified: 2018|05|29
 
 # PATH defs
 source ~/.zprofile
@@ -168,9 +168,11 @@ alias youtube-aria='youtube-dl --external-downloader aria2c --external-downloade
 # }}}
 
 autoload -U zmv
+autoload -U compinit
 
 # case-insensitive tab complete
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' list-colors ''
 
 # sudo - <esc> {{{
 sudo-command-line() {
@@ -192,3 +194,6 @@ if [[ -r $POWERLINE_DIR/powerline/bindings/zsh/powerline.zsh ]]; then
     source $POWERLINE_DIR/powerline/bindings/zsh/powerline.zsh
 fi
 # }}}
+#
+
+compinit

@@ -1,6 +1,6 @@
 " VIM Config file
 " Patrick Nisble
-" Last modified: 2018|04|30
+" Last modified: 2018|05|14
 
 " Plugins {{{
 set nocompatible
@@ -116,7 +116,8 @@ let g:deoplete#enable_at_startup = 1
 " }}}
 
 " vimtex {{{
-    let g:vimtex_fold_enabled=1
+    let g:vimtex_fold_enabled=0
+    let g:vimtex_complete_close_braces=1
 
     let g:vimtex_compiler_latexmk = {
               \ 'backend' : 'nvim', 
