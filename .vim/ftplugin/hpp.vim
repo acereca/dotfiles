@@ -1,0 +1,5 @@
+setlocal shiftwidth=4
+setlocal tabstop=4
+setlocal foldmethod=syntax
+
+autocmd BufWritePre *.* :%s/\s\+$//e
