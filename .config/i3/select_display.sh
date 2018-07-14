@@ -11,5 +11,8 @@ case "$chosen" in
 	"Manual selection") arandr ;;
 esac
 
+# redo for added keyboards
+setxkbmap -option caps:escape
+
 # Relaunch polybar if there was a selection.
 # [ "$chosen" == "" ] || polybar_launch

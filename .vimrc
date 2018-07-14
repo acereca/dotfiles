@@ -1,6 +1,6 @@
 " VIM Config file
 " Patrick Nisble
-" Last modified: 2018|04|30
+" Last modified: 2018|07|12
 
 " Plugins {{{
 set nocompatible
@@ -32,7 +32,9 @@ call vundle#begin()
     Plugin 'vim-scripts/indentpython.vim'
 
     " Cmd-t
-    Plugin 'wincent/command-t'
+    "Plugin 'wincent/command-t'
+    "Plugin 'kien/ctrlp.vim'
+    Plugin 'ctrlpvim/ctrlp.vim'
 
     "Loupe
     Plugin 'wincent/loupe'
@@ -90,10 +92,14 @@ let g:deoplete#enable_at_startup = 1
     nmap <leader>/ <Plug>(LoupeClearHighlight)
 " }}}
 
-" command-t {{{
+" command-t / ctrl-p {{{
     let g:CommandTScanDotDirectories = 1
+    let g:CommandTGitIncludeUntracked = 0
+    let g:CommandTGitScanSubmodules = 1
     let g:CommandTMaxFiles = 1000000
-    let g:CommandTFileScanner = 'ruby'
+    let g:CommandTFileScanner = 'git'
+
+    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
 " }}}
 
 " NERDTree {{{
@@ -118,6 +124,7 @@ let g:deoplete#enable_at_startup = 1
 " vimtex {{{
     let g:vimtex_fold_enabled=1
 
+    let g:vimtex_compiler_progname = "nvr"
     let g:vimtex_compiler_latexmk = {
               \ 'backend' : 'nvim', 
               \ 'background' : 1,
@@ -126,6 +133,7 @@ let g:deoplete#enable_at_startup = 1
               \ 'continuous' : 1,
               \ 'executable' : 'latexmk',
               \ 'options' : [
+              \   '-xelatex',
               \   '-pdf',
               \   '-bibtex',
               \   '-verbose',
@@ -175,6 +183,11 @@ set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<
 set splitbelow
 set breakindent
+" save pos on buffer switch
+if v:version >= 700
+  au BufLeave * let b:winview = winsaveview()
+  au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
+endif
 "}}}
 
 " aliasing {{{

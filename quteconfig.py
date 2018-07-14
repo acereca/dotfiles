@@ -2,7 +2,7 @@
 # Patrick Nisble
 # github.com/acereca
 #
-# Last modified: 2018|04|08
+# Last modified: 2018|05|16
 #
 # Documentation:
 #   qute://help/configuring.html
@@ -19,11 +19,11 @@ c.aliases = {'w': 'session-save', 'q': 'quit', 'wq': 'quit --save'}
 # Background color for hints. Note that you can use a `rgba(...)` value
 # for transparency.
 # Type: QssColor
-c.colors.hints.bg = 'black'
+c.colors.hints.bg = '#24313f'
 
 # Font color for hints.
 # Type: QssColor
-c.colors.hints.fg = 'white'
+c.colors.hints.fg = '#DBCEC0'
 
 # Font color for the matched part of hints.
 # Type: QssColor
@@ -33,6 +33,8 @@ c.colors.hints.match.fg = 'red'
 # Type: QssColor
 c.colors.keyhint.bg = 'gray'
 
+c.colors.tabs.selected.odd.bg = '#24313f'
+c.colors.tabs.selected.even.bg = '#24313f'
 # Default encoding to use for websites. The encoding must be a string
 # describing an encoding such as _utf-8_, _iso-8859-1_, etc.
 # Type: String

@@ -1,9 +1,14 @@
 source $MUTTPROFILE
 
+set message_cachedir=~/.cache/mutt/messages
+source "~/.mutt/purgecache.sh '$message_cachedir'|"
+
 set spoolfile=+INBOX
 
 set record = +Sent
 unset record
+
+set editor="nvim"
 
 # addressbook
 set alias_file=~/.mutt/addressbook.private

@@ -2,7 +2,7 @@
 # Patrick Nisble
 # github.com/acereca
 #
-# Last modified: 2018|05|01
+# Last modified: 2018|07|14
 
 # PATH defs
 source ~/.zprofile
@@ -31,8 +31,6 @@ zle -N zle-line-init
 zle -N zle-line-finish
 # }}} 
 
-powerline-daemon --quiet --replace
-
 # History {{{
 export HISTSIZE=100000
 export HISTFILE="$HOME/.hisory"
@@ -44,6 +42,10 @@ export KEYTIMEOUT=1
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
+ssht() {
+    ssh -t $1 tmux attach -t $2
+}
+autoload ssht
 
 # pwdgen
 aes() {
@@ -57,14 +59,14 @@ alias la="ls -lahp --block-size=k"
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 alias rm="trash"
-alias rmi="rm -i"
+alias rmi="/usr/bin/rm -i"
 alias rssp="rsync -avhz --progress"
 alias rsmv="rsync -avhz --progress --remove-source-files"
 
 ffind() {
     if [[ $# == 2 ]]
     then
-        grep -rnw $1 -e $2
+        grep -rn $1 -e $2
     else
         echo '\033[0;31m usage \033[0m: grep -rnw $1 -e $2'
     fi
@@ -119,8 +121,9 @@ alias gu="ls -la --color ~/University && cd ~/University"
 alias gc="ls -l --color ~/.config && cd ~/.config"
 alias gt="ls -la --color ~/.local/share/Trash && cd ~/.local/share/Trash"
 
-# aliases for work at internship
-alias gah="cd ~/gitlab/InternReport/sourcecode/afshome"
+# aliases for work 
+alias gB="cd ~/gitlab/BaTh && ls -la --color"
+alias gBd="cd ~/gitlab/BaTh/data && ./sshfs.sh"
 
 # }}}
 
@@ -170,26 +173,7 @@ alias youtube-aria='youtube-dl --external-downloader aria2c --external-downloade
 
 autoload -U zmv
 
-# case-insensitive tab complete
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-
-# sudo - <esc> {{{
-sudo-command-line() {
-    LBUFFER="sudo $LBUFFER"
-}
-
-zle -N sudo-command-line
-
-# Defined shortcut keys: [Esc] [Esc]
-#bindkey '^\e' sudo-command-line
-
 alias s!!="sudo !!"
 # }}}
 
-# Powerline {{{
-POWERLINE_DIR=$( pip show powerline-status | grep Location | cut -d " " -f2 )
-
-if [[ -r $POWERLINE_DIR/powerline/bindings/zsh/powerline.zsh ]]; then
-    source $POWERLINE_DIR/powerline/bindings/zsh/powerline.zsh
-fi
-# }}}
+source ~/.oh-my-zshrc
