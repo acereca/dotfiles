@@ -1,6 +1,6 @@
 #! /bin/bash
 
-options="Deep House - FHR\nEpicMusic\nFuture House - FHR\nMA Lite\nMagicalMusic\nMonstercat\nRelaxBeats\n\n-> kill <-"
+options="Deep House - FHR\nEpicMusic\nFuture House - FHR\nMA Lite\nMagicalMusic\nMonstercat\nRelaxBeats\nTropical House - FHR\n\n-> kill <-"
  
 option=$(echo -e ${options} | rofi -dmenu -p 'Musik')
 

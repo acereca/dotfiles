@@ -3,23 +3,24 @@ source $MUTTPROFILE
 set message_cachedir=~/.cache/mutt/messages
 source "~/.mutt/purgecache.sh '$message_cachedir'|"
 
-set spoolfile=+INBOX
+set spoolfile      = +INBOX
 
-set record = +Sent
+set record         = +Sent
 unset record
 
-set editor="nvim"
+set edit_headers   = yes
+set editor         = "/usr/bin/nvim"
 
 # addressbook
-set alias_file=~/.mutt/addressbook.private
-set sort_alias= alias
-set reverse_alias=yes
+set alias_file     = ~/.mutt/addressbook.private
+set sort_alias     = alias
+set reverse_alias  = yes
 source $alias_file
 
 # sorting
-set sort_aux=reverse-last-date-received       
-set sort=threads
-set sort_browser=date
+set sort_aux       = reverse-last-date-received
+set sort           = threads
+set sort_browser   = date
 set sort_re
 
 # colors

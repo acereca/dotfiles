@@ -93,20 +93,30 @@ alias yt='mpv "$(xclip -selection c -o)"'
 
 alias vim='nvim'
 alias v='vim'
+alias sv='sudo nvim -u /home/patrick/.vimrc'
 
 # std aliases {{{
 export DOTFILES_DIR='~/github/dotfiles'
 alias cfz="vim $DOTFILES_DIR/.zshrc -c 'lcd $DOTFILES_DIR'"
+alias cfzp="vim $DOTFILES_DIR/.zprofile -c 'lcd $DOTFILES_DIR'"
+
 alias cfi="vim $DOTFILES_DIR/.config/i3/config -c 'lcd $DOTFILES_DIR'"
+alias cfis="vim $DOTFILES_DIR/.config/i3/ -c 'lcd $DOTFILES_DIR'"
 
 alias cfr="vim $DOTFILES_DIR/.config/ranger/rc.conf -c 'lcd $DOTFILES_DIR'"
 alias cfrs="vim $DOTFILES_DIR/.config/ranger/scope.sh -c 'lcd $DOTFILES_DIR'"
 alias cfrr="vim $DOTFILES_DIR/.config/ranger/rifle.conf -c 'lcd $DOTFILES_DIR'"
 
 alias cfv="vim $DOTFILES_DIR/.vimrc -c 'lcd $DOTFILES_DIR'"
+alias cfvft="vim $DOTFILES_DIR/.vim/ftplugin/ -c 'lcd $DOTFILES_DIR'"
+alias cfvs="vim $DOTFILES_DIR/.vim/snippets/ -c 'lcd $DOTFILES_DIR'"
+
 alias cfq="vim $DOTFILES_DIR/.config/qutebrowser/config.py -c 'lcd $DOTFILES_DIR'"
 alias cfs="vim ~/github/Startpage/startpage.rmd"
 alias cfp="vim ~/.config/polybar/config"
+
+alias cfm="vim $DOTFILES_DIR/.mutt/muttrc -c 'lcd $DOTFILES_DIR'"
+alias cfmp="vim $DOTFILES_DIR/.mutt/ -c 'lcd $DOTFILES_DIR'"
 
 alias cfS="vim ~/github/st/config.h && make -C ~/github/st && sudo make install -C ~/github/st"
 
@@ -114,6 +124,8 @@ alias gh="ls -la --color ~/github && cd ~/github"
 alias ghd="ls -la --color ~/github/dotfiles && cd ~/github/dotfiles"
 
 alias gl="ls -la --color ~/gitlab && cd ~/gitlab"
+alias gB="cd ~/gitlab/BaTh && ls -a && echo '' && git status"
+
 alias gD="ls -la --color ~/Downloads && cd ~/Downloads"
 alias gd="ls -la --color ~/Dokumente && cd ~/Dokumente"
 alias gV="ls -l --color ~/Videos && cd ~/Videos"
@@ -172,6 +184,7 @@ alias youtube-aria='youtube-dl --external-downloader aria2c --external-downloade
 # }}}
 
 autoload -U zmv
+autoload -U compinit
 
 alias s!!="sudo !!"
 # }}}

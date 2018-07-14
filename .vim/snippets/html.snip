@@ -1,0 +1,93 @@
+snippet         Homebrew div.item
+alias           dnd_item dnditem dnd::item
+    <div class="item" id="${1}">
+        <div class="meta">
+            <div class="title">${2}</div>
+            <div class="description">${3}</div>
+        </div>
+        <div class="content">${0}</div>
+        <div class="version">${4:1}</div>
+    </div>
+
+snippet         Homebrew div.spell
+alias           dnd_spell dndspell dnd::spell
+    <div class="spell" id="${1}">
+        <div class="meta">
+            <div class="title">${2}</div>
+            <div class="meta sec">
+                <div class="level">${3}</div>
+                <div class="time">${4}</div>
+                <div class="range">${5}</div>
+                <div class="comp">${6}</div>
+                <div class="duration">${7}</div>
+            </div>
+        </div>
+        <div class="descriptio">
+            ${0}
+        </div>
+    <div/>
+
+snippet         Homebrew div.statblock.head
+alias           dnd_statblock_head dndstatblockhead dnd::statblockhead
+    <div class="statblock ${1}" id="${2}">
+        <div class="header">
+            <div class="img"></div>
+            <div class="meta">
+                <div class="name">${3}</div>
+                <div class="title">${4}</div>
+                <div class="description">${5}</div>
+            </div>
+        </div>
+    </div>
+
+snippet         Homebrew div.statblock
+alias           dnd_statblock dndstatblock dnd::statblock
+    <div class="statblock ${1}" id="${2}">
+        <div class="header">
+            <div class="img"></div>
+            <div class="meta">
+                <div class="name">${3}</div>
+                <div class="title">${4}</div>
+                <div class="description">${5}</div>
+            </div>
+        </div>
+        <hr>
+        <div class="content">
+            <div class="red">
+                <div><span class="bold">Armor Class</span> ${6}</div>
+                <div><span class="bold">Hit Points</span> ${7}</div>
+                <div><span class="bold">Speed</span> ${8}</div>
+            </div>
+ 
+            <hr>
+ 
+            <table class="stattable">
+                <tr>
+                    <th>STR</th>
+                    <th>DEX</th>
+                    <th>CON</th>
+                    <th>INT</th>
+                    <th>WIS</th>
+                    <th>CHA</th>
+                </tr>
+                <tr>
+                    <td>${9:10}</td>
+                    <td>${10:10}</td>
+                    <td>${11:10}</td>
+                    <td>${12:10}</td>
+                    <td>${13:10}</td>
+                    <td>${14:10}</td>
+                </tr>
+            </table>
+ 
+            <hr>
+ 
+            <div class="actrions red">Actions</div>
+ 
+            <div class="attack">
+                <span class="bold">${15}</span>
+                ${16}
+            </div>
+        </div>
+    </div>
+    ${0}
