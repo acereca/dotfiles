@@ -5,7 +5,7 @@
 # Version: 1
 
 # PATH setup {{{
-export PATH="/opt/cuda/bin/:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/patrick:/bin:/home/patrick/.gem/ruby/2.5.0/bin"
+export PATH="/opt/cuda/bin/:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:$HOME:/bin:$HOME/.gem/ruby/2.5.0/bin"
 # }}}
 
 # TEXINPUTS {{{
@@ -13,7 +13,7 @@ export TEXINPUTS=".:./5E_Template/:"
 # }}}
 
 # PYTHONPATH {{{
-export PYTHONPATH=$PYTHONPATH:/home/patrick/electronicvisions/labcontrol
+export PYTHONPATH=$PYTHONPATH:$HOME/electronicvisions/labcontrol
 # }}}
 
 # EDITOR setup {{{

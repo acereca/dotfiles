@@ -2,7 +2,7 @@
 # Patrick Nisble
 # github.com/acereca
 #
-# Last modified: 2018|07|14
+# Last modified: 2018|07|15
 
 # PATH defs
 source ~/.zprofile
@@ -33,7 +33,7 @@ zle -N zle-line-finish
 
 # History {{{
 export HISTSIZE=100000
-export HISTFILE="$HOME/.hisory"
+export HISTFILE="~/.history"
 export SAVEHIST=$HISTSIZE
 # }}}
 
@@ -93,7 +93,7 @@ alias yt='mpv "$(xclip -selection c -o)"'
 
 alias vim='nvim'
 alias v='vim'
-alias sv='sudo nvim -u /home/patrick/.vimrc'
+alias sv="sudo nvim -u ~/.vimrc"
 
 # std aliases {{{
 export DOTFILES_DIR='~/github/dotfiles'
