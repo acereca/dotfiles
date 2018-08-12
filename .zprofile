@@ -5,7 +5,7 @@
 # Version: 1
 
 # PATH setup {{{
-export PATH="/opt/cuda/bin/:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:$HOME:/bin:$HOME/.gem/ruby/2.5.0/bin"
+export PATH="/opt/cuda/bin/:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:$HOME:/bin:$HOME/.local/bin:$HOME/.gem/ruby/2.5.0/bin"
 # }}}
 
 # TEXINPUTS {{{
