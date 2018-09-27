@@ -1,0 +1,46 @@
+#if __has_include(".extend.Xresources")
+#include ".extend.Xresources"
+#endif
+
+! ^ The above lines are no comments!
+! Leave them as they are if a file ~/.extend.Xresources is being used on your system.
+! config can be added there or also here below.
+! For comments use "!"
+
+Xft.dpi: 96
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+
+XTerm*background: #2b2b2b
+XTerm*foreground: #e7e7e7
+XTerm*pointerColor: #16A085
+XTerm*faceName: Fixed
+XTerm*faceSize: 11
+
+*.color0: #1e2127
+*.color1: #e06c75
+*.color2: #98c379
+*.color3: #d19a66
+*.color4: #61afef
+*.color5: #c678dd
+*.color6: #56b6c2
+*.color7: #abb2bf
+
+*.color8: #5c6370
+*.color9: #e06c75
+*.color10: #98c379
+*.color11: #d19a66
+*.color12: #61afef
+*.color13: #c678dd
+*.color14: #56b6c2
+*.color15: #ffffff
+
+! Text:           #ABB2BF
+! Bold Text:      #ABB2BF
+! Selection:      #3A3F4B
+! Cursor:         #5C6370
+! Background:     #1E2127

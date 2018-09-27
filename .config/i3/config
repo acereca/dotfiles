@@ -22,11 +22,11 @@ set $text-color           #f3f4f5
 set $inactive-text-color  #676E7D
 set $urgent-bg-color      #E53935
 set $highlight-text-color #68A9A7
-set $highlight-bg-color   #005f87
+set $highlight-bg-color   #D19A66
 
 # window colors
 #                       border                  background              text                    indicator
-client.focused          $highlight-bg-color     #ff8a00                 $text-color             #00ff00
+client.focused          $highlight-bg-color     $highlight-bg-color     $text-color             #00ff00
 client.unfocused        $inactive-bg-color      $inactive-bg-color      $inactive-text-color    #00ff00
 client.focused_inactive $inactive-bg-color      $inactive-bg-color      $inactive-text-color    #00ff00
 client.urgent           $urgent-bg-color        $urgent-bg-color        $text-color             #00ff00
@@ -47,7 +47,7 @@ exec --no-startup-id xrandr --output DP-1 --left-of HDMI-0
 exec --no-startup-id compton -b -f
 
 # background
-exec_always --no-startup-id feh --bg-max /home/patrick/Bilder/bg_i3
+exec_always --no-startup-id feh --bg-max /home/patrick/Bilder/bg_i3 --no-xinerama
 
 # i3lock with timout
 set $i3lock-color-vars --insidecolor=ffffff00 --ringcolor=ffffff00 --linecolor=ffffffff --separatorcolor=ffffffff --keyhlcolor=ffffffff --insidevercolor=ffffffff --timecolor=ffffffff --datecolor=ffffffff --insidewrongcolor=ffffffff --bshlcolor=00000000
@@ -63,7 +63,7 @@ exec --no-startup-id xsetwacom set 12 MapToOutput 1920x1080+0+0
 exec_always --no-startup-id synclient TapButton1=1 TapButton2=3
 
 # disable capslock
-exec --no-startup-id setxkbmap -option caps:escape
+exec --no-startup-id setxkbmap -option compose:caps
 
 # polybar
 exec_always --no-startup-id ~/github/dotfiles/polybar_multimon.sh

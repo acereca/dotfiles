@@ -2,3 +2,5 @@
 .config/ranger/bookmarks
 ssh/
 *.private
+
+__pycache__/

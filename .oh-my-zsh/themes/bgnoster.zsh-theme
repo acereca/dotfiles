@@ -86,7 +86,7 @@ prompt_machine() {
 
 prompt_user() {
   if [[ "$USER" != "$DEFAULT_USER" ]]; then
-    prompt_segment cyan white "%(!.%{%F{yellow}%}.)$USER"
+    prompt_segment cyan 15 "%(!.%{%F{yellow}%}.)$USER"
   fi
 }
 

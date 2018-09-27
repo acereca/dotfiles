@@ -12,7 +12,7 @@ endif
 inoremap <C-y> <C-k>
 
 setlocal cole=0
-"let g:tex_conceal='m'
+let g:tex_conceal=''
 "au InsertLeave *.tex %s/\\\"a/ä/ge
 "au InsertLeave *.tex %s/\\\"o/ö/ge
 "au InsertLeave *.tex %s/\\\"u/ü/ge

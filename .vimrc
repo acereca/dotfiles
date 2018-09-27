@@ -1,6 +1,6 @@
 " VIM Config file
 " Patrick Nisble
-" Last modified: 2018|07|14
+" Last modified: 2018|09|26
 
 " Plugins {{{
 set nocompatible
@@ -15,7 +15,8 @@ call vundle#begin()
 
     " visual
     Plugin 'AlessandroYorba/Sierra'
-    Plugin 'altercation/vim-colors-solarized' 
+    "Plugin 'altercation/vim-colors-solarized' 
+    Plugin 'joshdick/onedark.vim'
     Plugin 'Yggdroot/indentLine'
     Plugin 'mboughaba/i3config.vim'
 
@@ -23,6 +24,7 @@ call vundle#begin()
     Plugin 'tpope/vim-surround'
     Plugin 'godlygeek/tabular'
     "Plugin 'Raimondi/delimitMate'
+    Plugin 'scrooloose/nerdcommenter'
 
     " NERDTree
     Plugin 'scrooloose/nerdtree'
@@ -30,6 +32,7 @@ call vundle#begin()
     " Python
     Plugin 'tmhedberg/SimpylFold'
     Plugin 'vim-scripts/indentpython.vim'
+    Plugin 'vim-syntastic/syntastic'
 
     " Cmd-t
     "Plugin 'wincent/command-t'
@@ -66,6 +69,7 @@ call vundle#begin()
         Plugin 'Shougo/neosnippet.vim'
         Plugin 'Shougo/neosnippet-snippets'
         Plugin 'lervag/vimtex'
+        Plugin 'neomake/neomake'
     endif
 
 call vundle#end()
@@ -75,6 +79,14 @@ filetype plugin indent on
 
 " deoplete {{{
 let g:deoplete#enable_at_startup = 1
+" }}}
+
+" SimpylFold {{{
+let g:SimpylFold_docstring_preview = 1
+" }}}
+
+" NEOMAKE {{{
+let g:neomake_open_list = 2
 " }}}
 
 " vim-airline {{{
@@ -224,7 +236,7 @@ autocmd BufWritePre * call acereca#date#updateLastModified()
     syntax on
     if has('nvim')
         set background=dark
-        colorscheme solarized
+        colorscheme onedark
     else
         colorscheme sierra
     endif

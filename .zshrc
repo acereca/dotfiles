@@ -2,7 +2,7 @@
 # Patrick Nisble
 # github.com/acereca
 #
-# Last modified: 2018|07|15
+# Last modified: 2018|08|16
 
 # PATH defs
 source ~/.zprofile
@@ -97,8 +97,11 @@ alias sv="sudo nvim -u ~/.vimrc"
 
 # std aliases {{{
 export DOTFILES_DIR='~/github/dotfiles'
+alias chdir="cd"
 alias cfz="vim $DOTFILES_DIR/.zshrc -c 'lcd $DOTFILES_DIR'"
 alias cfzp="vim $DOTFILES_DIR/.zprofile -c 'lcd $DOTFILES_DIR'"
+
+alias cfs="$EDITOR ~/.ssh/config"
 
 alias cfi="vim $DOTFILES_DIR/.config/i3/config -c 'lcd $DOTFILES_DIR'"
 alias cfis="vim $DOTFILES_DIR/.config/i3/ -c 'lcd $DOTFILES_DIR'"
@@ -112,7 +115,7 @@ alias cfvft="vim $DOTFILES_DIR/.vim/ftplugin/ -c 'lcd $DOTFILES_DIR'"
 alias cfvs="vim $DOTFILES_DIR/.vim/snippets/ -c 'lcd $DOTFILES_DIR'"
 
 alias cfq="vim $DOTFILES_DIR/.config/qutebrowser/config.py -c 'lcd $DOTFILES_DIR'"
-alias cfs="vim ~/github/Startpage/startpage.rmd"
+alias cfS="vim ~/github/Startpage/startpage.rmd"
 alias cfp="vim ~/.config/polybar/config"
 
 alias cfm="vim $DOTFILES_DIR/.mutt/muttrc -c 'lcd $DOTFILES_DIR'"

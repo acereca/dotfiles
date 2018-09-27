@@ -1,6 +1,6 @@
 #! /bin/bash
 
-options="Deep House - FHR\nEpicMusic\nFuture House - FHR\nMA Lite\nMagicalMusic\nMonstercat\nRelaxBeats\nTropical House - FHR\n\n-> kill <-"
+options="Progressive House - FHR\nDeep House - FHR\nEpicMusic\nFuture House - FHR\nMA Lite\nMagicalMusic\nMonstercat\nMonstercat Uncaged\nMonstercat Instinct\nRelaxBeats\nTropical House - FHR\n\n-> kill <-"
  
 option=$(echo -e ${options} | rofi -dmenu -p 'Musik')
 
@@ -8,8 +8,12 @@ novideo="--no-video --ytdl-format=91"
 
 
 case $option in
-    Monstercat) 
+    'Monstercat') 
         mpv "ytdl://twitch.tv/monstercat" --ytdl-format="audio_only" & ;;
+    'Monstercat Uncaged')
+        mpv "ytdl://$(~/github/scripts/getyturl.py user/MonstercatMedia 'Radio')" $novideo & ;;
+    'Monstercat Instinct')
+        mpv "ytdl://$(~/github/scripts/getyturl.py channel/UCp8OOssjSjGZRVYK6zWbNLg 'Radio')" $novideo & ;;
     RelaxBeats) 
         mpv "ytdl://twitch.tv/relaxbeats" --ytdl-format="audio_only" & ;;
     MagicalMusic) 
