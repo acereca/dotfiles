@@ -116,7 +116,7 @@ tray-background = ${colors.xcolor0}
 
 modules-left = i3 RightArrow1
 modules-center = MiddleArrowLeft date MiddleArrowRight
-modules-right = mpv arrow1 volume backlight xkeyboard arrow2 network eth ssh vpn arrow3 cpu temperature battery
+modules-right = mpv arrow1 volume backlight xkeyboard arrow2 network2 network eth ssh vpn arrow3 cpu temperature battery rightarrow
 
 ; All modules available in this config file:
 ; bspwm text xkeyboard filesystem mpd backlight cpu 
@@ -274,6 +274,11 @@ content = ""
 content-foreground = ${colors.xcolor0}
 content-background = ${colors.xcolor8}
 
+[module/rightarrow]
+type = custom/text
+content = ""
+content-foreground = ${colors.xcolor0}
+content-background = ${colors.xcolor3}
 
 ;----------------------------------------------------------
 ;		       X W I N D O W
@@ -369,17 +374,23 @@ toggle-off-foreground = #66
 type = internal/xbacklight
 ; To list available cards use: $ ls -1 /sys/class/backlight/
 ;card = intel_backlight
+format-prefix = "  "
+format-prefix-background = ${colors.xcolor6}
 
-format = <ramp> <label>
+format = <ramp><label>
+format-font = 2
+format-foreground = ${colors.xcolor3}
 ;    
 label = %percentage%%
+label-font = 2
+label-background = ${colors.xcolor6}
+label-foreground = ${colors.xcolor15}
 
 ramp-0 = 🌕
 ramp-1 = 🌔
 ramp-2 = 🌓
 ramp-3 = 🌒
 ramp-4 = 🌑
-
 
 ;----------------------------------------------------------
 ;			   C P U
@@ -418,6 +429,34 @@ ramp-coreload-6 = ▇
 type = internal/network
 ; To test interface: $ ls -1 /sys/class/net/
 interface = wlp5s0
+interval = 0.3
+
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+
+label-connected = "  %essid%"
+;label-connected = "  %essid%  %local_ip%  %downspeed:8%  %upspeed:8%"
+label-connected-foreground = ${colors.xcolor15}
+label-connected-background = ${colors.xcolor2}
+label-connected-font = 2
+label-disconnected = " "
+label-disconnected-foreground = ${colors.xcolor15}
+label-disconnected-background = ${colors.xcolor2}
+label-disconnected-font = 2
+
+ramp-signal-0 = ▁
+ramp-signal-1 = ▂
+ramp-signal-2 = ▃
+ramp-signal-3 = ▄
+ramp-signal-4 = ▅
+ramp-signal-5 = ▆
+ramp-signal-6 = ▇
+ramp-signal-7 = █
+
+[module/network2]
+type = internal/network
+; To test interface: $ ls -1 /sys/class/net/
+interface = wlp2s0
 interval = 0.3
 
 format-connected = <label-connected>
@@ -549,23 +588,27 @@ full-at = 99
 
 format-charging = <animation-charging> <label-charging>
 format-charging-foreground = ${colors.xcolor7}
-format-charging-background = ${colors.xcolor1}
+format-charging-background = ${colors.xcolor3}
 format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-foreground = ${colors.xcolor7}
-format-discharging-background = ${colors.xcolor1}
+format-discharging-foreground = ${colors.xcolor15}
+format-discharging-background = ${colors.xcolor3}
 format-full = <label-full>
-format-full-foreground = ${colors.xcolor7}
+format-full-foreground = ${colors.xcolor15}
 format-full-background = ${colors.xcolor1}
 
 label-charging = "%percentage%% "
+label-charging-font = 2
+label-charging-foreground = ${colors.xcolor15}
 label-discharging = "%percentage%% "
-label-discharging-foreground = ${colors.xcolor7}
+label-discharging-foreground = ${colors.xcolor15}
+label-discharging-font = 2
 label-full = "  %percentage%% "
+label-full-foreground = ${colors.xcolor15}
+label-full-font = 2
 ; 
 ramp-capacity-0 = " "
-ramp-capacity-0-foreground = ${colors.xcolor4}
+ramp-capacity-0-background = ${colors.xcolor1}
 ramp-capacity-1 = " "
-ramp-capacity-1-foreground = ${colors.xcolor4}
 ramp-capacity-2 = " "
 ramp-capacity-3 = " "
 ramp-capacity-4 = " "
@@ -574,6 +617,7 @@ animation-charging-1 = " "
 animation-charging-2 = " "
 animation-charging-3 = " "
 animation-charging-4 = " "
+animation-charging-foreground = ${colors.xcolor15}
 animation-charging-framerate = 750
 
 
