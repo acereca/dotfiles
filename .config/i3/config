@@ -108,6 +108,7 @@ assign     [title="mpv"]                         $workspace4
 for_window [class="mpv"]                         floating enable
 
 assign     [class="Steam"]                       $workspace6
+assign     [class="leageclientux.exe"]           $workspace6
 
 ###--- keybindings ---###
 
