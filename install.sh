@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# only run on arch based linux
+#only run on arch based linux
 
 #setup
 
@@ -62,13 +62,12 @@ DEPLIST="
 
 # installing dependencies
 
-for dep in $DEPLIST; do
-    echo "";
-done
+echo -e "\\e[1;32m=> NOW INSTALLING PACKAGES\\e[0m"
+sudo pacman -S $DEPLIST
 
 # Linking
 
-echo -e "\\e[1;32m=> NOW LINKING FOLDERS\\e[0m"
+echo -e "\n\\e[1;32m=> NOW LINKING FOLDERS\\e[0m"
 for d in $FOLDERLIST; do
     ln -sfvi "$DOTFILES_DIR/$d" $HOME/$(dirname $d);
 done
