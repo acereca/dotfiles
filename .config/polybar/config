@@ -81,7 +81,7 @@ module-margin-right = 0
 ;			F O N T S
 ;----------------------------------------------------------
 
-font-0 = DroidSansMonoforPowerlinePlusNerdFileTypesMono:size=16:antialias=true;3
+font-0 = DroidSansMonoforPowerline:size=16:antialias=true;3
 font-1 = DroidSansMonoForPowerline:size=10:antialias=true;2
 font-2 = PowerlineSymbols:size=15;3
 ; font-1 = Powerline:size=10;1

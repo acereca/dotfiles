@@ -5,74 +5,76 @@
 " Plugins {{{
 set nocompatible
 filetype plugin on
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+"set rtp+=~/.vim/bundle/Vundle.vim
+call plug#begin("~/.vim/plugged")
 
-    Plugin 'gmarik/Vundle.vim'
+    Plug 'martinda/Jenkinsfile-vim-syntax'
+
+    Plug 'gmarik/Vundle.vim'
 
     " git
-    Plugin 'tpope/vim-fugitive'
+    Plug 'tpope/vim-fugitive'
 
     " visual
-    Plugin 'AlessandroYorba/Sierra'
+    Plug 'AlessandroYorba/Sierra'
     "Plugin 'altercation/vim-colors-solarized' 
-    Plugin 'joshdick/onedark.vim'
-    Plugin 'Yggdroot/indentLine'
-    Plugin 'mboughaba/i3config.vim'
+    Plug 'joshdick/onedark.vim'
+    Plug 'Yggdroot/indentLine'
+    Plug 'mboughaba/i3config.vim'
 
     " text formatting
-    Plugin 'tpope/vim-surround'
-    Plugin 'godlygeek/tabular'
+    Plug 'tpope/vim-surround'
+    Plug 'godlygeek/tabular'
     "Plugin 'Raimondi/delimitMate'
-    Plugin 'scrooloose/nerdcommenter'
+    Plug 'scrooloose/nerdcommenter'
 
     " NERDTree
-    Plugin 'scrooloose/nerdtree'
+    Plug 'scrooloose/nerdtree'
 
     " Python
-    Plugin 'tmhedberg/SimpylFold'
-    Plugin 'vim-scripts/indentpython.vim'
-    Plugin 'vim-syntastic/syntastic'
+    Plug 'tmhedberg/SimpylFold'
+    Plug 'vim-scripts/indentpython.vim'
+    Plug 'vim-syntastic/syntastic'
 
     " Cmd-t
     "Plugin 'wincent/command-t'
     "Plugin 'kien/ctrlp.vim'
-    Plugin 'ctrlpvim/ctrlp.vim'
+    Plug 'ctrlpvim/ctrlp.vim'
 
     "Loupe
-    Plugin 'wincent/loupe'
+    Plug 'wincent/loupe'
 
     " unimPaired
-    Plugin 'tpope/vim-unimpaired'
+    Plug 'tpope/vim-unimpaired'
 
     " HTML Tags
-    Plugin 'alvan/vim-closetag'
-    Plugin 'mattn/emmet-vim'
+    Plug 'alvan/vim-closetag'
+    Plug 'mattn/emmet-vim'
 
     "" fallback plugins for non neovim setups
     if !has('nvim')
-        Plugin 'Valloric/YouCompleteMe'
-        Plugin 'SirVer/UltiSnips'
-        Plugin 'honza/vim-snippets'
+        Plug 'Valloric/YouCompleteMe'
+        Plug 'SirVer/UltiSnips'
+        Plug 'honza/vim-snippets'
 
         "LaTeX
-        Plugin 'LaTeX-Box-Team/LaTeX-Box'
+        Plug 'LaTeX-Box-Team/LaTeX-Box'
     endif
 
     "" NeoVim specific
     if has('nvim')
-        Plugin 'vim-airline/vim-airline'
-        Plugin 'vim-airline/vim-airline-themes'
-        Plugin 'Shougo/deoplete.nvim'
-        Plugin 'zchee/deoplete-jedi'
-        Plugin 'zchee/deoplete-clang'
-        Plugin 'Shougo/neosnippet.vim'
-        Plugin 'Shougo/neosnippet-snippets'
-        Plugin 'lervag/vimtex'
-        Plugin 'neomake/neomake'
+        Plug 'vim-airline/vim-airline'
+        Plug 'vim-airline/vim-airline-themes'
+        Plug 'Shougo/deoplete.nvim'
+        Plug 'zchee/deoplete-jedi'
+        Plug 'zchee/deoplete-clang'
+        Plug 'Shougo/neosnippet.vim'
+        Plug 'Shougo/neosnippet-snippets'
+        Plug 'lervag/vimtex'
+        Plug 'neomake/neomake'
     endif
 
-call vundle#end()
+call plug#end()
 
 filetype plugin indent on
 " }}}

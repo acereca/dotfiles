@@ -51,7 +51,7 @@ exec_always --no-startup-id feh --bg-max /home/patrick/Bilder/bg_i3 --no-xineram
 
 # i3lock with timout
 set $i3lock-color-vars --insidecolor=ffffff00 --ringcolor=ffffff00 --linecolor=ffffffff --separatorcolor=ffffffff --keyhlcolor=ffffffff --insidevercolor=ffffffff --timecolor=ffffffff --datecolor=ffffffff --insidewrongcolor=ffffffff --bshlcolor=00000000
-exec_always --no-startup-id xset s 600 && xss-lock -- i3lock -t -i /home/patrick/Bilder/bg_lock -k  --timestr="%H:%M" --datestr="%Y|%m|%d" $i3lock-color-vars -u
+exec_always --no-startup-id xset s 600 && xss-lock -- i3lock -t -i /home/patrick/Pictures/bg_lock -k  --timestr="%H:%M" --datestr="%Y|%m|%d" $i3lock-color-vars -u
 
 # brightness control for integrated display
 exec_always xbacklight -set $(cat /home/patrick/.config/i3/brightness)
@@ -185,7 +185,8 @@ bindsym $mod+Ctrl+Shift+r reload
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "~/.config/i3/exit.sh"
 
 # change window sizes
 bindsym $mod+u resize shrink width 2 px or 2 ppt
@@ -216,7 +217,7 @@ set $rofi-visual
 bindsym $mod+d exec "rofi -show run -bw 0
 
 # terminal
-set $term 'st'
+set $term 'kitty'
 bindsym $mod+Return exec $term 
 bindsym $mod+Shift+Return exec $term -e su
 bindsym $mod+Ctrl+Return exec "~/.config/i3/select_ssh.sh"

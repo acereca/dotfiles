@@ -3,5 +3,5 @@ rofi.eh            1
 rofi.fullscreen:   true
 rofi.padding:      400
 rofi.font:         Droid Sans Mono for Powerline 18
-rofi.color-window: #2f343f, #2f343f, #2f343f
-rofi.color-normal: #2f343f, #f3f4f5, #2f343f, #2f343f, #68A9A7
+rofi.color-window: #1e2127, #1e2127, #1e2127
+rofi.color-normal: #1e2127, #abb2bf, #1e2127, #abb2bf, #1e2127

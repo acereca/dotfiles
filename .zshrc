@@ -55,6 +55,9 @@ autoload aes
 
 # aliases {{{
 
+## kitty only
+alias icat="kitty icat"
+
 alias la="ls -lahp --block-size=k"
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
@@ -62,6 +65,10 @@ alias rm="trash"
 alias rmi="/usr/bin/rm -i"
 alias rssp="rsync -avhz --progress"
 alias rsmv="rsync -avhz --progress --remove-source-files"
+
+alias p="pacaur --color always"
+alias pm="pacman --color always"
+alias z="zathura"
 
 ffind() {
     if [[ $# == 2 ]]
@@ -122,6 +129,7 @@ alias cfm="vim $DOTFILES_DIR/.mutt/muttrc -c 'lcd $DOTFILES_DIR'"
 alias cfmp="vim $DOTFILES_DIR/.mutt/ -c 'lcd $DOTFILES_DIR'"
 
 alias cfS="vim ~/github/st/config.h && make -C ~/github/st && sudo make install -C ~/github/st"
+alias cfk="vim ~/.config/kitty/kitty.conf -c 'lcd ~/.config'"
 
 alias gh="ls -la --color ~/github && cd ~/github"
 alias ghd="ls -la --color ~/github/dotfiles && cd ~/github/dotfiles"
@@ -179,8 +187,21 @@ alias soaryn="mpv ytdl://twitch.tv/soaryn"
 alias amadornes="mpv ytdl://twitch.tv/amadornes"
 alias poo="mpv ytdl://twitch.tv/grand_poobear"
 alias waffle="mpv ytdl://twitch.tv/giantwaffle"
-alias monstercat="mpv ytdl://twitch.tv/monstercat"
+#alias monstercat="mpv ytdl://twitch.tv/monstercat --no-video"
 alias filthy="mpv ytdl://twitch.tv/filthyrobot"
+
+monstercat() {
+    if [ $# -eq 1 ]
+    then
+        if [ "$1" = "instinct" ]
+        then
+            mpv "ytdl://$($HOME/github/scripts/getyturl.py channel/UCp8OOssjSjGZRVYK6zWbNLg 'Radio')" --no-video ;
+        fi
+    elif [ $# -eq 0 ]
+    then
+        mpv ytdl://twitch.tv/monstercat --no-video ;
+    fi;
+}
 
 alias youtube-aria='youtube-dl --external-downloader aria2c --external-downloader-args "-c -j10 -x10 -s10"'
 # }}}
