@@ -1,6 +1,6 @@
 " VIM Config file
 " Patrick Nisble
-" Last modified: 2018|09|26
+" Last modified: 2018|12|21
 
 " Plugins {{{
 set nocompatible
@@ -10,14 +10,12 @@ call plug#begin("~/.vim/plugged")
 
     Plug 'martinda/Jenkinsfile-vim-syntax'
 
-    Plug 'gmarik/Vundle.vim'
-
     " git
     Plug 'tpope/vim-fugitive'
 
     " visual
-    Plug 'AlessandroYorba/Sierra'
-    "Plugin 'altercation/vim-colors-solarized' 
+    " Plug 'AlessandroYorba/Sierra'
+    " Plugin 'altercation/vim-colors-solarized' 
     Plug 'joshdick/onedark.vim'
     Plug 'Yggdroot/indentLine'
     Plug 'mboughaba/i3config.vim'
@@ -65,7 +63,7 @@ call plug#begin("~/.vim/plugged")
     if has('nvim')
         Plug 'vim-airline/vim-airline'
         Plug 'vim-airline/vim-airline-themes'
-        Plug 'Shougo/deoplete.nvim'
+        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugin' }
         Plug 'zchee/deoplete-jedi'
         Plug 'zchee/deoplete-clang'
         Plug 'Shougo/neosnippet.vim'

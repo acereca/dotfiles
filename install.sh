@@ -1,6 +1,20 @@
 #!/usr/bin/env bash
 
-DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# only run on arch based linux
+
+#setup
+
+FOLDERLIST="
+    .vim/autoload
+    .vim/ftplugin
+    .vim/after
+    .config/rofi
+    .config/ranger
+    .config/i3
+    .config/kitty
+"
+
+DOTFILES_DIR="$( pwd )"
 
 DIRECTLINKS="
     .bashrc 
@@ -10,18 +24,56 @@ DIRECTLINKS="
     .Xdefaults
     .zprofile
     .zshrc
+    .oh-my-zshrc
+    .oh-my-zsh/themes/bgnoster.zsh-theme
 "
 
-for file in $DIRECTLINKS; do
-    ln -sfvi "$DOTFILES_DIR/$file" ~
+DEPLIST="
+    chromium
+    clamav
+    code
+    compton
+    evince
+    firefox
+    i3-wm
+    inotify-tools
+    kitty
+    mpv
+    neovim
+    otf-fira-code
+    otf-fontawesome
+    pacaur
+    python-pip
+    qrencode
+    ranger
+    rsync
+    texlive-core
+    texlive-fontsextra
+    texlive-langextra
+    texlive-latexextra
+    texlive-science
+    thunderbird
+    tmux
+    trash-cli
+    ttf-droid
+    vim
+    zsh
+"
+
+# installing dependencies
+
+for dep in $DEPLIST; do
+    echo "";
 done
 
-# create symlinks
-ln -sfvi "$DOTFILES_DIR/.ssh/config"    ~/.ssh/
-ln -sfvi "$DOTFILES_DIR/.vim/autoload"  ~/.vim/
-ln -sfvi "$DOTFILES_DIR/.vim/ftplugin"  ~/.vim/
-ln -sfvi "$DOTFILES_DIR/.vim/after"     ~/.vim/
-ln -sfvi "$DOTFILES_DIR/.config/rofi"   ~/.config/
-ln -sfvi "$DOTFILES_DIR/.config/ranger" ~/.config/
-ln -sfvi "$DOTFILES_DIR/.config/i3"     ~/.config/
+# Linking
 
+echo -e "\\e[1;32m=> NOW LINKING FOLDERS\\e[0m"
+for d in $FOLDERLIST; do
+    ln -sfvi "$DOTFILES_DIR/$d" $HOME/$(dirname $d);
+done
+
+echo -e "\n\\e[1;32m=> NOW LINKING FILES\\e[0m"
+for file in $DIRECTLINKS; do
+    ln -sfvi "$DOTFILES_DIR/$file" "$HOME/$(dirname $file)";
+done

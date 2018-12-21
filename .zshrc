@@ -2,7 +2,7 @@
 # Patrick Nisble
 # github.com/acereca
 #
-# Last modified: 2018|08|16
+# Last modified: 2018|12|21
 
 # PATH defs
 source ~/.zprofile
@@ -33,7 +33,7 @@ zle -N zle-line-finish
 
 # History {{{
 export HISTSIZE=100000
-export HISTFILE="~/.history"
+export HISTFILE="$HOME/.hisory"
 export SAVEHIST=$HISTSIZE
 # }}}
 

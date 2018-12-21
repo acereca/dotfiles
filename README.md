@@ -10,7 +10,3 @@ This is a collection of dotfiles for my general arch-linux setup.
 ```
 
 all files contained within this repo, which are either preceeded by a "." or contained in a "."-directory can be linked to their position relative to your `$HOME`
-
-```
-    ln -s ./.[a-zA-Z.-_]+ $HOME/
-```
