@@ -211,7 +211,7 @@ cnoreabbrev Q q
 " global std for stfrtime string {{{
 let g:strfstr = '%Y|%m|%d'
 " run everytime needs to set b:updateModified Date in ftplugin
-autocmd BufWritePre * call acereca#date#updateLastModified()
+"autocmd BufWritePre * call acereca#date#updateLastModified()
 " }}}
 
 " code folding {{{
