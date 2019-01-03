@@ -20,4 +20,6 @@ export PYTHONPATH=$PYTHONPATH:$HOME/electronicvisions/labcontrol
 export EDITOR=/usr/bin/nvim
 export editor=/usr/bin/nvim
 # }}}
-#
+
+autoload ssc
+

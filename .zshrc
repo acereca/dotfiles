@@ -43,7 +43,7 @@ export KEYTIMEOUT=1
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 ssht() {
-    ssh -t $1 tmux attach -t $2
+    ssh -t $1 "tmux $2 -A -s main"
 }
 autoload ssht
 
@@ -52,6 +52,19 @@ aes() {
     echo -n $1 | openssl enc -e -aes-256-cbc -a -salt
 }
 autoload aes
+
+# scriptselect
+#alias ssc="python $HOME/github/scripts/select.py"
+ssc(){
+    if [[ $# = 0 ]]
+    then 
+        cd $HOME/github/scripts/
+    else
+        $HOME/github/scripts/$1.* $2;
+    fi
+}
+
+autoload ssc
 
 # aliases {{{
 

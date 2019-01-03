@@ -236,10 +236,8 @@ let g:strfstr = '%Y|%m|%d'
     syntax on
     if has('nvim')
         set background=dark
-        colorscheme onedark
-    else
-        colorscheme sierra
     endif
+        colorscheme onedark
     highlight Normal ctermbg=none
 " }}}
 
