@@ -187,7 +187,7 @@ bindsym $mod+Shift+r restart
 set $sd '/home/patrick/github/scripts'
 # exit i3 (logs you out of your X session)
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+e exec $sd"/select.exit.sh"
+bindsym $mod+Shift+e exec $sd"/select.exit.zsh"
 
 # change window sizes
 bindsym $mod+u resize shrink width 2 px or 2 ppt
@@ -221,7 +221,7 @@ bindsym $mod+d exec "rofi -show run -bw 0
 set $term 'kitty'
 bindsym $mod+Return exec $term 
 bindsym $mod+Shift+Return exec $term -e su
-bindsym $mod+Ctrl+Return exec $sd"/select.ssh.sh"
+bindsym $mod+Ctrl+Return exec $sd"/select.ssh.zsh"
 # interferes with nvim
 #bindsym $mod+$mod2+Return exec $term -e tmux new-session -A -s main
 
@@ -237,11 +237,11 @@ bindsym $mod+$mod2+c exec --no-startup-id firefox
 bindsym $mod+Ctrl+c exec --no-startup-id qutebrowser
 
 # custom menus
-bindsym $mod+Shift+m exec $sd"/select.music.sh"
-bindsym $mod+Shift+c exec $sd"/select.cfg.sh"
-bindsym $mod+Shift+s exec $sd"/select.session.sh"
-bindsym $mod+Shift+F8 exec $sd"/select.display.sh"
+bindsym $mod+Shift+m exec $sd"/select.music.zsh"
+bindsym $mod+Shift+c exec $sd"/select.cfg.zsh"
+bindsym $mod+Shift+s exec $sd"/select.session.zsh"
+bindsym $mod+Shift+F8 exec $sd"/select.display.zsh"
 
 # inside terminal
-bindsym $mod+m exec $sd"/select.mail.sh"
+bindsym $mod+m exec $sd"/select.mail.zsh"
 bindsym $mod+r exec $term -e ranger
