@@ -21,5 +21,6 @@ export EDITOR=/usr/bin/nvim
 export editor=/usr/bin/nvim
 # }}}
 
-autoload ssc
-
+# SSH {{{
+export SSH_KEY_PATH="~/.ssh/rsa_id"
+# }}}

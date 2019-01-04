@@ -12,6 +12,7 @@ FOLDERLIST="
     .config/ranger
     .config/i3
     .config/kitty
+    .zshrc.d
 "
 
 DOTFILES_DIR="$( pwd )"

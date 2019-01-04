@@ -40,31 +40,8 @@ export SAVEHIST=$HISTSIZE
 # reaction time on esc
 export KEYTIMEOUT=1
 
-# ssh
-export SSH_KEY_PATH="~/.ssh/rsa_id"
-ssht() {
-    ssh -t $1 "tmux $2 -A -s main"
-}
-autoload ssht
-
-# pwdgen
-aes() {
-    echo -n $1 | openssl enc -e -aes-256-cbc -a -salt
-}
-autoload aes
-
-# scriptselect
-#alias ssc="python $HOME/github/scripts/select.py"
-ssc(){
-    if [[ $# = 0 ]]
-    then 
-        cd $HOME/github/scripts/
-    else
-        $HOME/github/scripts/$1.* $2;
-    fi
-}
-
-autoload ssc
+# load user modules
+for f in ~/.zshrc.d*; do source $f; done
 
 # aliases {{{
 
@@ -82,32 +59,6 @@ alias rsmv="rsync -avhz --progress --remove-source-files"
 alias p="pacaur --color always"
 alias pm="pacman --color always"
 alias z="zathura"
-
-ffind() {
-    if [[ $# == 2 ]]
-    then
-        grep -rn $1 -e $2
-    else
-        echo '\033[0;31m usage \033[0m: grep -rnw $1 -e $2'
-    fi
-}
-autoload ffind
-
-sync() {
-    if [[ $# != 1 ]]
-    then
-        echo 'err'
-    else
-        if [[ $1 == *"push"* ]]
-        then
-           option=$(awk '/^push/{$1 = ""; $2=""; print $0}' .rsync | sed 's/\ \+\"//' | sed 's/\"//')
-        else
-           option=$(awk '/^pull/{$1 = ""; $2=""; print $0}' .rsync | sed 's/\ \+\"//' | sed 's/\"//')
-        fi
-        rsync $(echo ${option})
-    fi
-}
-autoload sync
 
 alias yt='mpv "$(xclip -selection c -o)"'
 
@@ -160,61 +111,15 @@ alias gt="ls -la --color ~/.local/share/Trash && cd ~/.local/share/Trash"
 # aliases for work 
 alias gB="cd ~/gitlab/BaTh && ls -la --color"
 alias gBd="cd ~/gitlab/BaTh/data && ./sshfs.sh"
-
 # }}}
 
-lastedit() {
-    find $1 -type f -printf '%C@ %P\n' | sort -nr | head -1 | cut -d" " -f 2-
-}
-autoload lastedit
-
-todo() {
-    while getopts ":ael" opt; do
-        case $opt in
-            l)
-                mdv ~/todo.md -t Lagoona
-                ;;
-            e) 
-                vim ~/todo.md
-                ;;
-            a)
-                echo "- [ ] $2" >> ~/todo.md
-                ;;
-            \?)
-                echo "Invalid option: -$OPTARG" >&2
-                ;;
-
-        esac
-    done
-}
-autoload todo
-
-
 # streams{{{
-twitch() {
-    mpv "ytdl://twitch.tv/$1" --ytdl-format=$2
-}
-autoload twitch
-
 alias soaryn="mpv ytdl://twitch.tv/soaryn"
 alias amadornes="mpv ytdl://twitch.tv/amadornes"
 alias poo="mpv ytdl://twitch.tv/grand_poobear"
 alias waffle="mpv ytdl://twitch.tv/giantwaffle"
 #alias monstercat="mpv ytdl://twitch.tv/monstercat --no-video"
 alias filthy="mpv ytdl://twitch.tv/filthyrobot"
-
-monstercat() {
-    if [ $# -eq 1 ]
-    then
-        if [ "$1" = "instinct" ]
-        then
-            mpv "ytdl://$($HOME/github/scripts/getyturl.py channel/UCp8OOssjSjGZRVYK6zWbNLg 'Radio')" --no-video ;
-        fi
-    elif [ $# -eq 0 ]
-    then
-        mpv ytdl://twitch.tv/monstercat --no-video ;
-    fi;
-}
 
 alias youtube-aria='youtube-dl --external-downloader aria2c --external-downloader-args "-c -j10 -x10 -s10"'
 # }}}
