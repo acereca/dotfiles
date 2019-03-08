@@ -63,7 +63,7 @@ call plug#begin("~/.vim/plugged")
     if has('nvim')
         Plug 'vim-airline/vim-airline'
         Plug 'vim-airline/vim-airline-themes'
-        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugin' }
+        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
         Plug 'zchee/deoplete-jedi'
         Plug 'zchee/deoplete-clang'
         Plug 'Shougo/neosnippet.vim'
@@ -259,9 +259,25 @@ let g:strfstr = '%Y|%m|%d'
         map <leader>n :NERDTreeToggle<CR>
         nnoremap <leader><leader> za
 
-        "map <C-k> :m-2<CR>
-        "map <C-j> :m+1<CR>
         nnoremap <leader>sc :set spell! spelllang=en,de_de<CR>
+        nnoremap <C-j> :m+<CR>
+        nnoremap <C-k> :m-2<CR>
+        vnoremap <C-j> :m '>+1<CR>gv=gv
+        vnoremap <C-k> :m '<-2<CR>gv=gv
+
+        " change to buffer
+        map <A-1> :buffer 1<CR>
+        map <A-2> :buffer 2<CR>
+        map <A-3> :buffer 3<CR>
+        map <A-4> :buffer 4<CR>
+        map <A-5> :buffer 5<CR>
+        map <A-6> :buffer 6<CR>
+        map <A-7> :buffer 7<CR>
+        map <A-8> :buffer 8<CR>
+        map <A-9> :buffer 9<CR>
+        map <A-0> :buffer 10<CR>
+
+        map <C-w> :bd<CR>
 
         " remove arrow bindings
         map <up> <nop>

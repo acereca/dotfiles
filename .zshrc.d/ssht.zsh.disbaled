@@ -2,6 +2,6 @@
 
 # ssh + tmux
 ssht() {
-    ssh -t $1 "tmux $2 -A -s main"
+    tmux-cssh -cs $1
 }
 autoload ssht

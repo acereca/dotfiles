@@ -1,0 +1,16 @@
+z   .zshrc
+zp  .zprofile
+
+i   .config/i3/config
+
+v   .vimrc
+vft .vim/ftplugin/
+vs  .vim/snippets/
+
+s   .ssh/config
+
+p   .config/polybar/config
+
+r   .config/ranger/rc.conf
+
+m   .mutt/muttrc
