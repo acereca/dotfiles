@@ -237,7 +237,7 @@ bindsym $mod+$mod2+c exec --no-startup-id firefox
 bindsym $mod+Ctrl+c exec --no-startup-id qutebrowser
 
 # custom menus
-bindsym $mod+Shift+m exec $sd"/select.music.zsh"
+bindsym $mod+Shift+m exec $sd"/select.music.py"
 bindsym $mod+Shift+c exec $sd"/select.cfg.zsh"
 bindsym $mod+Shift+s exec $sd"/select.session.zsh"
 bindsym $mod+Shift+F8 exec $sd"/select.display.zsh"
