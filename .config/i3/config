@@ -37,6 +37,10 @@ hide_edge_borders smart
 
 ###--- startup ---###
 
+# ssh-agent
+exec --no-startup-id ssh-agent -k -a /tmp/.ssh-agent
+exec --no-startup-id ssh-agent -a /tmp/.ssh-agent
+
 # network manager
 exec --no-startup-id nm-applet
 
@@ -105,7 +109,7 @@ assign     [class="discord"]                     $workspace3
 assign     [class="Hexchat"]                     $workspace3
 
 assign     [title="mpv"]                         $workspace4
-for_window [class="mpv"]                         floating enable
+#for_window [class="mpv"]                         floating enable
 
 assign     [class="Steam"]                       $workspace6
 assign     [class="leageclientux.exe"]           $workspace6
@@ -237,7 +241,7 @@ bindsym $mod+$mod2+c exec --no-startup-id firefox
 bindsym $mod+Ctrl+c exec --no-startup-id qutebrowser
 
 # custom menus
-bindsym $mod+Shift+m exec $sd"/select.music.zsh"
+bindsym $mod+Shift+m exec $sd"/select.music.py"
 bindsym $mod+Shift+c exec $sd"/select.cfg.zsh"
 bindsym $mod+Shift+s exec $sd"/select.session.zsh"
 bindsym $mod+Shift+F8 exec $sd"/select.display.zsh"

@@ -43,6 +43,9 @@ export KEYTIMEOUT=1
 # load user modules
 for f in ~/.zshrc.d*; do source $f; done
 
+# load ssh-agent
+eval $(ssh-agent -s)
+
 # aliases {{{
 
 ## kitty only
@@ -132,3 +135,6 @@ alias s!!="sudo !!"
 # }}}
 
 source ~/.oh-my-zshrc
+
+# direnv
+eval "$(direnv hook zsh)"

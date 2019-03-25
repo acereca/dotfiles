@@ -23,4 +23,5 @@ export editor=/usr/bin/nvim
 
 # SSH {{{
 export SSH_KEY_PATH="~/.ssh/rsa_id"
+export SSH_AUTH_SOCK="/tmp/.ssh-agent"
 # }}}
