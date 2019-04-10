@@ -189,8 +189,9 @@ let g:UltiSnipsExpandTrigger="<s-tab>"
 " }}}
 
 " custom behaviour {{{
+
+set hidden " buffer hidden if modified
 set number norelativenumber
-set digraph
 
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<
@@ -233,6 +234,7 @@ let g:strfstr = '%Y|%m|%d'
 
 " coloring {{{
     let python_highlight_all=1
+    let g:onedark_terminal_italics=1
     syntax on
     if has('nvim')
         set background=dark
@@ -257,7 +259,8 @@ let g:strfstr = '%Y|%m|%d'
         "imap <C-Space> <C-P>
 
         map <leader>n :NERDTreeToggle<CR>
-        nnoremap <leader><leader> za
+        nmap <leader>bb :CtrlPBuffer<CR>
+        nmap <C-/> :NERDComToggleComment<CR>
 
         nnoremap <leader>sc :set spell! spelllang=en,de_de<CR>
         nnoremap <C-j> :m+<CR>
@@ -266,18 +269,9 @@ let g:strfstr = '%Y|%m|%d'
         vnoremap <C-k> :m '<-2<CR>gv=gv
 
         " change to buffer
-        map <A-1> :buffer 1<CR>
-        map <A-2> :buffer 2<CR>
-        map <A-3> :buffer 3<CR>
-        map <A-4> :buffer 4<CR>
-        map <A-5> :buffer 5<CR>
-        map <A-6> :buffer 6<CR>
-        map <A-7> :buffer 7<CR>
-        map <A-8> :buffer 8<CR>
-        map <A-9> :buffer 9<CR>
-        map <A-0> :buffer 10<CR>
-
-        map <C-w> :bd<CR>
+        nmap <leader>l :bnext<CR>
+        nmap <leader>h :bprevious<CR>
+        nmap <leader>bq :bp <BAR> bd #<CR>
 
         " remove arrow bindings
         map <up> <nop>

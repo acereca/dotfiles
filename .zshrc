@@ -70,6 +70,7 @@ alias sv="sudo nvim -u ~/.vimrc"
 ## streams {{{
 alias yt='mpv "$(xclip -selection c -o)"'
 alias youtube-aria='youtube-dl --external-downloader aria2c --external-downloader-args "-c -j10 -x10 -s10"'
+alias youtube-ariator='torsocks youtube-dl --external-downloader aria2c --external-downloader-args "-c -j10 -x10 -s10"'
 alias soaryn="mpv ytdl://twitch.tv/soaryn"
 alias amadornes="mpv ytdl://twitch.tv/amadornes"
 alias poo="mpv ytdl://twitch.tv/grand_poobear"
