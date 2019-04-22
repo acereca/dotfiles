@@ -9,11 +9,12 @@ export PATH="/opt/cuda/bin/:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:$H
 export IDF_PATH="/home/patrick/gitlab/esp32/esp-idf/"
 # }}}
 
-# TEXINPUTS {{{
+# TEX {{{
+export BIB=$HOME/github/ubib/ubib.bib
 export TEXINPUTS=".:./5E_Template/:"
 # }}}
 
-# PYTHONPATH {{{
+# PYTHON {{{
 export PYTHONPATH=$PYTHONPATH:$HOME/electronicvisions/labcontrol
 # }}}
 

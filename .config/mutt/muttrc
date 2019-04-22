@@ -1,0 +1,18 @@
+source $MUTT_PROFILE
+
+# Caching
+set header_cache=~/.cache/mutt/header
+set message_cachedir=~/.cache/mutt/messages
+source "~/.mutt/purgecache.sh '$message_cachedir'|"
+
+# sorting
+set sort_aux       = reverse-last-date-received
+set sort           = threads
+set sort_browser   = date
+set sort_re
+
+set sidebar_visible = yes
+set sidebar_width   = 10
+
+# Colors
+source colors.muttrc
