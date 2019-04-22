@@ -224,7 +224,6 @@ let g:strfstr = '%Y|%m|%d'
     set fillchars=vert:┃                                                 " Box Drawings Heavy Vertical (U+2503)
     set fillchars+=fold:·                                                " MIDDLE DOT (U+00B7)
     set foldmethod=syntax
-    set foldlevelstart=1
     set foldtext=acereca#folding#foldtext()
 
     let g:indentLine_char="▏"
@@ -245,6 +244,15 @@ let g:strfstr = '%Y|%m|%d'
     endif
         colorscheme onedark
     highlight Normal ctermbg=none
+    if (empty($TMUX))
+        if (has("nvim"))
+            "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+            let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+        endif
+        if (has("termguicolors"))
+            set termguicolors
+        endif
+    endif
 " }}}
 
 " keymaps {{{
@@ -283,6 +291,7 @@ let g:strfstr = '%Y|%m|%d'
         map <A-9> :buffer 9<CR>
         map <A-0> :buffer 10<CR>
 
+        map <A-Tab> :bn<CR>
         map <C-w> :bd<CR>
 
         " remove arrow bindings
