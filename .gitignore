@@ -2,5 +2,6 @@
 .config/ranger/bookmarks
 ssh/
 *.private
+.config/mutt/
 
 __pycache__/

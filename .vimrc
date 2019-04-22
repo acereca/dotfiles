@@ -164,6 +164,8 @@ let g:neomake_open_list = 2
               \ ]
               \}
 
+    let g:vimtex_view_method = "zathura"
+
 " }}}
 
 " YouCompleteMe {{{
