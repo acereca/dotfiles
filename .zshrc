@@ -16,24 +16,17 @@ fi
 # }}}
 
 # urxvt/st + zsh shenanigans {{{
-bindkey    "^[[2~"  quoted-insert
-bindkey    "^[[3~"  delete-char
-bindkey -a "^[[3~"  delete-char
-bindkey    "^[[H"   beginning-of-line
-bindkey    "^[[1~"   beginning-of-line
-bindkey    "^[[F"   end-of-line
-bindkey    "^[[4~"   end-of-line
-bindkey    "^?"     backward-delete-char
+bindkey    "^[[3~"  delete-char # kitty
+bindkey    "^[[H"   beginning-of-line # urxvt
+bindkey    "\eOH"   beginning-of-line # kitty
+bindkey    "^[[F"   end-of-line # urxvt
+bindkey    "\eOF"   end-of-line # kitty
 bindkey -v
-function zle-line-init () { echoti smkx }
-function zle-line-finish () { echoti rmkx }
-zle -N zle-line-init
-zle -N zle-line-finish
 # }}} 
 
 # History {{{
-export HISTSIZE=100000
 export HISTFILE="$HOME/.history"
+export HISTSIZE=100000
 export SAVEHIST=$HISTSIZE
 # }}}
 
@@ -44,10 +37,12 @@ export KEYTIMEOUT=1
 for f in ~/.zshrc.d/*.zsh; do source $f; done
 
 # load ssh-agent
-eval $(ssh-agent -s)
+pgrep ssh-agent 1> /dev/null || eval $(ssh-agent -s) 1> /dev/null
 
 # aliases {{{
 alias icat="kitty icat"
+
+alias tm="tmux -f $HOME/.config/tmux/normal.conf new-session -As main"
 
 alias la="ls -lahp --block-size=k"
 alias ls="ls --color=auto"
@@ -85,7 +80,9 @@ alias filthy="mpv ytdl://twitch.tv/filthyrobot"
 # }}}
 
 autoload -U zmv
-autoload -U compinit
+autoload -Uz compinit
+compinit
+# Completion for kitty
 
 alias s!!="sudo !!"
 # }}}

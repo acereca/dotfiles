@@ -69,6 +69,7 @@ call plug#begin("~/.vim/plugged")
     if has('nvim')
         Plug 'vim-airline/vim-airline'
         Plug 'vim-airline/vim-airline-themes'
+        Plug 'edkolev/tmuxline.vim'
         Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
         Plug 'zchee/deoplete-jedi'
         Plug 'zchee/deoplete-clang'
@@ -278,6 +279,7 @@ let g:strfstr = '%Y|%m|%d'
         nmap <leader>l :bnext<CR>
         nmap <leader>h :bprevious<CR>
         nmap <leader>bq :bp <BAR> bd #<CR>
+        nmap <leader>bl :CtrlPBuffer <CR>
 
         " remove arrow bindings
         map <up> <nop>
