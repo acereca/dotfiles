@@ -1,16 +1,20 @@
-z   .zshrc
-zp  .zprofile
-
 i   .config/i3/config
 
-v   .vimrc
-vft .vim/ftplugin/
-vs  .vim/snippets/
+k   .config/kitty/kitty.conf
 
-s   .ssh/config
+m   .config/mutt
 
 p   .config/polybar/config
 
 r   .config/ranger/rc.conf
 
-m   .mutt/muttrc
+s   .ssh/config
+
+t   .config/tmux
+
+v   .vimrc
+vft .vim/ftplugin/
+vs  .vim/snippets/
+
+z   .zshrc
+zp  .zprofile
