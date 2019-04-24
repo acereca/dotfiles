@@ -193,7 +193,7 @@ prompt_hg() {
 
 # Dir: current working directory
 prompt_dir() {
-  prompt_segment 240 white '%~'
+  prompt_segment 240 white '%25<...<%~%<<'
 }
 
 # Virtualenv: current working virtualenv
