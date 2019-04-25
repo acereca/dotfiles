@@ -67,7 +67,7 @@ exec --no-startup-id xsetwacom set 12 MapToOutput 1920x1080+0+0
 exec_always --no-startup-id synclient TapButton1=1 TapButton2=3
 
 # disable capslock
-exec --no-startup-id setxkbmap -option compose:caps
+exec_always --no-startup-id setxkbmap -option compose:caps
 
 # polybar
 exec_always --no-startup-id ~/github/dotfiles/polybar_multimon.sh

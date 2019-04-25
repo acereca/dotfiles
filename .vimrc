@@ -25,6 +25,7 @@ call plug#begin("~/.vim/plugged")
     Plug 'godlygeek/tabular'
     "Plugin 'Raimondi/delimitMate'
     Plug 'scrooloose/nerdcommenter'
+    Plug 'vim-pandoc/vim-pandoc-syntax'
 
     " NERDTree
     Plug 'scrooloose/nerdtree'

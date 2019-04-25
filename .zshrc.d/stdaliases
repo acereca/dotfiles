@@ -13,4 +13,4 @@ p   .config/polybar/config
 
 r   .config/ranger/rc.conf
 
-m   .mutt/muttrc
+m   .config/mutt
