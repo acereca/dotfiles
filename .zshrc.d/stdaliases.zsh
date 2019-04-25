@@ -12,15 +12,8 @@ while read line; do
     fi
 done < $(dirname $0)/stdaliases
 
-alias cfs="$EDITOR ~/.ssh/config"
-
-alias cfrs="vim $DOTFILES_DIR/.config/ranger/scope.sh -c 'lcd $DOTFILES_DIR'"
-alias cfrr="vim $DOTFILES_DIR/.config/ranger/rifle.conf -c 'lcd $DOTFILES_DIR'"
-
-alias cfp="vim ~/.config/polybar/config"
-
-alias cfS="vim ~/github/st/config.h && make -C ~/github/st && sudo make install -C ~/github/st"
-alias cfk="vim ~/.config/kitty/kitty.conf -c 'lcd ~/.config'"
+alias cfrs="$EDITOR $DOTFILES_DIR/.config/ranger/scope.sh -c 'lcd $DOTFILES_DIR'"
+alias cfrr="$EDITOR $DOTFILES_DIR/.config/ranger/rifle.conf -c 'lcd $DOTFILES_DIR'"
 
 alias gh="ls -la --color ~/github && cd ~/github"
 alias ghd="ls -la --color ~/github/dotfiles && cd ~/github/dotfiles"
