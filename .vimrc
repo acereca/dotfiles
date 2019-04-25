@@ -14,16 +14,14 @@ call plug#begin("~/.vim/plugged")
     Plug 'tpope/vim-fugitive'
 
     " visual
-    " Plug 'AlessandroYorba/Sierra'
-    " Plugin 'altercation/vim-colors-solarized' 
     Plug 'joshdick/onedark.vim'
     Plug 'Yggdroot/indentLine'
     Plug 'mboughaba/i3config.vim'
+    Plug 'bronson/vim-trailing-whitespace'
 
     " text formatting
     Plug 'tpope/vim-surround'
     Plug 'godlygeek/tabular'
-    "Plugin 'Raimondi/delimitMate'
     Plug 'scrooloose/nerdcommenter'
 
     " NERDTree
@@ -38,12 +36,10 @@ call plug#begin("~/.vim/plugged")
     Plug 'posva/vim-vue'
     Plug 'sekel/vim-vue-syntastic'
 
-    " Cmd-t
-    "Plugin 'wincent/command-t'
-    "Plugin 'kien/ctrlp.vim'
+    " CtrlP
     Plug 'ctrlpvim/ctrlp.vim'
 
-    "Loupe
+    " Loupe
     Plug 'wincent/loupe'
 
     " unimPaired
@@ -146,7 +142,7 @@ let g:neomake_open_list = 2
 
     let g:vimtex_compiler_progname = "nvr"
     let g:vimtex_compiler_latexmk = {
-              \ 'backend' : 'nvim', 
+              \ 'backend' : 'nvim',
               \ 'background' : 1,
               \ 'build_dir' : '',
               \ 'callback' : 1,
@@ -266,14 +262,9 @@ let g:strfstr = '%Y|%m|%d'
     let mapleader = "\<Space>"
 
     " general keymaps {{{
-        
-        "nnoremap <C-Tab> gt
-        "nnoremap <S-Tab> gT
-        
+
         nnoremap ; :
         vnoremap ; :
-        
-        "imap <C-Space> <C-P>
 
         map <leader>n :NERDTreeToggle<CR>
         nmap <leader>bb :CtrlPBuffer<CR>
