@@ -23,6 +23,7 @@ call plug#begin("~/.vim/plugged")
     Plug 'tpope/vim-surround'
     Plug 'godlygeek/tabular'
     Plug 'scrooloose/nerdcommenter'
+    Plug 'vim-pandoc/vim-pandoc-syntax'
 
     " NERDTree
     Plug 'scrooloose/nerdtree'
