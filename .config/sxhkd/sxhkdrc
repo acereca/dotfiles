@@ -1,0 +1,32 @@
+# Basic Keybinds
+super + shift + x
+	xset s activate
+
+{super + F11, XF86AudioLowerVolume, super + F12, XF86AudioRaiseVolume, super + F10, XF86AudioMute}
+	amixer -q -D pulse sset Master {5%-,10%-,5%+,10%+,toggle,toggle} && pkill -RTMIN+10 i3blocks
+
+{super + F5, super + F6, XF86MonBrightnessDown, XF86MonBrightnessUp}
+	xbacklight {- 1, + 1, - 5, + 5} && pkill -RTMIN+11 i3blocks && xbacklight -get > $HOME/.config/i3/brightness
+	
+super + alt + {Up, Down}
+	setxkbmap {us, de} -option caps:escape && pkill -RTMIN+12 i3blocks
+
+# Start X11 apps
+super + d
+	rofi -show run -bw 0
+
+super + {_,shift +,control +} Return
+    $TERMINAL {_, -e su, -e tmux -f /home/patrick/.config/tmux/normal.conf new-session -As main}
+
+super + c ; {c,f}
+	{chromium, firefox}
+
+# Start script
+super + m
+	$HOME/github/scripts/select.mail.zsh
+
+super + shift + {m,c,s,F8}
+	$HOME/github/scripts/select.{music.py,cfg.zsh,session.zsh,display.zsh}
+
+
+

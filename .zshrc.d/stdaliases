@@ -8,7 +8,7 @@ p   .config/polybar/config
 
 r   .config/ranger/rc.conf
 
-s   .ssh/config
+s   ../../.ssh/config
 
 t   .config/tmux
 
@@ -18,3 +18,5 @@ vs  .vim/snippets/
 
 z   .zshrc
 zp  .zprofile
+
+hk  .config/sxhkd/sxhkdrc
