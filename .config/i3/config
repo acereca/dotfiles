@@ -51,7 +51,7 @@ exec --no-startup-id xrandr --output DP-1 --left-of HDMI-0
 exec --no-startup-id compton -b -f
 
 # background
-exec_always --no-startup-id feh --bg-max /home/patrick/Bilder/bg_i3 --no-xinerama
+exec_always --no-startup-id feh --bg-max /home/patrick/Pictures/bg_i3 --no-xinerama
 
 # i3lock with timout
 set $i3lock-color-vars --insidecolor=ffffff00 --ringcolor=ffffff00 --linecolor=ffffffff --separatorcolor=ffffffff --keyhlcolor=ffffffff --insidevercolor=ffffffff --timecolor=ffffffff --datecolor=ffffffff --insidewrongcolor=ffffffff --bshlcolor=00000000
@@ -66,8 +66,9 @@ exec --no-startup-id xsetwacom set 12 MapToOutput 1920x1080+0+0
 # touchpad input
 exec_always --no-startup-id synclient TapButton1=1 TapButton2=3
 
-# disable capslock
+# global keybinds
 exec_always --no-startup-id setxkbmap -option compose:caps
+exec_always --no-startup-id pkill sxhkd; sxhkd &
 
 # polybar
 exec_always --no-startup-id ~/github/dotfiles/polybar_multimon.sh
@@ -134,9 +135,6 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 # kill focused
 bindsym $mod+Shift+q kill
 
-# toggle networking
-bindsym $mod+F2 exec /usr/bin/zsh /home/patrick/.config/i3/toggle_nm.sh
-
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -188,9 +186,6 @@ bindsym $mod+Ctrl+Shift+r reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-set $sd '/home/patrick/github/scripts'
-# exit i3 (logs you out of your X session)
-#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 bindsym $mod+Shift+e exec $sd"/select.exit.zsh"
 
 # change window sizes
@@ -198,54 +193,3 @@ bindsym $mod+u resize shrink width 2 px or 2 ppt
 bindsym $mod+p resize grow width 2 px or 2 ppt
 bindsym $mod+i resize grow height 2 px or 2 ppt
 bindsym $mod+o resize shrink height 2 px or 2 ppt
-
-# add keyboard layout switch
-bindsym $mod+Mod1+Up exec setxkbmap de -option caps:escape && pkill -RTMIN+12 i3blocks
-bindsym $mod+Mod1+Down exec setxkbmap us -option caps:escape && pkill -RTMIN+12 i3blocks
-
-# add brightness control
-bindsym $mod+F5 exec xbacklight -dec 1 && pkill -RTMIN+11 i3blocks && xbacklight -get > /home/patrick/.config/i3/brightness
-bindsym $mod+F6 exec xbacklight -inc 1 && pkill -RTMIN+11 i3blocks && xbacklight -get > /home/patrick/.config/i3/brightness
-
-# add volume control
-bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 2%+ && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 2%- && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
-bindsym $mod+F11 exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
-bindsym $mod+F12 exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks
-bindsym $mod+F10 exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
-
-###--- simple startup keys ---###
-
-# rofi
-set $rofi-visual
-bindsym $mod+d exec "rofi -show run -bw 0
-
-# terminal
-set $term 'kitty'
-bindsym $mod+Return exec $term 
-bindsym $mod+Shift+Return exec $term -e su
-bindsym $mod+Ctrl+Return exec $sd"/select.ssh.zsh"
-# interferes with nvim
-#bindsym $mod+$mod2+Return exec $term -e tmux new-session -A -s main
-
-# lock device
-bindsym $mod+Shift+x exec --no-startup-id xset s activate
-
-# web browser
-bindsym $mod+Shift+f exec firefox
-
-# GUI applications
-bindsym $mod+c exec --no-startup-id chromium
-bindsym $mod+$mod2+c exec --no-startup-id firefox
-bindsym $mod+Ctrl+c exec --no-startup-id qutebrowser
-
-# custom menus
-bindsym $mod+Shift+m exec $sd"/select.music.py"
-bindsym $mod+Shift+c exec $sd"/select.cfg.zsh"
-bindsym $mod+Shift+s exec $sd"/select.session.zsh"
-bindsym $mod+Shift+F8 exec $sd"/select.display.zsh"
-
-# inside terminal
-bindsym $mod+m exec $sd"/select.mail.zsh"
-bindsym $mod+r exec $term -e ranger

@@ -12,6 +12,7 @@ call plug#begin("~/.vim/plugged")
     Plug 'martinda/Jenkinsfile-vim-syntax'
 	Plug 'iloginow/vim-stylus'
 	Plug 'sirtaj/vim-openscad'
+    Plug 'kovetskiy/sxhkd-vim'
 
     " git
     Plug 'tpope/vim-fugitive'
@@ -276,7 +277,7 @@ let g:strfstr = '%Y|%m|%d'
         nmap <leader>bb :CtrlPBuffer<CR>
         nmap <C-/> :NERDComToggleComment<CR>
 
-        nnoremap <leader>sc :set spell! spelllang=en,de_de<CR>
+        nnoremap <leader>sc :set spell! spelllang=en_us,de_de<CR>
         nnoremap <C-j> :m+<CR>
         nnoremap <C-k> :m-2<CR>
         vnoremap <C-j> :m '>+1<CR>gv=gv
