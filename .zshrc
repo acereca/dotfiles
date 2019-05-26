@@ -21,6 +21,8 @@ bindkey    "^[[H"   beginning-of-line # urxvt
 bindkey    "\eOH"   beginning-of-line # kitty
 bindkey    "^[[F"   end-of-line # urxvt
 bindkey    "\eOF"   end-of-line # kitty
+bindkey    "${terminfo[kcuu1]}"     history-substring-search-up
+bindkey    "${terminfo[kcud1]}"     history-substring-search-down
 bindkey -v
 # }}} 
 

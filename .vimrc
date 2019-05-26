@@ -8,7 +8,10 @@ filetype plugin on
 "set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin("~/.vim/plugged")
 
+	" syntax
     Plug 'martinda/Jenkinsfile-vim-syntax'
+	Plug 'iloginow/vim-stylus'
+	Plug 'sirtaj/vim-openscad'
 
     " git
     Plug 'tpope/vim-fugitive'
@@ -23,6 +26,9 @@ call plug#begin("~/.vim/plugged")
     Plug 'tpope/vim-surround'
     Plug 'godlygeek/tabular'
     Plug 'scrooloose/nerdcommenter'
+	Plug 'rhysd/vim-clang-format'
+
+	" Markdown
     Plug 'vim-pandoc/vim-pandoc-syntax'
 
     " NERDTree
@@ -49,8 +55,6 @@ call plug#begin("~/.vim/plugged")
     " HTML Tags
     Plug 'alvan/vim-closetag'
     Plug 'mattn/emmet-vim'
-
-    Plug 'rhysd/vim-clang-format'
 
     "" fallback plugins for non neovim setups
     if !has('nvim')
@@ -199,7 +203,8 @@ let g:UltiSnipsExpandTrigger="<s-tab>"
 set hidden " buffer hidden if modified
 set number norelativenumber
 
-set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
+set tabstop=4 softtabstop=0 shiftwidth=4 smarttab
+"set expandtab
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<
 set splitbelow
 set breakindent

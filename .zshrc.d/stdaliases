@@ -8,7 +8,7 @@ p   .config/polybar/config
 
 r   .config/ranger/rc.conf
 
-s   .ssh/config
+s   ~/.ssh/config
 
 t   .config/tmux
 
@@ -17,4 +17,5 @@ vft .vim/ftplugin/
 vs  .vim/snippets/
 
 z   .zshrc
+zd  .zshrc.d
 zp  .zprofile

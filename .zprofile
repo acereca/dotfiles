@@ -27,3 +27,5 @@ export editor=/usr/bin/nvim
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 export SSH_AUTH_SOCK="/tmp/.ssh-agent"
 # }}}
+#
+export BROWSER=chromium
