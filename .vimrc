@@ -8,15 +8,16 @@ filetype plugin on
 "set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin("~/.vim/plugged")
 
+    " Syntax
     Plug 'martinda/Jenkinsfile-vim-syntax'
     Plug 'kovetskiy/sxhkd-vim'
+    Plug 'sirtaj/vim-openscad'
+    Plug 'vim-pandoc/vim-pandoc-syntax'
 
     " git
     Plug 'tpope/vim-fugitive'
 
     " visual
-    " Plug 'AlessandroYorba/Sierra'
-    " Plugin 'altercation/vim-colors-solarized' 
     Plug 'joshdick/onedark.vim'
     Plug 'Yggdroot/indentLine'
     Plug 'mboughaba/i3config.vim'
@@ -24,9 +25,7 @@ call plug#begin("~/.vim/plugged")
     " text formatting
     Plug 'tpope/vim-surround'
     Plug 'godlygeek/tabular'
-    "Plugin 'Raimondi/delimitMate'
     Plug 'scrooloose/nerdcommenter'
-    Plug 'vim-pandoc/vim-pandoc-syntax'
 
     " NERDTree
     Plug 'scrooloose/nerdtree'
@@ -41,8 +40,6 @@ call plug#begin("~/.vim/plugged")
     Plug 'sekel/vim-vue-syntastic'
 
     " Cmd-t
-    "Plugin 'wincent/command-t'
-    "Plugin 'kien/ctrlp.vim'
     Plug 'ctrlpvim/ctrlp.vim'
 
     "Loupe
@@ -84,6 +81,10 @@ call plug#begin("~/.vim/plugged")
 call plug#end()
 
 filetype plugin indent on
+" }}}
+
+" Syntastic {{{
+let g:syntastic_quiet_message = ['12']
 " }}}
 
 " deoplete {{{
