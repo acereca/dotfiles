@@ -10,6 +10,8 @@ call plug#begin("~/.vim/plugged")
 
     " Syntax
     Plug 'martinda/Jenkinsfile-vim-syntax'
+	Plug 'iloginow/vim-stylus'
+	Plug 'sirtaj/vim-openscad'
     Plug 'kovetskiy/sxhkd-vim'
     Plug 'sirtaj/vim-openscad'
     Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -21,11 +23,16 @@ call plug#begin("~/.vim/plugged")
     Plug 'joshdick/onedark.vim'
     Plug 'Yggdroot/indentLine'
     Plug 'mboughaba/i3config.vim'
+    Plug 'bronson/vim-trailing-whitespace'
 
     " text formatting
     Plug 'tpope/vim-surround'
     Plug 'godlygeek/tabular'
     Plug 'scrooloose/nerdcommenter'
+	Plug 'rhysd/vim-clang-format'
+
+	" Markdown
+    Plug 'vim-pandoc/vim-pandoc-syntax'
 
     " NERDTree
     Plug 'scrooloose/nerdtree'
@@ -39,10 +46,10 @@ call plug#begin("~/.vim/plugged")
     Plug 'posva/vim-vue'
     Plug 'sekel/vim-vue-syntastic'
 
-    " Cmd-t
+    " CtrlP
     Plug 'ctrlpvim/ctrlp.vim'
 
-    "Loupe
+    " Loupe
     Plug 'wincent/loupe'
 
     " unimPaired
@@ -51,8 +58,6 @@ call plug#begin("~/.vim/plugged")
     " HTML Tags
     Plug 'alvan/vim-closetag'
     Plug 'mattn/emmet-vim'
-
-    Plug 'rhysd/vim-clang-format'
 
     "" fallback plugins for non neovim setups
     if !has('nvim')
@@ -149,7 +154,7 @@ let g:neomake_open_list = 2
 
     let g:vimtex_compiler_progname = "nvr"
     let g:vimtex_compiler_latexmk = {
-              \ 'backend' : 'nvim', 
+              \ 'backend' : 'nvim',
               \ 'background' : 1,
               \ 'build_dir' : '',
               \ 'callback' : 1,
@@ -205,7 +210,8 @@ let g:UltiSnipsExpandTrigger="<s-tab>"
 set hidden " buffer hidden if modified
 set number norelativenumber
 
-set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
+set tabstop=4 softtabstop=0 shiftwidth=4 smarttab
+"set expandtab
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<
 set splitbelow
 set breakindent
@@ -269,14 +275,9 @@ let g:strfstr = '%Y|%m|%d'
     let mapleader = "\<Space>"
 
     " general keymaps {{{
-        
-        "nnoremap <C-Tab> gt
-        "nnoremap <S-Tab> gT
-        
+
         nnoremap ; :
         vnoremap ; :
-        
-        "imap <C-Space> <C-P>
 
         map <leader>n :NERDTreeToggle<CR>
         nmap <leader>bb :CtrlPBuffer<CR>

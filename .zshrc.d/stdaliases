@@ -17,6 +17,7 @@ vft .vim/ftplugin/
 vs  .vim/snippets/
 
 z   .zshrc
+zd  .zshrc.d
 zp  .zprofile
 
 hk  .config/sxhkd/sxhkdrc
