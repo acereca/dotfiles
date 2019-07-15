@@ -77,9 +77,10 @@ c.url.searchengines = {
 
 # Page(s) to open at the start.
 # Type: List of FuzzyUrl, or FuzzyUrl
-c.url.start_pages = '/home/patrick/github/Startpage/startpage.html'
+c.url.start_pages = '/home/patrick/gitlab/start/index.html'
 
-config.bind('<Ctrl-f>', 'hint links spawn mpv --ytdl-format="best[height<=1080p]" {hint-url}')
-#config.bind('<Ctrl-d>', 'hint links spawn youtube-dl {hint-url}, -o "~/Musik/dnls/%(uploader)s-%(title).%(ext)s" --download-archive ~/Musik/completed.txt --add-metadata -c')
+config.bind('<Ctrl-f>', 'hint links spawn mpv --ytdl-format="best" {hint-url}')
 config.bind('<Ctrl-d>', 'hint links spawn mpv {hint-url}')
+
+config.bind('<Ctrl-space>', 'spawn sshfs+keepmenu')
 
