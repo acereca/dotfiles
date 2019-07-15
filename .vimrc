@@ -75,6 +75,7 @@ call plug#begin("~/.vim/plugged")
         Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
         Plug 'zchee/deoplete-jedi'
         Plug 'zchee/deoplete-clang'
+		Plug 'Shougo/neoinclude.vim'
         Plug 'Shougo/neosnippet.vim'
         Plug 'Shougo/neosnippet-snippets'
         Plug 'lervag/vimtex'
@@ -205,7 +206,7 @@ set hidden " buffer hidden if modified
 set number norelativenumber
 
 set tabstop=4 softtabstop=0 shiftwidth=4 smarttab
-"set expandtab
+set expandtab
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<
 set splitbelow
 set breakindent
