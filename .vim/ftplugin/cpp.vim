@@ -10,3 +10,6 @@ set list
 nnoremap <leader>mk :w <CR> :make <CR>
 
 autocmd BufWritePre *.* :%s/\s\+$//e
+
+let g:syntastic_cpp_include_dirs = ['../same70/include/**', '../CMSIS/Include/**', 'src/Device_Startup', 'src/Common', 'include', 'src']
+

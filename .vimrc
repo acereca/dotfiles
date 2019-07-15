@@ -8,11 +8,13 @@ filetype plugin on
 "set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin("~/.vim/plugged")
 
-	" syntax
+    " Syntax
     Plug 'martinda/Jenkinsfile-vim-syntax'
 	Plug 'iloginow/vim-stylus'
 	Plug 'sirtaj/vim-openscad'
     Plug 'kovetskiy/sxhkd-vim'
+    Plug 'sirtaj/vim-openscad'
+    Plug 'vim-pandoc/vim-pandoc-syntax'
 
     " git
     Plug 'tpope/vim-fugitive'
@@ -85,6 +87,10 @@ call plug#begin("~/.vim/plugged")
 call plug#end()
 
 filetype plugin indent on
+" }}}
+
+" Syntastic {{{
+let g:syntastic_quiet_message = ['12']
 " }}}
 
 " deoplete {{{

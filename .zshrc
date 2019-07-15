@@ -45,7 +45,7 @@ pgrep ssh-agent 1> /dev/null || eval $(ssh-agent -s) 1> /dev/null
 alias icat="kitty icat"
 
 alias tm="tmux -f $HOME/.config/tmux/normal.conf new-session -As main"
-alias tmw="tmux -f $HOME/.config/tmux/work.conf attach -s work"
+alias tmw="tmux -f $HOME/.config/tmux/work.conf attach"
 
 alias la="ls -lahp --block-size=k"
 alias ls="ls --color=auto"
