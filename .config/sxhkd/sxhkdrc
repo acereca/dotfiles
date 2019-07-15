@@ -7,7 +7,7 @@ super + shift + x
 
 {super + F5, super + F6, XF86MonBrightnessDown, XF86MonBrightnessUp}
 	xbacklight {- 1, + 1, - 5, + 5} && pkill -RTMIN+11 i3blocks && xbacklight -get > $HOME/.config/i3/brightness
-	
+
 super + alt + {Up, Down}
 	setxkbmap {us, de} -option caps:escape && pkill -RTMIN+12 i3blocks
 
@@ -16,10 +16,10 @@ super + d
 	rofi -show run -bw 0
 
 super + {_,shift +,control +} Return
-    $TERMINAL {_, -e su, -e tmux -f /home/patrick/.config/tmux/normal.conf new-session -As main}
+    /usr/bin/kitty {_, -e su, -e tmux -f /home/patrick/.config/tmux/normal.conf new-session -As main}
 
-super + c ; {c,f}
-	{chromium, firefox}
+super + c ; {c,f,q}
+	{chromium, firefox, $HOME/.local/bin/qutebrowser}
 
 # Start script
 super + m
@@ -28,5 +28,8 @@ super + m
 super + shift + {m,c,s,F8}
 	$HOME/github/scripts/select.{music.py,cfg.zsh,session.zsh,display.zsh} > $HOME/ssc.log
 
+super + space
+	$HOME/.local/bin/keepmenuCERECA	#Ppw:jenkins.7
 
-
+super + ctrl + space
+	zsh -o SOURCE_TRACE

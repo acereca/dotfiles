@@ -68,7 +68,9 @@ exec_always --no-startup-id synclient TapButton1=1 TapButton2=3
 
 # global keybinds
 exec_always --no-startup-id setxkbmap -option compose:caps
-exec_always --no-startup-id pkill sxhkd; sxhkd &
+#exec_always --no-startup-id pkill sxhkd; sxhkd &
+exec --no-startup-id systemctl --user start sxhkd
+exec_always --no-startup-id systemctl --user reload sxhkd
 
 # polybar
 exec_always --no-startup-id $HOME/github/dotfiles/polybar_multimon.sh

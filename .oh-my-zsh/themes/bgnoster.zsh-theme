@@ -29,6 +29,7 @@
 # A few utility functions to make it easy and re-usable to draw segmented prompts
 
 CURRENT_BG='NONE'
+DEFAULT_USER="patrick"
 
 # Special Powerline characters
 
