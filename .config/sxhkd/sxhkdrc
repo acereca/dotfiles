@@ -26,7 +26,7 @@ super + m
 	$HOME/github/scripts/select.mail.zsh
 
 super + shift + {m,c,s,F8}
-	$HOME/github/scripts/select.{music.py,cfg.zsh,session.zsh,display.zsh}
+	$HOME/github/scripts/select.{music.py,cfg.zsh,session.zsh,display.zsh} > $HOME/ssc.log
 
 
 

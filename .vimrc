@@ -31,9 +31,6 @@ call plug#begin("~/.vim/plugged")
     Plug 'scrooloose/nerdcommenter'
 	Plug 'rhysd/vim-clang-format'
 
-	" Markdown
-    Plug 'vim-pandoc/vim-pandoc-syntax'
-
     " NERDTree
     Plug 'scrooloose/nerdtree'
 
@@ -86,6 +83,15 @@ call plug#begin("~/.vim/plugged")
 call plug#end()
 
 filetype plugin indent on
+" }}}
+"
+" pandoc{{{
+augroup pandoc_syntax
+	au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+augroup END
+let g:pandoc#syntax#conceal#use = 0
+let conceallevel = 3
+let g:tex_conceal=""
 " }}}
 
 " Syntastic {{{
