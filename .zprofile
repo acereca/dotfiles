@@ -11,7 +11,7 @@ export IDF_PATH="/home/patrick/gitlab/esp32/esp-idf/"
 
 # TEX {{{
 export BIB=$HOME/github/ubib/ubib.bib
-export TEXINPUTS=".:./5E_Template/:"
+export TEXINPUTS=$TEXINPUTS:$HOME/github/DND5eTeX//
 # }}}
 
 # PYTHON {{{

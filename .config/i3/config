@@ -51,7 +51,7 @@ exec --no-startup-id xrandr --output DP-1 --left-of HDMI-0
 exec --no-startup-id compton -b -f
 
 # background
-exec_always --no-startup-id feh --bg-max $HOME/Pictures/bg_i3 --no-xinerama
+exec_always --no-startup-id feh --bg-fill $HOME/Pictures/bg_i3 --no-xinerama
 
 # i3lock with timout
 set $i3lock-color-vars --insidecolor=ffffff00 --ringcolor=ffffff00 --linecolor=ffffffff --separatorcolor=ffffffff --keyhlcolor=ffffffff --insidevercolor=ffffffff --timecolor=ffffffff --datecolor=ffffffff --insidewrongcolor=ffffffff --bshlcolor=00000000
@@ -111,8 +111,8 @@ for_window [class="Google-chrome"]               floating disable
 assign     [class="discord"]                     $workspace3
 assign     [class="Hexchat"]                     $workspace3
 
-assign     [title="mpv"]                         $workspace4
-#for_window [class="mpv"]                         floating enable
+# assign     [title="mpv"]                         $workspace4
+# for_window [class="mpv"]                         floating enable
 
 assign     [class="Steam"]                       $workspace6
 assign     [class="leageclientux.exe"]           $workspace6

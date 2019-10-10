@@ -47,7 +47,11 @@ call plug#begin("~/.vim/plugged")
     Plug 'sekel/vim-vue-syntastic'
 
     " CtrlP
-    Plug 'ctrlpvim/ctrlp.vim'
+    "Plug 'ctrlpvim/ctrlp.vim'
+    
+    "fzf
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+	Plug 'junegunn/fzf.vim'
 
     " Loupe
     Plug 'wincent/loupe'
@@ -74,14 +78,16 @@ call plug#begin("~/.vim/plugged")
         Plug 'vim-airline/vim-airline'
         Plug 'vim-airline/vim-airline-themes'
         Plug 'edkolev/tmuxline.vim'
-        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-        Plug 'zchee/deoplete-jedi'
-        Plug 'zchee/deoplete-clang'
+        "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+        "Plug 'zchee/deoplete-jedi'
+        "    " fuzzy find files in the working directory (where you launched Vim from)Plug 'zchee/deoplete-clang'
 		Plug 'Shougo/neoinclude.vim'
+        Plug 'jsfaint/coc-neoinclude'
         Plug 'Shougo/neosnippet.vim'
         Plug 'Shougo/neosnippet-snippets'
         Plug 'lervag/vimtex'
         Plug 'neomake/neomake'
+        Plug 'neoclide/coc.nvim', {'branch': 'release'}
     endif
 
 call plug#end()
@@ -103,6 +109,8 @@ let g:SimpylFold_docstring_preview = 1
 
 " NEOMAKE {{{
 let g:neomake_open_list = 2
+let g:neomake_cpp_enabled_makers=['clang']
+let g:neomake_cpp_clang_args = ["-std=c++17", "-Wall"]
 " }}}
 
 " vim-airline {{{
@@ -120,14 +128,16 @@ let g:neomake_open_list = 2
     nmap <leader>/ <Plug>(LoupeClearHighlight)
 " }}}
 
-" command-t / ctrl-p {{{
+" command-t / ctrl-p / fzf {{{
     let g:CommandTScanDotDirectories = 1
     let g:CommandTGitIncludeUntracked = 0
     let g:CommandTGitScanSubmodules = 1
     let g:CommandTMaxFiles = 1000000
     let g:CommandTFileScanner = 'git'
 
-    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
+    "let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
+    "
+    "call fzf#run({'sink': 'e'})
 " }}}
 
 " NERDTree {{{
@@ -152,6 +162,7 @@ let g:neomake_open_list = 2
 " vimtex {{{
     let g:vimtex_fold_enabled=0
     let g:vimtex_complete_close_braces=1
+    let g:vimtex_complete_enabled=1
 
     let g:vimtex_compiler_progname = "nvr"
     let g:vimtex_compiler_latexmk = {
@@ -181,8 +192,46 @@ let g:neomake_open_list = 2
 let g:ycm_key_list_previous_completion=['<Up>']
 " }}}
 
+" CoC {{{
+" Use tab for trigger completion with characters ahead and navigate.
+set updatetime=300
+set shortmess+=c
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction<Paste>
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Add status line support, for integration with other plugin, checkout `:h coc-status`
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" }}}
+
 " UltiSnips {{{
-let g:UltiSnipsExpandTrigger="<s-tab>"
+let g:UltiSnipsExpandTrigger="<S-tab>"
 " }}}
 
 " NeoSnippets.vim {{{
@@ -190,9 +239,6 @@ let g:UltiSnipsExpandTrigger="<s-tab>"
         imap <c-tab>     <Plug>(neosnippet_expand_or_jump)
         smap <C-Tab>     <Plug>(neosnippet_expand_or_jump)
         xmap <C-Tab>     <Plug>(neosnippet_expand_target)
-
-        imap <expr><Tab> neosnippet#expandable_or_jumpable() ?
-        \ "\<Plug>(neosnippet_expand_or_jump)" : "\<Tab>"
     endif
     let g:neosnippet#snippets_directory="~/.vim/snippets"
 " }}}
@@ -281,7 +327,7 @@ let g:strfstr = '%Y|%m|%d'
         vnoremap ; :
 
         map <leader>n :NERDTreeToggle<CR>
-        nmap <leader>bb :CtrlPBuffer<CR>
+        "nmap <leader>bb :CtrlPBuffer<CR>
         nmap <C-/> :NERDComToggleComment<CR>
 
         nnoremap <leader>sc :set spell! spelllang=en_us,de_de<CR>
@@ -294,7 +340,6 @@ let g:strfstr = '%Y|%m|%d'
         nmap <leader>l :bnext<CR>
         nmap <leader>h :bprevious<CR>
         nmap <leader>bq :bp <BAR> bd #<CR>
-        nmap <leader>bl :CtrlPBuffer <CR>
 
         " remove arrow bindings
         map <up> <nop>
@@ -318,5 +363,12 @@ let g:strfstr = '%Y|%m|%d'
         inoremap <c-S> <c-o>:update<CR>
         inoremap <c-s> <esc>:update<CR>
         vnoremap <c-s> <c-c>:update<CR>
+
+        "fzf
+        nmap <leader>f :Files<cr>
+        nmap <leader>/ :BLines<cr>
+        nmap <leader>b :Buffers<cr>
+        nmap <leader>r :Rg
+
     " }}}
 " }}}

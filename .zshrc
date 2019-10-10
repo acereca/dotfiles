@@ -91,3 +91,5 @@ alias s!!="sudo !!"
 # }}}
 
 source ~/.oh-my-zshrc
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

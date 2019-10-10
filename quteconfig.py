@@ -68,7 +68,7 @@ c.fonts.tabs = '12pt monospace'
 # Page to open if :open -t/-b/-w is used without URL. Use `about:blank`
 # for a blank page.
 # Type: FuzzyUrl
-c.url.default_page = '/home/patrick/github/Startpage/startpage.html'
+c.url.default_page = '/home/patrick/gitlab/start/index.html'
 
 c.url.searchengines = {
     "DEFAULT": "https://duckduckgo.com/?q={}",
@@ -79,8 +79,10 @@ c.url.searchengines = {
 # Type: List of FuzzyUrl, or FuzzyUrl
 c.url.start_pages = '/home/patrick/gitlab/start/index.html'
 
-config.bind('<Ctrl-f>', 'hint links spawn mpv --ytdl-format="best" {hint-url}')
+config.bind('<Ctrl-f>', 'hint links spawn /home/patrick/github/scripts/mmq.zsh {hint-url}')
 config.bind('<Ctrl-d>', 'hint links spawn mpv {hint-url}')
+config.unbind('f')
+config.bind('f', 'hint links userscript /home/patrick/github/scripts/select.url.py')
 
 config.bind('<Ctrl-space>', 'spawn sshfs+keepmenu')
 

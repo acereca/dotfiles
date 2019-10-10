@@ -5,10 +5,12 @@ todo() {
     while getopts ":ael" opt; do
         case $opt in
             l)
-                mdv ~/todo.md -t Lagoona
+                #mdv ~/todo.md -t Lagoona
+                pandoc -i ~/todo.md -o /tmp/todo.pdf;
+                zathura /tmp/todo.pdf
                 ;;
-            e) 
-                vim ~/todo.md
+            e)
+                $EDITOR ~/todo.md
                 ;;
             a)
                 echo "- [ ] $2" >> ~/todo.md
