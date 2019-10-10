@@ -55,7 +55,7 @@ exec_always --no-startup-id feh --bg-fill $HOME/Pictures/bg_i3 --no-xinerama
 
 # i3lock with timout
 set $i3lock-color-vars --insidecolor=ffffff00 --ringcolor=ffffff00 --linecolor=ffffffff --separatorcolor=ffffffff --keyhlcolor=ffffffff --insidevercolor=ffffffff --timecolor=ffffffff --datecolor=ffffffff --insidewrongcolor=ffffffff --bshlcolor=00000000
-exec_always --no-startup-id xset s 600 && xss-lock -- i3lock -t -i $HOME/Pictures/bg_lock -k  --timestr="%H:%M" --datestr="%Y|%m|%d" $i3lock-color-vars -u
+exec_always --no-startup-id xset s 600 && xss-lock -- i3lock -i $HOME/Pictures/bg_lock -k  --timestr="%H:%M" --datestr="%Y|%m|%d" $i3lock-color-vars -u
 
 # brightness control for integrated display
 exec_always xbacklight -set $(cat $XDG_CONFIG_HOME/i3/brightness)
@@ -104,10 +104,6 @@ bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspace10
 
 # bind certain windows to certain workspaces
-assign     [class="Firefox"]                     $workspace2
-assign     [title="Google Chrome"]               $workspace2
-for_window [class="Google-chrome"]               floating disable
-
 assign     [class="discord"]                     $workspace3
 assign     [class="Hexchat"]                     $workspace3
 

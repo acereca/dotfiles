@@ -1,5 +1,6 @@
 echom "HI"
 
+
 let g:screenshooter = "xfce4-screenshooter"
 function! LNScreengrab()
     let s:time=system("date +%Y-%m-%d-%H%M%S")[:-2]
