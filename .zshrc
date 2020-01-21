@@ -36,6 +36,9 @@ export SAVEHIST=$HISTSIZE
 export KEYTIMEOUT=1
 
 # load user modules
+fpath=($HOME/github/scripts/completion $fpath)
+autoload -Uz compinit
+compinit
 for f in ~/.zshrc.d/*.zsh; do source $f; done
 
 # load ssh-agent
@@ -83,8 +86,6 @@ alias filthy="mpv ytdl://twitch.tv/filthyrobot"
 # }}}
 
 autoload -U zmv
-autoload -Uz compinit
-compinit
 # Completion for kitty
 
 alias s!!="sudo !!"
