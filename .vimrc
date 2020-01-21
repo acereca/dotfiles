@@ -15,6 +15,8 @@ call plug#begin("~/.vim/plugged")
     Plug 'kovetskiy/sxhkd-vim'
     Plug 'sirtaj/vim-openscad'
     Plug 'vim-pandoc/vim-pandoc-syntax'
+    Plug 'hura/vim-asymptote'
+    Plug 'nikvdp/ejs-syntax'
 
     " git
     Plug 'tpope/vim-fugitive'
