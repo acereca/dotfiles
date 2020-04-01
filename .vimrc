@@ -6,26 +6,32 @@
 set nocompatible
 filetype plugin on
 "set rtp+=~/.vim/bundle/Vundle.vim
-call plug#begin("~/.vim/plugged")
+call plug#begin("~/.config/nvim/plugged")
 
     " Syntax
     Plug 'martinda/Jenkinsfile-vim-syntax'
 	Plug 'iloginow/vim-stylus'
 	Plug 'sirtaj/vim-openscad'
     Plug 'kovetskiy/sxhkd-vim'
-    Plug 'sirtaj/vim-openscad'
     Plug 'vim-pandoc/vim-pandoc-syntax'
+    Plug 'vim-scripts/svg.vim'
+    Plug 'hura/vim-asymptote'
+    Plug 'nikvdp/ejs-syntax'
+    Plug 'ledger/vim-ledger'
+    Plug 'nathangrigg/vim-beancount'
+    Plug 'mboughaba/i3config.vim'
 
     " git
     Plug 'tpope/vim-fugitive'
+    Plug 'airblade/vim-gitgutter'
 
     " visual
     Plug 'joshdick/onedark.vim'
-    Plug 'Yggdroot/indentLine'
-    Plug 'mboughaba/i3config.vim'
     Plug 'bronson/vim-trailing-whitespace'
 
     " text formatting
+    "Plug 'jiangmiao/auto-pairs'
+    Plug 'Yggdroot/indentLine'
     Plug 'tpope/vim-surround'
     Plug 'godlygeek/tabular'
     Plug 'scrooloose/nerdcommenter'
@@ -37,15 +43,19 @@ call plug#begin("~/.vim/plugged")
     " Python
     Plug 'tmhedberg/SimpylFold'
     Plug 'vim-scripts/indentpython.vim'
-    Plug 'vim-syntastic/syntastic'
+    "Plug 'vim-syntastic/syntastic'
 
     " Vue
     Plug 'posva/vim-vue'
-    Plug 'sekel/vim-vue-syntastic'
+    "Plug 'sekel/vim-vue-syntastic'
 
     " CtrlP
     "Plug 'ctrlpvim/ctrlp.vim'
-    
+
+    " ALE
+    "Plug 'w0rp/ale'
+    Plug 'dense-analysis/ale'
+
     "fzf
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 	Plug 'junegunn/fzf.vim'
@@ -54,17 +64,24 @@ call plug#begin("~/.vim/plugged")
     Plug 'wincent/loupe'
 
     " unimPaired
-    Plug 'tpope/vim-unimpaired'
+    "Plug 'tpope/vim-unimpaired'
 
     " HTML Tags
     Plug 'alvan/vim-closetag'
     Plug 'mattn/emmet-vim'
 
+    "System-Verilog
+    " Plug 'nachumk/systemverilog.vim'
+    Plug 'vhda/verilog_systemverilog.vim'
+
+    " Completion
+    Plug 'SirVer/UltiSnips'
+    Plug 'honza/vim-snippets'
+
+
     "" fallback plugins for non neovim setups
     if !has('nvim')
         Plug 'Valloric/YouCompleteMe'
-        Plug 'SirVer/UltiSnips'
-        Plug 'honza/vim-snippets'
 
         "LaTeX
         Plug 'LaTeX-Box-Team/LaTeX-Box'
@@ -77,21 +94,30 @@ call plug#begin("~/.vim/plugged")
         Plug 'edkolev/tmuxline.vim'
         "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
         "Plug 'zchee/deoplete-jedi'
-        "    " fuzzy find files in the working directory (where you launched Vim from)Plug 'zchee/deoplete-clang'
+        "    " fuzzy find files in the working directory (where you launched Vim from)
+        "Plug 'zchee/deoplete-clang'
 		Plug 'Shougo/neoinclude.vim'
-        Plug 'jsfaint/coc-neoinclude'
-        Plug 'Shougo/neosnippet.vim'
-        Plug 'Shougo/neosnippet-snippets'
+        "Plug 'jsfaint/coc-neoinclude'
+        "Plug 'Shougo/neosnippet.vim'
+        "Plug 'Shougo/neosnippet-snippets'
         Plug 'lervag/vimtex'
         Plug 'neomake/neomake'
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
+        "
+        Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
     endif
 
 call plug#end()
 
+if has('nvim')
+    if $SOCK != ""
+        call serverstart($SOCK)
+    endif
+endif
+
 filetype plugin indent on
 " }}}
-"
+
 " pandoc{{{
 augroup pandoc_syntax
 	au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
@@ -103,26 +129,176 @@ let g:tex_conceal=""
 
 " Syntastic {{{
 let g:syntastic_quiet_message = ['12']
+let g:syntastic_error_symbol = ""
+let g:syntastic_warning_symbol = ""
+let g:syntastic_style_error_symbol = ""
+let g:syntastic_style_warning_symbol = ""
+let g:syntastic_tex_checkers = ["chktex", "text/language_check"]
+let g:syntastic_flake8_args = ['--ignore=E501']
+let g:Syntastic_python_checkers = ["flake8"]
 " }}}
 
-" deoplete {{{
-let g:deoplete#enable_at_startup = 1
+" ALE {{{
+let g:ale_sign_error = ''
+let g:ale_sign_warning = ''
+let g:ale_c_clang_options="-Iinclude -std=c++11"
+let g:ale_linters = {
+    \'python': ['flake8', 'pylint'],
+    \'tex': ['chktex'],
+    \}
+let g:ale_fixers = {
+    \'python': ['yapf'],
+    \}
+nmap <F10> :ALEFix<CR>
 " }}}
+
+" CoC {{{
+  "\ 'coc-pairs',
+let g:coc_global_extensions = [
+  \ 'coc-tsserver',
+  \ 'coc-html',
+  \ 'coc-css',
+  \ 'coc-prettier',
+  \ 'coc-json',
+  \ 'coc-angular',
+  \ 'coc-texlab',
+  \ 'coc-markdownlint'
+  \ ]
+  "\ 'coc-pyright',
+
+" From Coc Readme
+set updatetime=300
+
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Or use `complete_info` if your vim support it, like:
+" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use D to show documentation in preview window
+nnoremap <silent> D :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+"nmap <rn> <Plug>(coc-rename)
+
+" Remap for format selected region
+"xmap <leader>f  <Plug>(coc-format-selected)
+"nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+"xmap <leader>a  <Plug>(coc-codeaction-selected)
+"nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+"nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+"nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Create mappings for function text object, requires document symbols feature of languageserver.
+"xmap if <Plug>(coc-funcobj-i)
+"xmap af <Plug>(coc-funcobj-a)
+"omap if <Plug>(coc-funcobj-i)
+"omap af <Plug>(coc-funcobj-a)
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Add status line support, for integration with other plugin, checkout `:h coc-status`
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+"}}}
+
+" deoplete {{{
+"let g:deoplete#enable_at_startup = 1
+"if !exists('g:deoplete#omni#input_patterns')
+  "let g:deoplete#omni#input_patterns = {}
+"endif
+"inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+"}}}
 
 " SimpylFold {{{
 let g:SimpylFold_docstring_preview = 1
 " }}}
 
 " NEOMAKE {{{
-let g:neomake_open_list = 2
-let g:neomake_cpp_enabled_makers=['clang']
+call neomake#configure#automake('w')
+let g:neomake_open_list = 0
+let g:neomake_cpp_enabled_makers=['make']
 let g:neomake_cpp_clang_args = ["-std=c++17", "-Wall"]
+let g:neomake_python_flake8_maker = {
+        \ 'args':['--ignore=E501']
+    \}
+
 " }}}
 
 " vim-airline {{{
     let g:airline_powerline_fonts = 1
     let g:airline_theme = 'minimalist'
     let g:airline#extensions#tabline#enabled = 1
+
+    let g:airline#extensions#tmuxline#enabled = 1
+    let airline#extensions#tmuxline#snapshot_file = "~/.tmux-status.conf"
 
     if !exists('g:airline_symbols')
         let g:airline_symbols = {}
@@ -167,10 +343,11 @@ let g:neomake_cpp_clang_args = ["-std=c++17", "-Wall"]
 
 " vimtex {{{
     let g:vimtex_fold_enabled=0
+    let g:vimtex_syntax_enabled=1
     let g:vimtex_complete_close_braces=1
     let g:vimtex_complete_enabled=1
 
-    let g:vimtex_compiler_progname = "nvr"
+    let g:vimtex_compiler_progname = "nvim"
     let g:vimtex_compiler_latexmk = {
               \ 'backend' : 'nvim',
               \ 'background' : 1,
@@ -179,7 +356,6 @@ let g:neomake_cpp_clang_args = ["-std=c++17", "-Wall"]
               \ 'continuous' : 1,
               \ 'executable' : 'latexmk',
               \ 'options' : [
-              \   '-xelatex',
               \   '-pdf',
               \   '-bibtex',
               \   '-verbose',
@@ -190,63 +366,25 @@ let g:neomake_cpp_clang_args = ["-std=c++17", "-Wall"]
               \ ]
               \}
 
-    let g:vimtex_view_method = "zathura"
-
+    let g:vimtex_view_method = 'zathura'
 " }}}
 
 " YouCompleteMe {{{
 let g:ycm_key_list_previous_completion=['<Up>']
 " }}}
 
-" CoC {{{
-" Use tab for trigger completion with characters ahead and navigate.
-set updatetime=300
-set shortmess+=c
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction<Paste>
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Add status line support, for integration with other plugin, checkout `:h coc-status`
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" }}}
-
 " UltiSnips {{{
-let g:UltiSnipsExpandTrigger="<S-tab>"
+    let g:UltiSnipsExpandTrigger="<s-tab>"
+    let g:UltiSnipsJumpForwardTrigger="<tab>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-tab>"
 " }}}
 
 " NeoSnippets.vim {{{
-    if has('nvim')
-        imap <c-tab>     <Plug>(neosnippet_expand_or_jump)
-        smap <C-Tab>     <Plug>(neosnippet_expand_or_jump)
-        xmap <C-Tab>     <Plug>(neosnippet_expand_target)
-    endif
-    let g:neosnippet#snippets_directory="~/.vim/snippets"
+    "inoremap <silent><expr><CR> pumvisible() ? deoplete#close_popup()."<Plug>(neosnippet_expand_or_jump)" : "<CR>"
+    imap <C-CR>     <Plug>(neosnippet_expand_or_jump)
+    smap <C-CR>     <Plug>(neosnippet_expand_or_jump)
+    xmap <C-CR>     <Plug>(neosnippet_expand_target)
+    "let g:neosnippet#snippets_directory="~/.vim/snippets"
 " }}}
 
 " Powerline {{{
@@ -263,6 +401,7 @@ let g:UltiSnipsExpandTrigger="<S-tab>"
 set hidden " buffer hidden if modified
 set number norelativenumber
 
+set clipboard+=unnamedplus
 set tabstop=4 softtabstop=0 shiftwidth=4 smarttab
 set expandtab
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<
@@ -345,7 +484,8 @@ let g:strfstr = '%Y|%m|%d'
         " change to buffer
         nmap <leader>l :bnext<CR>
         nmap <leader>h :bprevious<CR>
-        nmap <leader>bq :bp <BAR> bd #<CR>
+
+        nmap <leader>o :wincmd f<CR>
 
         " remove arrow bindings
         map <up> <nop>
@@ -367,7 +507,7 @@ let g:strfstr = '%Y|%m|%d'
         imap <c-u> <nop>
         noremap <c-s> :update<CR>
         inoremap <c-S> <c-o>:update<CR>
-        inoremap <c-s> <esc>:update<CR>
+        imap <c-s> <esc>:update<CR>
         vnoremap <c-s> <c-c>:update<CR>
 
         "fzf
@@ -376,5 +516,7 @@ let g:strfstr = '%Y|%m|%d'
         nmap <leader>b :Buffers<cr>
         nmap <leader>r :Rg
 
+        set timeout
+        set timeoutlen=200
     " }}}
 " }}}

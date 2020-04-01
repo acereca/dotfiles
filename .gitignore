@@ -3,5 +3,6 @@
 ssh/
 *.private
 .config/mutt/
+.vim/autoload/plugged
 
 __pycache__/

@@ -1,0 +1,23 @@
+snippet "([0-9]+)mm" "mm conversion into units" rA
+`!p snip.rv = match.group(1) + " mm"`
+endsnippet
+
+snippet "\.([gGlL])" "svg shorthand" Ar
+`!p if match.group(1) == 'g':
+	snip.rv = "rmoveto"
+elif match.group(1) == "G":
+	snip.rv = "moveto"
+elif match.group(1) == "l":
+	snip.rv = "rlineto"
+elif match.group(1) == "L":
+	snip.rv = "lineto"
+`
+endsnippet
+
+snippet newpath "create new path"
+newpath
+	$1
+closepath
+
+$0
+endsnippet

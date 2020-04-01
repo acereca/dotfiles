@@ -1,0 +1,107 @@
+global !p
+def show_if_content(tabstop, content):
+	return content if t[tabstop] != "" else ""
+endglobal
+
+snippet DndNPC "D&D NPC"
+\begin{DndMonster}{$1}
+	\DndMonsterType{$2}`!p snip.rv = show_if_content(3, "\n\t\\begin{DndComment}{}")`
+		$3
+	`!p snip.rv = show_if_content(3, "\\end{DndComment}")`
+	$0
+\end{DndMonster}
+endsnippet
+
+snippet DndNPC::basics "D&D NPC Basic Info Block" "" e
+\DndMonsterBasics[
+	armor-class = $1,
+	hit-points = \DndDice{$2},
+	speed = {$3 ft.${4:, fly $5 ft.}${6:, climb $7 ft.}}
+]
+$0
+endsnippet
+
+snippet DndNPC::scores "D&D NPC Ability Scores"
+\DndMonsterAbilityScores[
+	str = ${1:10},
+	dex = ${2:10},
+	con = ${3:10},
+	int = ${4:10},
+	wis = ${5:10},
+	cha = ${6:10}
+]
+$0
+endsnippet
+
+snippet DndNPC::details "D&D NPC Detail Info Block"
+\DndMonsterDetails[
+	senses = {$1},
+	languages = {$2},
+	challenge = $3,${4:
+	saving-throws = {$5},}${6:
+	skills = {$7},}${8:
+	damage-vulnerabilities = {$9},}${10:
+	damage-resistances = {$11},}${12:
+	damage-immunities = {$13},}${14:
+	condition-immunities = {$15}}
+]
+endsnippet
+
+global !p
+def latex_env(env_type = "document"):
+	try:
+		open_envs = [
+			re.match(r'\\begin{([^}]+)}', bf).group(1) for bf in snip.buffer[:snip.line] if "\\begin" in bf
+		]
+		closed_envs = [
+			re.match(r'\\end{([^}]+)}', bf).group(1) for bf in snip.buffer[:snip.line] if "\\end" in bf
+		]
+
+		still_open = [
+			bf for bf in open_envs if bf not in closed_envs
+		]
+
+		if not isinstance(env_type, list):
+			env_type = [env_type]	
+
+		for env in env_type:
+			if env in still_open:
+				return True
+	except:
+		pass
+
+	return False
+
+def latex_section(env_type = "document"):
+	still_open = [
+		re.match(r'\\([a-zA-Z-_]+){', bf).group(1) for bf in snip.buffer[:snip.line] if re.match(r'\\[a-zA-Z-_]+{', bf)
+	]
+
+	if not isinstance(env_type, list):
+		env_type = [env_type]
+
+	for env in env_type:
+		if len(still_open) != 0 and  env == still_open[-1]:
+			return True
+
+	return False
+
+endglobal
+
+snippet DndNPC::action "D&D NPC Action Block" "latex_env('DndMonster')" e
+\DndMonsterAction{${1:${VISUAL:Innate Spellcasting}}}
+$0
+endsnippet
+
+snippet \ "D&D NPC Spell Block" "latex_section('DndMonsterAction')" Ae
+\begin{DndMonsterSpells}
+	\DndMonsterSpellLevel{$1}${2/.+/
+	/}$2
+\end{DndMonsterSpells}
+$0
+endsnippet
+
+snippet \ "D&D NPC Spell Level" "latex_env('DndMonsterSpells')" Ae
+\DndMonsterSpellLevel[$1]${2:[$3]}{$4}
+$0
+endsnippet

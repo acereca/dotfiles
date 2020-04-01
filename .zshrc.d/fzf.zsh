@@ -1,4 +1,5 @@
 export FZF_DEFAULT_COMMAND='fd --type f --hidden'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
 # command for listing path candidates.

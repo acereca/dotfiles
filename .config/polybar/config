@@ -40,16 +40,16 @@ foreground = ${xrdb:foreground}
 ;----------------------------------------------------------
 
 [global/wm]
-margin-top = 21
-margin-bottom = 21
+margin-top = 0
+margin-bottom = 0
 
 [bar/rome]
 monitor = ${env:MONITOR:HDMI-1}
 ;monitor-fallback = ${env:MONITOR:eDP-1}
 ;dpi = ${xrdb:Xft.dpi:136}
 bottom = false
-width = 100%
 height = 22
+width = 100%
 offset-x = 0%
 offset-y = 0%
 fixed-center = true
@@ -80,15 +80,16 @@ module-margin-right = 0
 ;----------------------------------------------------------
 ;			F O N T S
 ;----------------------------------------------------------
+font-0 = Fira Code:size=11:antialias=true;2
 
-font-0 = DroidSansMonoforPowerline:size=16:antialias=true;3
-font-1 = DroidSansMonoForPowerline:size=10:antialias=true;2
-font-2 = PowerlineSymbols:size=15;3
+font-1 = Fira Code:size=11:antialias=true;3
+;font-2 = Font Awesome 5 Free:size=11;3
+font-2 = Fira Code:size=11:antialias=true;2
 ; font-1 = Powerline:size=10;1
-font-3 = FontAwesome:size=10;2
+font-3 = Font Awesome 5 Free Solid:size=10;2
 font-4 = Terminus:size=18;0
 font-5 = Monospace:size=28;3
-font-6 = FontAwesome:size=26;7
+font-6 = Font Awesome 5 Brands:size=11;1
 ; Extra symbols: http://fontawesome.io/cheatsheet/
 
 
@@ -98,8 +99,8 @@ font-6 = FontAwesome:size=26;7
 
 tray-position = right
 tray-padding = 1
-tray-transparent = false
-tray-maxsize = 24
+;tray-transparent = false
+tray-maxsize = 50
 ;tray-offset-x = 21%
 tray-foreground = ${colors.xcolor7}
 tray-background = ${colors.xcolor0}
@@ -114,9 +115,9 @@ tray-background = ${colors.xcolor0}
 ;  	    M O D U L E    L A Y O U T S
 ;----------------------------------------------------------
 
-modules-left = i3 RightArrow1
+modules-left = bspwm RightArrow1
 modules-center = MiddleArrowLeft date MiddleArrowRight
-modules-right = mpv arrow1 volume backlight xkeyboard arrow2 network2 network eth ssh vpn arrow3 cpu temperature battery rightarrow
+modules-right = mpv arrow1 volume blight xkeyboard arrow2 network eth arrow3 cpu temperature temperature2 gpu battery rightarrow
 
 ; All modules available in this config file:
 ; bspwm text xkeyboard filesystem mpd backlight cpu 
@@ -130,27 +131,83 @@ modules-left = mpd music github
 modules-center = 
 modules-right = powermenu arrow1 arrow2 weather arrow3 mail arrow2 network vpn eth
 
+[module/bspwm]
+type = internal/xworkspaces
+
+icon-1 = I; 
+icon-2 = II; 
+icon-3 = III; 
+icon-4 = IV; 
+icon-5 = V; 
+icon-6 = VI; 
+icon-7 = VII; 7
+icon-8 = VIII; 8
+icon-9 = IX; 9
+icon-0 = X; 
+icon-default = -
+; Only show workspaces defined on the same output as the bar
+;
+; Useful if you want to show monitor specific workspaces
+; on different bars
+;
+; Default: false
+pin-workspaces = true
+
+; Create click handler used to focus desktop
+; Default: true
+enable-click = false
+
+; Create scroll handlers used to cycle desktops
+; Default: true
+enable-scroll = false
+format = <label-monitor> <label-state>
+
+label-monitor = " %name%"
+label-monitor-foreground = ${colors.xcolor8}
+
+label-active = "%icon% "
+label-active-foreground = ${colors.xcolor4}
+/*label-active-background = ${xrdb:color7}*/
+
+label-occupied = " %name% "
+label-occupied-foreground = ${colors.xcolor7}
+
+label-empty = " %name% "
+label-empty-foreground = ${colors.xcolor8}
+
+label-separator = ""
+
 ;----------------------------------------------------------
 ;		B S P W M   M O D U L E
 ;----------------------------------------------------------
 
-[module/bspwm]
+[module/bspwm_custom]
+type = custom/script
+exec = ~/github/scripts/polybar/bspwm_custom.sh
+interval = 5
+
+[module/bspwm2]
 type = internal/bspwm
+format = <label-state>
+
+pin-workspaces = false
 
 label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
+label-focused-background = ${colors.xcolor8}
+label-focused-foreground = ${colors.xcolor0}
+label-focused-underline= ${colors.xcolor0}
 label-focused-padding = 1
 
 label-occupied = %index%
 label-occupied-padding = 1
+label-occupied-foreground = ${colors.xcolor7}
 
 label-urgent = %index%!
-label-urgent-background = ${colors.alert}
+label-urgent-background = ${colors.xcolor0}
 label-urgent-padding = 1
 
 label-empty = %index%
-label-empty-foreground = ${colors.foreground-alt}
+label-empty-foreground = ${colors.xcolor8}
 label-empty-padding = 1
 
 [module/i3]
@@ -161,7 +218,7 @@ wrapping-scroll = false
 strip-wsnumbers = true
 
 ; Only show workspaces on the same output as the bar
-pin-workspaces = true
+pin-workspaces = false
 
 ;label-mode-padding = 2
 label-mode-foreground = #000
@@ -303,6 +360,7 @@ blacklist-0 = num lock
 
 ;   
 
+format = <label-layout>
 label-layout = "   %layout%"
 label-layout-font = 2
 label-layout-foreground = ${colors.xcolor15}
@@ -374,14 +432,36 @@ toggle-off-foreground = #66
 type = internal/xbacklight
 ; To list available cards use: $ ls -1 /sys/class/backlight/
 ;card = intel_backlight
-format-prefix = "  "
+format-prefix = "  "
+format-prefix-foreground = ${colors.xcolor15}
 format-prefix-background = ${colors.xcolor6}
 
 format = <ramp><label>
 format-font = 2
 format-foreground = ${colors.xcolor3}
-;    
 label = %percentage%%
+label-font = 2
+label-background = ${colors.xcolor6}
+label-foreground = ${colors.xcolor15}
+
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
+
+[module/blight]
+type = custom/script
+exec = light -G | cut -d. -f1
+internal = 1
+
+format-prefix = "  "
+format-prefix-foreground = ${colors.xcolor15}
+format-prefix-background = ${colors.xcolor6}
+
+format = <label>
+format-font = 2
+format-foreground = ${colors.xcolor3}
 label-font = 2
 label-background = ${colors.xcolor6}
 label-foreground = ${colors.xcolor15}
@@ -398,15 +478,15 @@ ramp-4 = 🌑
 
 [module/cpu]
 type = internal/cpu
-interval = .4
+interval = .5
 
-format = <label>
+format = " <label>"
 ;format = <ramp-coreload><label> 
-format-prefix = " "
+;format-prefix = ""
 format-foreground = ${colors.xcolor15}
 format-background = ${colors.xcolor3}
 
-label = %percentage:3%%
+label = %percentage:2%%
 label-font = 2
 ;   
 
@@ -428,7 +508,7 @@ ramp-coreload-6 = ▇
 [module/network]
 type = internal/network
 ; To test interface: $ ls -1 /sys/class/net/
-interface = wlp5s0
+interface = wl0
 interval = 0.3
 
 format-connected = <label-connected>
@@ -488,7 +568,7 @@ ramp-signal-7 = █
 [module/eth]
 type = internal/network
 ; To test interface: $ ls -1 /sys/class/net/
-interface = enp0s31f6
+interface = eth0
 interval = 1.0
 
 label-connected = "   %local_ip%"
@@ -528,7 +608,7 @@ label-font = 2
 ;----------------------------------------------------------
 
 [module/volume]
-type = internal/volume
+type = internal/alsa
 
 master-soundcard = default
 speaker-soundcard = default
@@ -594,7 +674,7 @@ format-discharging-foreground = ${colors.xcolor15}
 format-discharging-background = ${colors.xcolor3}
 format-full = <label-full>
 format-full-foreground = ${colors.xcolor15}
-format-full-background = ${colors.xcolor1}
+format-full-background = ${colors.xcolor3}
 
 label-charging = "%percentage%% "
 label-charging-font = 2
@@ -607,7 +687,7 @@ label-full-foreground = ${colors.xcolor15}
 label-full-font = 2
 ; 
 ramp-capacity-0 = " "
-ramp-capacity-0-background = ${colors.xcolor1}
+ramp-capacity-0-background = ${colors.xcolor0}
 ramp-capacity-1 = " "
 ramp-capacity-2 = " "
 ramp-capacity-3 = " "
@@ -628,30 +708,78 @@ animation-charging-framerate = 750
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp2_input
+base-temperature = 20
 warn-temperature = 65
 interval = 2
 
-format = <ramp> <label>
-format-warn = <ramp> <label-warn>
-format-prefix = " "
+format = <ramp><label>
+format-prefix = "  "
+format-prefix-background = ${colors.xcolor3}
 format-suffix = " "
+format-suffix-background = ${colors.xcolor3}
 format-foreground = ${colors.xcolor15}
 format-background = ${colors.xcolor3}
-format-warn-foreground = ${colors.xcolor15}
-format-warn-background = ${colors.xcolor5}
+format-lebel-background = ${colors.xcolor3}
 
-label = %temperature%
-label-warn = %temperature%
+format-warn = <ramp><label-warn>
+format-warn-foreground = ${colors.xcolor15}
+format-warn-background = ${colors.xcolor1}
+format-warn-prefix = "  "
+format-warn-prefix-background = ${colors.xcolor1}
+format-warn-suffix = " "
+format-warn-suffix-background = ${colors.xcolor1}
+
+label = %temperature-c%
+label-warn = %temperature-c%!
 label-font = 2
 label-warn-font = 2
+label-warn-background = ${colors.xcolor1}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-3 = 
-ramp-4 = 
+ramp-0 = " "
+ramp-1 = " "
+ramp-2 = " "
+ramp-3 = " "
+ramp-4 = " "
+;ramp-4-background = ${colors.xcolor1}
 
+[module/temperature2]
+type = internal/temperature
+thermal-zone = 0
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp2_input
+base-temperature = 20
+warn-temperature = 65
+interval = 2
 
+format = <ramp><label>
+format-prefix = "  "
+format-prefix-background = ${colors.xcolor3}
+format-suffix = " "
+format-suffix-background = ${colors.xcolor3}
+format-foreground = ${colors.xcolor15}
+format-background = ${colors.xcolor3}
+format-lebel-background = ${colors.xcolor3}
+
+format-warn = <ramp><label-warn>
+format-warn-foreground = ${colors.xcolor15}
+format-warn-background = ${colors.xcolor1}
+format-warn-prefix = "  "
+format-warn-prefix-background = ${colors.xcolor1}
+format-warn-suffix = " "
+format-warn-suffix-background = ${colors.xcolor1}
+
+label = %temperature-c%
+label-warn = %temperature-c%!
+label-font = 2
+label-warn-font = 2
+label-warn-background = ${colors.xcolor1}
+
+ramp-0 = " "
+ramp-1 = " "
+ramp-2 = " "
+ramp-3 = " "
+ramp-4 = " "
+;ramp-4-background = ${colors.xcolor1}
 
 ;----------------------------------------------------------
 ;		      S C R I P T    M O D U L E S
@@ -667,10 +795,19 @@ interval = 1
 
 format = <label>
 label = "   %output%"
-label-font = 4
+label-font = 2
 label-padding = 1
 label-foreground = ${colors.xcolor7}
 
+
+[module/gpu]
+type = custom/script
+exec = nvidia-smi --format=csv --query-gpu=utilization.gpu | tail -1 | awk '{print $1}'
+interval = 3
+
+label = "  %output%%"
+label-foreground = ${colors.xcolor15}
+label-background = ${colors.xcolor3}
 
 ;#########################################################;
 ;                 E N D    O F    F I L E                 :

@@ -1,0 +1,13 @@
+h ~/github
+hd ~/github/dotfiles
+
+t ~/gitea
+
+ln ~/University/LectureNotes
+
+D ~/Downloads
+d ~/Dokumente
+V ~/Videos
+u ~/University
+c ~/.config
+tr ~/.local/share/Trash

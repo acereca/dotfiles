@@ -1,8 +1,9 @@
 i   .config/i3/config
+b   .config/bspwm/bspwmrc
 
 k   .config/kitty/kitty.conf
 
-m   .config/mutt
+m   ~/.mbsyncrc .config/mutt
 
 p   .config/polybar/config
 
@@ -10,7 +11,8 @@ r   .config/ranger/rc.conf
 
 s   ../../.ssh/config
 
-t   .config/tmux
+t   ~/.tmux.conf
+tm   .config/tmuxinator/
 
 v   .vimrc
 vft .vim/ftplugin/

@@ -4,9 +4,6 @@
 #
 # Last modified: 2018|12|21
 
-# PATH defs
-source ~/.zprofile
-
 # todo-list {{{
 if [[ $(grep "\[[ x]\]" ~/todo.md | wc -l) != 0 ]]
 then
@@ -27,7 +24,7 @@ bindkey -v
 # }}} 
 
 # History {{{
-export HISTFILE="$HOME/.history"
+export HISTFILE="$HOME/.cache/.zshhistory"
 export HISTSIZE=100000
 export SAVEHIST=$HISTSIZE
 # }}}
@@ -36,7 +33,7 @@ export SAVEHIST=$HISTSIZE
 export KEYTIMEOUT=1
 
 # load user modules
-for f in ~/.zshrc.d/*.zsh; do source $f; done
+for f in $ZDOTDIR/.zshrc.d/*.zsh; do source $f; done
 
 # load ssh-agent
 pgrep ssh-agent 1> /dev/null || eval $(ssh-agent -s) 1> /dev/null
@@ -57,7 +54,8 @@ alias rmi="/usr/bin/rm -i"
 alias rssp="rsync -avhz --progress"
 alias rsmv="rsync -avhz --progress --remove-source-files"
 
-alias p="pacaur --color always"
+alias p="pikaur --color always"
+alias pp='pikaur -S $(pikaur -Slq | fzf --ansi --preview "pikaur -Qil --color=always {} 2>/dev/null || pikaur -Si --color=always {}" --layout=reverse )'
 alias pm="pacman --color always"
 
 alias z="zathura"
@@ -65,31 +63,37 @@ alias z="zathura"
 alias ssht="tmux-cssh -cs"
 
 alias vim='nvim'
-alias v='vim'
-alias sv="sudo nvim -u ~/.vimrc"
+alias v='nvim'
+alias vu='nvim ~/github/ubib/ubib.bib -c "lcd ~/github/ubib"'
+alias sv="sudo nvim"
+
+alias sctl="sudo systemctl"
+alias ctl="systemctl"
+
+alias mux="tmuxinator"
 
 ## streams {{{
-alias yt='mpv "$(xclip -selection c -o)"'
+alias yt='mpv "$(xclip -selection c -o)" '
 alias youtube-aria='youtube-dl --external-downloader aria2c --external-downloader-args "-c -j10 -x10 -s10"'
 alias youtube-ariator='torsocks youtube-dl --external-downloader aria2c --external-downloader-args "-c -j10 -x10 -s10"'
-alias soaryn="mpv ytdl://twitch.tv/soaryn"
-alias amadornes="mpv ytdl://twitch.tv/amadornes"
-alias poo="mpv ytdl://twitch.tv/grand_poobear"
-alias waffle="mpv ytdl://twitch.tv/giantwaffle"
-alias monstercat="mpv ytdl://twitch.tv/monstercat --no-video"
-alias filthy="mpv ytdl://twitch.tv/filthyrobot"
-
 ## }}}
 # }}}
 
 autoload -U zmv
-autoload -Uz compinit
-compinit
-# Completion for kitty
 
-alias s!!="sudo !!"
+# Completion {{{
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)  # include hidden
 # }}}
 
+alias s!!="sudo !!"
+
 source ~/.oh-my-zshrc
+plugins=(tmux)
+
+[ -f $ZDOTDIR/.fzf.zsh ] && source $ZDOTDIR/.fzf.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

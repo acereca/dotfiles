@@ -105,6 +105,7 @@ prompt_git() {
     repo_path=$(git rev-parse --git-dir 2>/dev/null)
     dirty=$(parse_git_dirty)
     ref=$(git symbolic-ref HEAD 2> /dev/null) || ref="➦ $(git rev-parse --short HEAD 2> /dev/null)"
+    #ref=$(git branch 2>/dev/null | grep -Po '(?<=\* ).*$') || ref="➦ $(git rev-parse --short HEAD 2> /dev/null)"
     if [[ -n $dirty ]]; then
       prompt_segment yellow black
     else
@@ -130,7 +131,7 @@ prompt_git() {
     zstyle ':vcs_info:*' formats ' %u%c'
     zstyle ':vcs_info:*' actionformats ' %u%c'
     vcs_info
-    echo -n "${ref/refs\/heads\//$PL_BRANCH_CHAR }${vcs_info_msg_0_%% }${mode}"
+    echo -n "${ref/refs\/heads\//$PL_BRANCH_CHAR } $(git diff --quiet || echo -n "●"; git diff --cached --quiet || echo "✚")${mode}"
   fi
 }
 
@@ -230,7 +231,9 @@ build_prompt() {
   prompt_user
   prompt_bg
   prompt_dir
-  prompt_git
+  if [[ $(pwd) != *"/patrick/work/susnx/work/dintef"* ]]; then
+    prompt_git;
+  fi
   prompt_bzr
   prompt_hg
   prompt_status

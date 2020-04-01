@@ -1,4 +1,12 @@
+#ACCOUNTS
+## Default
 source $MUTT_PROFILE
+
+## Switching
+macro index <f2> '<sync-mailbox><refresh><enter-command>source ~/.config/mutt/private.muttrc<enter><change-folder>!<enter>'
+macro index <f3> '<sync-mailbox><refresh><enter-command>source ~/.config/mutt/public.muttrc<enter><change-folder>!<enter>'
+macro index <f4> '<sync-mailbox><refresh><enter-command>source ~/.config/mutt/git.muttrc<enter><change-folder>!<enter>'
+macro index <f5> '<sync-mailbox><refresh><enter-command>source ~/.config/mutt/stud.muttrc<enter><change-folder>!<enter>'
 
 set editor=/usr/bin/nvim
 
@@ -8,18 +16,22 @@ macro index,pager  a "<pipe-message>abook --add-email-quiet<return>" "Add this s
 bind editor        <Tab> complete-query
 
 # Caching
-set header_cache=~/.cache/mutt/header
-set message_cachedir=~/.cache/mutt/messages
-source "~/.mutt/purgecache.sh '$message_cachedir'|"
+set header_cache     = ~/.cache/mutt/header
+set message_cachedir = ~/.cache/mutt/messages
+#source "~/.mutt/purgecache.sh '$message_cachedir'|"
 
 # sorting
-set sort_aux       = reverse-last-date-received
-set sort           = threads
+set sort_aux       = date-received
+set sort           = reverse-threads
 set sort_browser   = date
 set sort_re
 
 set sidebar_visible = yes
-set sidebar_width   = 10
+set sidebar_width   = 20
 
 # Colors
 source colors.muttrc
+
+# Notify
+set new_mail_command="dunstify --timeout=100000 --icon='actions/mail-unread' \
+'New Email [%f]' '%n new messages, %u unread.' &"

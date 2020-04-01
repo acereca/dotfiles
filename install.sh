@@ -8,18 +8,22 @@ FOLDERLIST="
     .vim/autoload
     .vim/ftplugin
     .vim/after
-    .config/rofi
-    .config/ranger
     .config/i3
     .config/kitty
+    .config/mutt
+    .config/polybar
+    .config/qutebrowser
+    .config/ranger
+    .config/rofi
+    .config/sxhkd
     .zshrc.d
 "
 
 DOTFILES_DIR="$( pwd )"
 
 DIRECTLINKS="
-    .bashrc 
-    .gitconfig 
+    .bashrc
+    .gitconfig
     .pinerc
     .vimrc
     .Xdefaults
@@ -36,14 +40,13 @@ DEPLIST="
     compton
     evince
     firefox
+    fzf
     i3-wm
     inotify-tools
     kitty
     mpv
     neovim
     otf-fira-code
-    otf-fontawesome
-    pacaur
     python-pip
     qrencode
     ranger
@@ -57,14 +60,14 @@ DEPLIST="
     tmux
     trash-cli
     ttf-droid
-    vim
+    neovim
     zsh
 "
 
 # installing dependencies
 
 echo -e "\\e[1;32m=> NOW INSTALLING PACKAGES\\e[0m"
-sudo pacman -S $DEPLIST
+sudo pacman --noconfirm -S $DEPLIST
 
 # Linking
 

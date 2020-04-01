@@ -45,7 +45,7 @@ exec --no-startup-id ssh-agent -a /tmp/.ssh-agent
 exec --no-startup-id nm-applet
 
 # multimonitor setup
-exec --no-startup-id xrandr --output DP-1 --left-of HDMI-0
+# exec --no-startup-id xrandr --output DP1 --left-of eDP1
 
 # compositor for transparency
 exec --no-startup-id compton -b -f
@@ -55,10 +55,10 @@ exec_always --no-startup-id feh --bg-fill $HOME/Pictures/bg_i3 --no-xinerama
 
 # i3lock with timout
 set $i3lock-color-vars --insidecolor=ffffff00 --ringcolor=ffffff00 --linecolor=ffffffff --separatorcolor=ffffffff --keyhlcolor=ffffffff --insidevercolor=ffffffff --timecolor=ffffffff --datecolor=ffffffff --insidewrongcolor=ffffffff --bshlcolor=00000000
-exec_always --no-startup-id xset s 600 && xss-lock -- i3lock -i $HOME/Pictures/bg_lock -k  --timestr="%H:%M" --datestr="%Y|%m|%d" $i3lock-color-vars -u
+exec --no-startup-id xset s off && xss-lock -- i3lock -i $HOME/Pictures/bg_lock -k  --timestr="%H:%M" --datestr="%Y|%m|%d" $i3lock-color-vars -u
 
 # brightness control for integrated display
-exec_always xbacklight -set $(cat $XDG_CONFIG_HOME/i3/brightness)
+exec_always xbacklight -time 1000 -set $(cat $XDG_CONFIG_HOME/i3/brightness)
 
 # stylus input
 exec --no-startup-id xsetwacom set 12 MapToOutput 1920x1080+0+0
@@ -68,23 +68,22 @@ exec_always --no-startup-id synclient TapButton1=1 TapButton2=3
 
 # global keybinds
 exec_always --no-startup-id setxkbmap -option compose:caps
-#exec_always --no-startup-id pkill sxhkd; sxhkd &
 exec --no-startup-id systemctl --user start sxhkd
 exec_always --no-startup-id systemctl --user reload sxhkd
 
 # polybar
-exec_always --no-startup-id $HOME/github/dotfiles/polybar_multimon.sh
+exec --no-startup-id $HOME/github/dotfiles/polybar_multimon.sh
 
 ###--- workspace setup ---###
 set $workspace1 "1: "
 set $workspace2 "2: "
-set $workspace3 "3: "
+set $workspace3 "3: "
 set $workspace4 "4: "
-set $workspace5 "5: "
-set $workspace6 "6: "
-set $workspace7 "7:"
-set $workspace8 "8:"
-set $workspace9 "9:"
+set $workspace5 "5: "
+set $workspace6 "6: "
+set $workspace7 "7: 7"
+set $workspace8 "8: 8"
+set $workspace9 "9: 9"
 set $workspace10 "10: "
 
 #setup where certain workspaces are
@@ -102,6 +101,7 @@ bindsym $mod+7 workspace $workspace7
 bindsym $mod+8 workspace $workspace8
 bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspace10
+bindsym $mod+Tab workspace back_and_forth
 
 # bind certain windows to certain workspaces
 assign     [class="discord"]                     $workspace3
@@ -179,10 +179,10 @@ bindsym $mod+Ctrl+Left move workspace to output left
 bindsym $mod+Ctrl+Right move workspace to output right
 
 # reload i3
-bindsym $mod+Ctrl+Shift+r reload
+bindsym $mod+Shift+r exec "i3-msg reload && dunstify -t 1 -i 'view-refresh' '' 'i3 reloaded'"
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $mod+Ctrl+Shift+r restart
 
 bindsym $mod+Shift+e exec "$HOME/github/scripts/select.exit.zsh"
 

@@ -1,8 +1,7 @@
-rofi.lines         4
+rofi.lines         3
 rofi.eh            1
 rofi.fullscreen:   true
-rofi.padding:      400
-/*rofi.font:         Droid Sans Mono for Powerline 18*/
+rofi.padding:      300
 rofi.font:		   Fira Code 18
-rofi.color-window: #1e2127, #1e2127, #1e2127
-rofi.color-normal: #1e2127, #abb2bf, #1e2127, #abb2bf, #1e2127
+rofi.color-window: #e01e2127, #1e2127, #1e2127
+rofi.color-normal: #001e2127, #abb2bf, #001e2127, #abb2bf, #1e2127

@@ -1,3 +1,9 @@
+function! Ubib_select()
+    let l:hl = expand("<cword>")
+    execute "!python ~/github/scripts/select.ubib.py " . hl
+endfunction
+
+
 if !has('nvim')
     nnoremap <leader>mk :update <CR> :VimtexCompile <CR>
     nnoremap <leader>cc :update <CR> :VimtexClean <CR>
@@ -7,6 +13,8 @@ if has('nvim')
     nmap <leader>mk <Plug>(vimtex-compile)
     nmap <leader>cc <Plug>(vimtex-clean)
     nmap <F5> <Plug>(vimtex-view)
+    nmap <leader>bib :e ~/github/ubib/ubib.bib <CR>
+    nmap <leader>v :call Ubib_select()<CR>
 endif
 
 inoremap <C-y> <C-k>

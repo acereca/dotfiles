@@ -1,0 +1,77 @@
+global !p
+import glob, git, os
+def link_context(t):
+	fl = []
+	if t:
+		fl = ["wire", "reg", "logic"]
+
+	fl = [f[len(t):] for f in fl if f.startswith(t)]
+
+	if len(fl) == 1:
+		return fl[0]
+
+	#return str(len(glob.glob(os.path.abspath(basepath) + "/**/*.md")))
+	return f"({'|'.join(fl)})"
+endglobal
+
+snippet module_tb "Testbench module w/ initial block" b
+module ${1:`!p snip.rv = snip.basename`} ();
+	initial begin
+		${0}
+		#1 $finish;
+	end
+endmodule
+endsnippet
+
+snippet module "module Definition" b
+module ${1:`!p snip.rv = snip.basename`} ${2:#(
+	parameter $3
+)}(
+	${4:input wire clk${5:,
+	input wire res_n${6:,
+	input wire $7}}}
+);
+$0
+endmodule
+endsnippet
+
+snippet "module (\w+) \#\(([\w ]+)\)" "module w/ param define" rb
+module #(
+	parameter `!p
+		if not snip.c:
+			snip.rv = ",\n\tparameter ".join([p + " = " for p in match.group(2).split()])`
+)(
+	$0
+);
+
+endmodule
+endsnippet
+
+snippet "([><])([wrl])" "input wire" Ar
+`!p snip.rv = "input" if ">" in match.group(1) else "output"` `!p snip.rv = {
+	"w": "wire",
+	"l":"logic",
+	"r":"reg"
+}[match.group(2)]` ${1:$0,}
+endsnippet
+
+snippet @ "always block" b
+always @(${1:${VISUAL}}) begin
+	$0
+end
+endsnippet
+
+snippet "\@([\@\*])" "always @(*)" br
+always @(`!p snip.rv = "*" if "*" in match.group(1) else "posedge clk, negedge res_n"`) begin
+	${1:`!p snip.rv = """if (!res_n) begin
+		""" if "@" in match.group(1) else ""`$2
+	`!p snip.rv = "end else begin\n\t\t" if "@" in match.group(1) else ""`$3
+	`!p snip.rv = "end" if "@" in match.group(1) else ""`}
+end
+endsnippet
+
+snippet beg "block" A
+begin
+	$0
+end
+endsnippet

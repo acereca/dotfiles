@@ -1,35 +1,87 @@
-# Basic Keybinds
 super + shift + x
 	xset s activate
 
-{super + F11, XF86AudioLowerVolume, super + F12, XF86AudioRaiseVolume, super + F10, XF86AudioMute}
+{super + F2, XF86AudioLowerVolume, super + F3, XF86AudioRaiseVolume, super + F1, XF86AudioMute}
 	amixer -q -D pulse sset Master {5%-,10%-,5%+,10%+,toggle,toggle} && pkill -RTMIN+10 i3blocks
 
-{super + F5, super + F6, XF86MonBrightnessDown, XF86MonBrightnessUp}
-	xbacklight {- 1, + 1, - 5, + 5} && pkill -RTMIN+11 i3blocks && xbacklight -get > $HOME/.config/i3/brightness
+{super + F8, super + F9, XF86MonBrightnessDown, XF86MonBrightnessUp}
+#xbacklight {- 1, + 1, - 5, + 5} && pkill -RTMIN+11 i3blocks && xbacklight -get > $HOME/.config/i3/brightness
+	$HOME/github/scripts/lightctl.py -r {-1, 1, -5, 5}
 
 super + alt + {Up, Down}
 	setxkbmap {us, de} -option caps:escape && pkill -RTMIN+12 i3blocks
 
 # Start X11 apps
 super + d
-	rofi -show drun -bw 0
+	rofi -show drun -bw 0 -opacity 80 & disown
 
 super + {_,shift +,control +} Return
-    /usr/bin/kitty {_, -e su, -e tmux -f /home/patrick/.config/tmux/normal.conf new-session -As main}
+    /usr/bin/kitty {_, -e su, -e tmux -f /home/patrick/.config/tmux/normal.conf new-session -As main} & disown
 
-super + c ; {c,f,q}
-	{chromium, firefox, $HOME/.local/bin/qutebrowser}
+super + c ; {c,f,q,z,b}
+	{chromium, firefox, $HOME/.local/bin/qutebrowser, zathura, brave} & disown
+
+super + {_,shift +} t
+	{tabbed, $HOME/github/scripts/tabc.sh add}
 
 # Start script
-super + m
-	$HOME/github/scripts/select.mail.zsh
+super + {_, alt + } m
+	{$HOME/github/scripts/select.mail.zsh "/usr/bin/kitty -e" & disown, dunstify -i actions/gtk-refresh mbsync "> pulling mail"; systemctl --user start mbsync.service}
 
 super + shift + {m,c,s,F8}
-	$HOME/github/scripts/select.{music.py,cfg.zsh,session.zsh,display.zsh} > $HOME/ssc.log
+	$HOME/github/scripts/select.{music.py,cfg.zsh,session.zsh,display.py} > $HOME/ssc.log
 
 super + space
-	$HOME/github/scripts/keepmenu.zsh
+	$HOME/.local/bin/keepmenu
 
 super + ctrl + space
 	zsh -o SOURCE_TRACE
+
+super + XF86Display
+	firefox & disown
+
+super + alt + l ; {l, a}
+	/usr/bin/kitty -d $HOME/University/LectureNotes{_,/active -e $HOME/github/scripts/nvopen.py $($HOME/github/scripts/lectures/select.chapter.py)} & disown
+
+super + alt + l; {c, shift + a}
+	$HOME/github/scripts/lectures/select.lecture.py {_, && /usr/bin/kitty -d $HOME/University/LectureNotes $HOME/github/scripts/nvopen.py $($HOME/github/scripts/lectures/select.chapter.py)} & disown
+
+
+# bspwm specific
+super + shift + e
+	$HOME/github/scripts/select.exit.zsh && bspc quit
+
+super + shift + q
+	bspc node -c
+
+super + {_,shift + , ctrl + }f
+	bspc node -t {fullscreen,tiled, floating}
+
+
+super + shift + r
+	$HOME/.config/bspwm/bspwmrc
+
+super + {_,alt + } s
+	bspc {node -g sticky, desktop -s next.active --follow}
+
+super + bracket{left,right}
+	desk=`bspc query -D -d focused`; \
+	bspc desktop -m {prev,next}; \
+	bspc monitor -f {prev,next}; \
+	bspc desktop -f $desk
+
+
+super + {_, shift + }{1-9,0}
+	bspc {desktop -f, node -d} '^{1-9,10}'
+
+super + shift + alt + {1-9,0}
+	bspc node -m ''
+
+super + {_,shift + }{h,j,k,l}
+	bspc node {-f,-s} {west, south, north, east}
+
+super + {u,i,o,p}
+	bspc node -z {left -20 0, bottom 0 20, top 0 -20, right 20 0}
+
+super + shift + {u,i,o,p}
+	bspc node -z {left 20 0, bottom 0 -20, top 0 20, right -20 0}

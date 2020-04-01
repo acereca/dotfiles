@@ -1,0 +1,30 @@
+#! /bin/sh
+
+msg="> running bspwmrc"
+msgid=$(dunstify -p "bspwm" "$msg" -i $HOME/Pictures/bspwm.png)
+python $HOME/github/scripts/xrandr.py -b
+$HOME/.config/bspwm/autostart.sh
+
+#monitors=$(bspc query -M --names)
+
+bspc config pointer_modifier mod1
+
+bspc config border_width         2
+bspc config window_gap           8
+bspc config top_padding          21
+bspc config top_monocle_padding  0
+
+bspc config normal_border_color  "#21252b"
+bspc config focused_border_color "#d19a66"
+
+bspc config split_ratio          0.50
+
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config single_monocle       true
+
+bspc rule -r "*"
+bspc rule -a Screenkey manage=off
+bspc rule -a Chromium boder=off
+bspc rule -a "Zathura" state=tiled
+#bspc rule -a "X2GoClient" state=fullscreen
