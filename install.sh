@@ -8,7 +8,7 @@ FOLDERLIST="
     .vim/autoload
     .vim/ftplugin
     .vim/after
-    .config/i3
+    .config/bspwm
     .config/kitty
     .config/mutt
     .config/polybar
@@ -41,7 +41,7 @@ DEPLIST="
     evince
     firefox
     fzf
-    i3-wm
+    bspwm
     inotify-tools
     kitty
     mpv
