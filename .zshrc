@@ -33,6 +33,7 @@ export SAVEHIST=$HISTSIZE
 export KEYTIMEOUT=1
 
 # load user modules
+fpath=($HOME/github/scripts/completion $fpath)
 for f in $ZDOTDIR/.zshrc.d/*.zsh; do source $f; done
 
 # load ssh-agent
