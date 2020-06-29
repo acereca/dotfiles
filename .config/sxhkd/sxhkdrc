@@ -16,10 +16,10 @@ super + d
 	rofi -show drun -bw 0 -opacity 80 & disown
 
 super + {_,shift +,control +} Return
-    /usr/bin/kitty {_, -e su, -e tmux -f /home/patrick/.config/tmux/normal.conf new-session -As main} & disown
+    /usr/bin/alacritty {_, -e su, -e tmux -f /home/patrick/.config/tmux/normal.conf new-session -As main} & disown
 
-super + c ; {c,f,q,z,b}
-	{chromium, firefox, $HOME/.local/bin/qutebrowser, zathura, brave} & disown
+super + c ; {c,f,b,m}
+	{chromium, firefox, brave, min} & disown
 
 super + {_,shift +} t
 	{tabbed, $HOME/github/scripts/tabc.sh add}
