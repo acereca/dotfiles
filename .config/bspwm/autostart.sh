@@ -5,13 +5,15 @@ $HOME/github/dotfiles/polybar_multimon.sh
 
 # Keybindings
 pkill -SIGUSR1 sxhkd || systemctl --user restart sxhkd
-setxkbmap -option compose:caps
+setxkbmap -option compose:ralt
+setxkbmap -option ctrl:nocaps
+xsetwacom --set 19 MapToOutput 1920x1080+0+768
 
 # Compositor
 #picom &
 
 # BG
-feh --bg-fill $HOME/Pictures/bg_i3 --no-xinerama
+feh --bg-tile $HOME/Pictures/bg_i3 --no-xinerama
 
 # Lockscreen
 xset s off
@@ -34,4 +36,6 @@ xss-lock -- i3lock -t \
 # tray
 pgrep nm-applet || nm-applet &
 
-export QT_QPA_PLATFORMTHEME=qt5ct qt5ct
+# Environment
+pgrep ssh-agent 1> /dev/null || eval $(ssh-agent -s -a /run/user/1000/keyring/ssh) 1> /dev/null
+export QT_QPA_PLATFORMTHEME=qt5ct

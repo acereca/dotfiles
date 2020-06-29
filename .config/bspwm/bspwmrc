@@ -27,4 +27,5 @@ bspc rule -r "*"
 bspc rule -a Screenkey manage=off
 bspc rule -a Chromium boder=off
 bspc rule -a "Zathura" state=tiled
+bspc rule -a "zoom" state=tiled desktop=^8
 #bspc rule -a "X2GoClient" state=fullscreen
