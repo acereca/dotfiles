@@ -1,4 +1,4 @@
-;=========================================================;
+;;=========================================================;
 ;                Caligula's polybar config.               ;
 ;=========================================================;
 ; To refresh while editing do: $ polybar -r rome
@@ -6,67 +6,41 @@
 ;----------------------------------------------------------
 ;			C O L O R S
 ;----------------------------------------------------------
-
-[colors]
-peach = #FFCD98
-lime = #CADC79
-salmon = #d97464
-darkgrey = #2e2e2e
-lightgrey = #444444
-alert = #bd2c40
-
-xcolor0 = ${xrdb:color0}
-xcolor1 = ${xrdb:color1}
-xcolor2 = ${xrdb:color2}
-xcolor3 = ${xrdb:color3}
-xcolor4 = ${xrdb:color4}
-xcolor5 = ${xrdb:color5}
-xcolor6 = ${xrdb:color6}
-xcolor7 = ${xrdb:color7}
-xcolor8 = ${xrdb:color8}
-xcolor9 = ${xrdb:color9}
-xcolor10 = ${xrdb:color10}
-xcolor11 = ${xrdb:color11}
-xcolor12 = ${xrdb:color12}
-xcolor13 = ${xrdb:color13}
-xcolor14 = ${xrdb:color14}
-xcolor15 = ${xrdb:color15}
-background = ${xrdb:background}
-foreground = ${xrdb:foreground}
-
+include-file = $HOME/.config/polybar/local
+include-file = $HOME/.config/polybar/nord
 
 ;----------------------------------------------------------
 ;			G L O B A L
 ;----------------------------------------------------------
 
 [global/wm]
-margin-top = 0
+margin-top    = 0
 margin-bottom = 0
 
 [bar/rome]
-monitor = ${env:MONITOR:HDMI-1}
-;monitor-fallback = ${env:MONITOR:eDP-1}
-;dpi = ${xrdb:Xft.dpi:136}
-bottom = false
-height = 22
-width = 100%
-offset-x = 0%
-offset-y = 0%
-fixed-center = true
-background = ${colors.xcolor0}
-foreground = ${colors.xcolor1}
+monitor           = ${env:MONITOR:DP-1}
+;monitor-fallback  = ${env:MONITOR:eDP-1}
+;dpi               = ${xrdb:Xft.dpi:136}
+bottom            = false
+height            = 22
+width             = 100%
+offset-x          = 0%
+offset-y          = 0%
+fixed-center      = true
+background        = ${colors.xcolor0}
+foreground        = ${colors.xcolor1}
 
-overline-size = 0
-overline-color = ${colors.xcolor7}
-underline-size = 0
+overline-size   = 0
+overline-color  = ${colors.xcolor7}
+underline-size  = 0
 underline-color = ${colors.xcolor7}
 ;label-name-overline = ${colors.colorname}
 ;format-param-underline = ${colors.colorname}
 
-border-bottom-size = 0
-border-bottom-color = ${colors.xcolor7}
-border-top-size = 0
-border-top-color = ${colors.xcolor7}
+border-bottom-size      = 0
+border-bottom-color     = ${colors.xcolor7}
+border-top-size         = 0
+border-top-color        = ${colors.xcolor7}
 border-color-foreground = ${colors.peach}
 
 spacing = 0
@@ -105,31 +79,24 @@ tray-maxsize = 50
 tray-foreground = ${colors.xcolor7}
 tray-background = ${colors.xcolor0}
 
-; wm-restack = bspwm
-;override-redirect = true
-; scroll-up = bspwm-desknext
-; scroll-down = bspwm-deskprev
+wm-restack       = bspwm
+override-redirect = true
+; scroll-up        = bspwm-desknext
+; scroll-down      = bspwm-deskprev
 
 
 ;----------------------------------------------------------
 ;  	    M O D U L E    L A Y O U T S
 ;----------------------------------------------------------
 
-modules-left = bspwm RightArrow1
-modules-center = MiddleArrowLeft date MiddleArrowRight
-modules-right = mpv arrow1 volume blight xkeyboard arrow2 network eth arrow3 cpu temperature temperature2 gpu battery rightarrow
+modules-left = ${local.modules-left}
+modules-center = ${local.modules-center}
+modules-right = ${local.modules-right}
 
 ; All modules available in this config file:
-; bspwm text xkeyboard filesystem mpd backlight cpu 
+; bspwm text xkeyboard filesystem mpd backlight cpu
 ; network eth date volume battery temperature
 ; mpv
-
-[bar/secondary]
-inherit = bar/rome
-bottom = true
-modules-left = mpd music github
-modules-center = 
-modules-right = powermenu arrow1 arrow2 weather arrow3 mail arrow2 network vpn eth
 
 [module/bspwm]
 type = internal/xworkspaces
@@ -145,6 +112,7 @@ icon-8 = VIII; 8
 icon-9 = IX; 9
 icon-0 = X; 
 icon-default = -
+
 ; Only show workspaces defined on the same output as the bar
 ;
 ; Useful if you want to show monitor specific workspaces
@@ -185,6 +153,13 @@ label-separator = ""
 type = custom/script
 exec = ~/github/scripts/polybar/bspwm_custom.sh
 interval = 5
+
+[module/webcam]
+type = custom/script
+interval = 5
+format-background = ${colors.xcolor8}
+format-foreground = ${colors.xcolor15}
+exec = ~/github/scripts/polybar/v0.sh
 
 [module/bspwm2]
 type = internal/bspwm
@@ -452,7 +427,7 @@ ramp-4 = 🌑
 
 [module/blight]
 type = custom/script
-exec = light -G | cut -d. -f1
+exec = light -G 2>/dev/null | cut -d. -f1
 internal = 1
 
 format-prefix = "  "
@@ -508,7 +483,7 @@ ramp-coreload-6 = ▇
 [module/network]
 type = internal/network
 ; To test interface: $ ls -1 /sys/class/net/
-interface = wl0
+interface = ${local.ifwl}
 interval = 0.3
 
 format-connected = <label-connected>
@@ -537,7 +512,7 @@ ramp-signal-7 = █
 type = internal/network
 ; To test interface: $ ls -1 /sys/class/net/
 interface = wlp2s0
-interval = 0.3
+interval = 1.0
 
 format-connected = <label-connected>
 format-disconnected = <label-disconnected>
@@ -568,7 +543,7 @@ ramp-signal-7 = █
 [module/eth]
 type = internal/network
 ; To test interface: $ ls -1 /sys/class/net/
-interface = eth0
+interface = ${local.ifet}
 interval = 1.0
 
 label-connected = "   %local_ip%"
@@ -708,7 +683,7 @@ animation-charging-framerate = 750
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
-hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp2_input
+;hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp2_input
 base-temperature = 20
 warn-temperature = 65
 interval = 2
@@ -746,7 +721,7 @@ ramp-4 = " "
 [module/temperature2]
 type = internal/temperature
 thermal-zone = 0
-hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp2_input
+;hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp2_input
 base-temperature = 20
 warn-temperature = 65
 interval = 2
@@ -805,10 +780,11 @@ type = custom/script
 exec = nvidia-smi --format=csv --query-gpu=utilization.gpu | tail -1 | awk '{print $1}'
 interval = 3
 
-label = "  %output%%"
+label = "  %output%% "
 label-foreground = ${colors.xcolor15}
 label-background = ${colors.xcolor3}
 
 ;#########################################################;
 ;                 E N D    O F    F I L E                 :
 ;#########################################################;
+; vim: set ft=dosini:
