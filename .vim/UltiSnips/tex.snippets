@@ -1,0 +1,178 @@
+global !p
+texMathZones = ['texMathZone' + x for x in ['A', 'AS', 'B', 'BS', 'C', 'CS',
+'D', 'DS', 'E', 'ES', 'F', 'FS', 'G', 'GS', 'H', 'HS', 'I', 'IS', 'J', 'JS',
+'K', 'KS', 'L', 'LS', 'DS', 'V', 'W', 'X', 'Y', 'Z', 'AmsA', 'AmsB', 'AmsC',
+'AmsD', 'AmsE', 'AmsF', 'AmsG', 'AmsAS', 'AmsBS', 'AmsCS', 'AmsDS', 'AmsES',
+'AmsFS', 'AmsGS' ]]
+
+texIgnoreMathZones = ['texMathText']
+
+texMathZoneIds = vim.eval('map('+str(texMathZones)+", 'hlID(v:val)')")
+texIgnoreMathZoneIds = vim.eval('map('+str(texIgnoreMathZones)+", 'hlID(v:val)')")
+
+ignore = texIgnoreMathZoneIds[0]
+
+def math():
+	synstackids = vim.eval("synstack(line('.'), col('.') - (col('.')>=2 ? 1 : 0))")
+	try:
+		first = next(
+            i for i in reversed(synstackids)
+            if i in texIgnoreMathZoneIds or i in texMathZoneIds
+        )
+		return first != ignore
+	except StopIteration:
+		return False
+endglobal
+
+# Math mode
+context "math()"
+priority 10
+snippet // "\frac" iA
+\frac{$1}{$2}$0
+endsnippet
+
+context "math()"
+priority 100
+snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)//' "Fraction" wrA
+\\frac{`!p snip.rv = match.group(1)`}{$1}$0
+endsnippet
+
+context "math()"
+snippet \SI "\SI" iA
+\SI{$1}{$2}$0
+endsnippet
+
+context "math()"
+snippet ==> "\Rightarrow" iA
+\Rightarrow $0
+endsnippet
+
+context "math()"
+snippet --> "\rightarrow" iA
+\rightarrow$0
+endsnippet
+
+context "math()"
+snippet __ "_\text" iA
+_\text{$1}$0
+endsnippet
+
+context "math()"
+snippet _{ "_{}" iA
+_{$0}
+endsnippet
+
+context "math()"
+snippet (( "\left(\right)" iA
+\left( $1 \right)$0
+endsnippet
+
+# not math
+context "not math()"
+snippet $$ "\(\)" iA
+$$1$$0
+endsnippet
+
+context "not math()"
+snippet ==> "\Rightarrow" iA
+$\Rightarrow$$0
+endsnippet
+
+context "not math()"
+snippet ** "\bftext" iA
+\textbf{$1}$0
+endsnippet
+
+context "not math()"
+snippet "    -- " "\item" wrA
+\item $0
+endsnippet
+
+context "not math()"
+snippet itemize{ "\begin{itemize}\end{itemize}" iA
+\begin{itemize}
+	\item $1
+\end{itemize}
+endsnippet
+
+priority 10
+context "not math()"
+snippet fig{ "\begin{itemize}\end{itemize}" iA
+\begin{figure}[ht]
+	\centering
+	${1:\includegraphics[${2:width=$3\columnwidth}]{${4:<++>}}}
+	\caption{${5:<++>}}%
+	\label{fig:${6:`!p snip.rv = t[4].split('/')[-1].split('.')[0]`}}
+\end{figure}
+endsnippet
+
+priority 100
+snippet subfig{ "\begin{subfigure}[c]{.49\columnwidth}" iA
+\begin{subfigure}[b]{.49\columnwidth}
+	${1:${VISUAL}}
+\end{subfigure}
+endsnippet
+
+snippet inc:sa "resizebox + includestandalone"
+\resizebox{${1:w}}{${2:`!p snip.rv = 'h' if t[1] == ! else '!'`}}{%
+	\includestandalone{$3}
+}
+\vspace{\fill}$0
+endsnippet
+
+context "not math()"
+snippet ref: "\autoref{...}" iA
+\autoref{$0}
+endsnippet
+
+# Tikz {{{
+priority 10
+snippet "\(([0-9,.a-zA-Z-_]+)\)n" "node" rwA
+\draw(`!p snip.rv = match.group(1)`) node[$1] ($2){$3};
+endsnippet
+
+snippet "\(([0-9,.a-zA-Z-_]+)\)--\(([0-9,.a-zA-Z-_]+)\)" "node" rwA
+\draw(`!p snip.rv = match.group(1)`) to[$1] (`!p snip.rv = match.group(2)`);
+endsnippet
+
+snippet ^> "->, bend left" iA
+\draw[->, bend left${1:, thick}${2:, color=orange}] ($3) to ${4:node[midway, $5]{$6}} ($7);
+endsnippet
+
+snippet v> "->, bend left" iA
+\draw[->, bend right${1:, thick}${2:, color=orange}] ($3) to ${4:node[midway, $5]{$6}} ($7);
+endsnippet
+
+# Circuitikz {{{
+snippet "\(([a-zA-Z0-9._-]+)\)\-\|\(([a-zA-Z0-9._-]+)\)" "circuitikz right angle connection" r
+\draw(`!p
+snip.rv = match.group(1)
+`) to[short, *-] (`!p
+snip.rv = match.group(1)
+`-|`!p
+snip.rv = match.group(2)
+`) to[short,-*] (`!p
+snip.rv = match.group(2)
+`);
+endsnippet
+# }}}
+
+# }}}
+
+# Beamer {{{
+snippet "f(rame)?(f)?" "Beamer Frame Custom" r
+\begin{frame}[`!p snip.rv = "fragile" if match.group(2) else ""`]{${1:\subsecname}}
+	$0
+\end{frame}
+endsnippet
+
+snippet "col(um)?([0-9]+)x([0-9]+)" "two columns for Beamer frame" r
+\begin{minipage}[c]{`!p snip.rv = round(float(match.group(2))/(float(match.group(2))+float(match.group(3))), 2)-.01`\columnwidth}
+	$0
+\end{minipage}
+\begin{minipage}[c]{`!p snip.rv = round(float(match.group(3))/(float(match.group(2))+float(match.group(3))), 2)`\columnwidth}
+
+\end{minipage}
+endsnippet
+# }}}
+

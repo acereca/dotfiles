@@ -1,0 +1,56 @@
+global !p
+import json
+from datetime import datetime
+endglobal
+
+snippet --- "Markdown Lecture Tmeplate" b
+---
+index: `!p snip.rv = ""`
+created: `!p snip.rv = datetime.now().strftime("%Y/%m/%d")`
+---
+endsnippet
+
+snippet :def "create Definiton block" A
+::: define ${1:<title>}
+$0
+:::
+endsnippet
+
+snippet :detail "create Info block" A
+::: details ${1:<title>}
+$0
+:::
+endsnippet
+
+snippet :! "create warning block" A
+::: warning ${1:<title>}
+$0
+:::
+endsnippet
+
+snippet :x "create danger block" A
+::: danger ${1:<title>}
+$0
+:::
+endsnippet
+
+snippet "\{(\.[a-zA-Z]+)\}" "decorate" r
+<!-- {`!p snip.rv = match.group(1)`} -->
+endsnippet
+
+snippet dnd-item "D&D Homebrew Item Component"
+<Item
+	image="../items/img/$1"
+	:info="{
+		type: '${2:Wondrous Item}',
+		rarity: '$3',
+		${4:source: '$5',
+		page: $6,
+		}${7:cost: '$8',}
+		${9:attune: ${10:true}}
+	}">
+
+$0
+
+</Item>
+endsnippet

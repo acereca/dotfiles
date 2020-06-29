@@ -20,6 +20,10 @@ call plug#begin("~/.config/nvim/plugged")
     Plug 'ledger/vim-ledger'
     Plug 'nathangrigg/vim-beancount'
     Plug 'mboughaba/i3config.vim'
+    Plug 'vim-scripts/OMNeTpp4.x-NED-Syntax-file' | au BufNewFile,BufRead *.ned set syntax=ned
+
+    " local vimrcs
+    Plug 'thinca/vim-localrc'
 
     " git
     Plug 'tpope/vim-fugitive'
@@ -27,14 +31,16 @@ call plug#begin("~/.config/nvim/plugged")
 
     " visual
     Plug 'joshdick/onedark.vim'
+    Plug 'arcticicestudio/nord-vim'
     Plug 'bronson/vim-trailing-whitespace'
 
     " text formatting
+    Plug 'dhruvasagar/vim-table-mode'
     "Plug 'jiangmiao/auto-pairs'
     Plug 'Yggdroot/indentLine'
     Plug 'tpope/vim-surround'
     Plug 'godlygeek/tabular'
-    Plug 'scrooloose/nerdcommenter'
+    Plug 'preservim/nerdcommenter'
 	Plug 'rhysd/vim-clang-format'
 
     " NERDTree
@@ -75,9 +81,7 @@ call plug#begin("~/.config/nvim/plugged")
     Plug 'vhda/verilog_systemverilog.vim'
 
     " Completion
-    Plug 'SirVer/UltiSnips'
-    Plug 'honza/vim-snippets'
-
+    Plug 'SirVer/UltiSnips' | Plug 'honza/vim-snippets'
 
     "" fallback plugins for non neovim setups
     if !has('nvim')
@@ -92,15 +96,9 @@ call plug#begin("~/.config/nvim/plugged")
         Plug 'vim-airline/vim-airline'
         Plug 'vim-airline/vim-airline-themes'
         Plug 'edkolev/tmuxline.vim'
-        "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-        "Plug 'zchee/deoplete-jedi'
-        "    " fuzzy find files in the working directory (where you launched Vim from)
-        "Plug 'zchee/deoplete-clang'
 		Plug 'Shougo/neoinclude.vim'
-        "Plug 'jsfaint/coc-neoinclude'
-        "Plug 'Shougo/neosnippet.vim'
-        "Plug 'Shougo/neosnippet-snippets'
         Plug 'lervag/vimtex'
+        "Plug 'brennier/quicktex'
         Plug 'neomake/neomake'
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
         "
@@ -141,7 +139,8 @@ let g:Syntastic_python_checkers = ["flake8"]
 " ALE {{{
 let g:ale_sign_error = ''
 let g:ale_sign_warning = ''
-let g:ale_c_clang_options="-Iinclude -std=c++11"
+let g:ale_cpp_clang_options="-std=c++2a -fmodules-ts"
+let g:ale_cpp_clangcheck_options="-std=c++2a -fmodules-ts"
 let g:ale_linters = {
     \'python': ['flake8', 'pylint'],
     \'tex': ['chktex'],
@@ -322,6 +321,10 @@ let g:neomake_python_flake8_maker = {
     "call fzf#run({'sink': 'e'})
 " }}}
 
+" NERDCommenter {{{
+    "let NERDCreateDefaultMappings=0
+" }}}
+
 " NERDTree {{{
     let NERDTreeWinSize=20
 "}}}
@@ -368,6 +371,41 @@ let g:neomake_python_flake8_maker = {
 
     let g:vimtex_view_method = 'zathura'
 " }}}
+
+" Quicktex {{{ "
+let g:quicktex_tex = {
+    \' '         : "\<ESC>/<+.*+>\<CR>\"_c/+>/e\<CR>",
+    \'displ'     : '\( <+++> \) <++>',
+    \'mline'     : '\[ <+++> \] <++>',
+    \'inl'       : '$ <+++> $ <++>',
+    \'SI'        : '\SI{<+++>}{<++>} <++>',
+    \'al'        : "\\begin{align}\<CR><+++>\<CR>\\end{align}<++>",
+    \'itemize'   : "\\begin{itemize}\<CR>\\item <+++>\<CR>\\end{itemize}<++>",
+    \'eq'        : "\\begin{equation}\<CR><+++>\<CR>\\end{equation}<++>",
+    \'figure'    : "\\begin{figure}\<CR><+++>\<CR>\\caption{<++>}\<CR>\\end{figure}<++>",
+    \'includesa' : "\\resizebox{!}{.5\paperheight}{%\<CR>\\includestandalone{<+++>}\<CR>}<++>",
+    \'==>'       : "$\\Rightarrow$ ",
+    \'-->'       : "$\\rightarrow$ ",
+    \'||'        : "\verb|<+++>|",
+\}
+
+let g:quicktex_math = {
+    \' '    : "\<ESC>/<+.*+>\<CR>\"_c/+>/e\<CR>",
+    \'SI'   : '\SI{<+++>}{<++>} <++>',
+    \'set'  : '\{ <+++> \} <++>',
+    \'frac' : '\frac{<+++>}{<++>} <++>',
+    \'sqrt' : '\sqrt{<+++>} <++>',
+    \'sub'  : '\<Del>_{<+++>} <++>',
+    \'pow'  : '\<Del>^{<+++>} <++>',
+    \'nabla': '\nabla',
+    \'del'  : '\partial',
+    \'in'   : '\in ',
+    \'==>'  : "\\Rightarrow ",
+    \'-->'  : "\\rightarrow ",
+    \'___'   : "_\text{<+++>}",
+    \'__'   : "_{<+++>}",
+\}
+" }}} Quicktex "
 
 " YouCompleteMe {{{
 let g:ycm_key_list_previous_completion=['<Up>']
@@ -448,7 +486,7 @@ let g:strfstr = '%Y|%m|%d'
     if has('nvim')
         set background=dark
     endif
-        colorscheme onedark
+        colorscheme nord
     highlight Normal ctermbg=none
     if (empty($TMUX))
         if (has("nvim"))
@@ -473,8 +511,8 @@ let g:strfstr = '%Y|%m|%d'
 
         map <leader>n :NERDTreeToggle<CR>
         "nmap <leader>bb :CtrlPBuffer<CR>
-        nmap <C-/> :NERDComToggleComment<CR>
-
+        "nnoremap <C-/> :NERDComToggleComment<CR>
+        nmap  <plug>NERDCommenterToggle
         nnoremap <leader>sc :set spell! spelllang=en_us,de_de<CR>
         nnoremap <C-j> :m+<CR>
         nnoremap <C-k> :m-2<CR>
@@ -502,6 +540,13 @@ let g:strfstr = '%Y|%m|%d'
         inoremap <c-j> <down>
         inoremap <c-k> <up>
         inoremap <c-l> <right>
+
+        nmap <a-l> :bnext<CR>
+        nmap <a-h> :bprevious<CR>
+        nmap <a-j> :tabNext<CR>
+        nmap <a-k> :tabprevious<CR>
+        nmap <c-l> <c-w>l
+        nmap <c-h> <c-w>h
 
         imap <c-s> <nop>
         imap <c-u> <nop>
