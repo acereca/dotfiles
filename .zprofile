@@ -35,3 +35,7 @@ export LESSHISTFILE="-"
 export ZDOTDIR="$HOME/.config/zsh"
 export SSB_HOME="$HOME/.config"
 # }}}
+#
+export QT_QPA_PLATFORMTHEME=qt5ct
+export GTK_THEME=Matcha-dark-azul
+export ZDOTDIR=$HOME

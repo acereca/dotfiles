@@ -92,8 +92,7 @@ _comp_options+=(globdots)  # include hidden
 
 alias s!!="sudo !!"
 
-source ~/.oh-my-zshrc
-plugins=(tmux)
+[ -f  ~/.oh-my-zshrc ] && source ~/.oh-my-zshrc && plugins=(tmux)
 
 [ -f $ZDOTDIR/.fzf.zsh ] && source $ZDOTDIR/.fzf.zsh
 
