@@ -26,7 +26,7 @@ super + {_,shift +} t
 
 # Start script
 super + {_, alt + } m
-	{$HOME/github/scripts/select.mail.zsh "/usr/bin/kitty -e" & disown, dunstify -i actions/gtk-refresh mbsync "> pulling mail"; systemctl --user start mbsync.service}
+	{$HOME/github/scripts/select.mail.zsh "/usr/bin/alacritty -e" & disown, dunstify -i actions/gtk-refresh mbsync "> pulling mail"; systemctl --user start mbsync.service}
 
 super + shift + {m,c,s,F8}
 	$HOME/github/scripts/select.{music.py,cfg.zsh,session.zsh,display.py} > $HOME/ssc.log
@@ -41,10 +41,10 @@ super + XF86Display
 	firefox & disown
 
 super + alt + l ; {l, a}
-	/usr/bin/kitty -d $HOME/University/LectureNotes{_,/active -e $HOME/github/scripts/nvopen.py $($HOME/github/scripts/lectures/select.chapter.py)} & disown
+	/usr/bin/alacritty -d $HOME/University/LectureNotes{_,/active -e $HOME/github/scripts/nvopen.py $($HOME/github/scripts/lectures/select.chapter.py)} & disown
 
 super + alt + l; {c, shift + a}
-	$HOME/github/scripts/lectures/select.lecture.py {_, && /usr/bin/kitty -d $HOME/University/LectureNotes $HOME/github/scripts/nvopen.py $($HOME/github/scripts/lectures/select.chapter.py)} & disown
+	$HOME/github/scripts/lectures/select.lecture.py {_, && /usr/bin/alacritty -d $HOME/University/LectureNotes $HOME/github/scripts/nvopen.py $($HOME/github/scripts/lectures/select.chapter.py)} & disown
 
 
 # bspwm specific
@@ -85,3 +85,9 @@ super + {u,i,o,p}
 
 super + shift + {u,i,o,p}
 	bspc node -z {left 20 0, bottom 0 -20, top 0 20, right -20 0}
+
+super + e
+	kill -s USR1 $(pidof deadd-notification-center)
+
+super + y
+	mpv "$(xclip -selection c -o)"

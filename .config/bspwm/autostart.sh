@@ -20,7 +20,8 @@ xset s off
 pkill xss-lock
 xss-lock -- i3lock -t \
     -i $HOME/Pictures/bg_lock -k \
-    --timestr="%H:%M" \
+    --indpos="160:h-90" \
+    --timestr="%H:%M:%S" \
     --datestr="%Y|%m|%d" -u \
     --insidecolor=ffffff00 \
     --ringcolor=ffffff00 \
