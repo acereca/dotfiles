@@ -2,6 +2,7 @@
 .config/ranger/bookmarks
 ssh/
 *.private
+*.local
 .config/mutt/
 .vim/autoload/plugged
 

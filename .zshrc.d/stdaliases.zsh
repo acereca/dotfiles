@@ -3,6 +3,7 @@
 export DOTFILES_DIR='~/github/dotfiles'
 
 alias chdir="cd"
+alias cfg="ssc fzf/conf"
 
 # cfg alias bindings
 while read line; do
