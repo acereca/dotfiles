@@ -2,16 +2,18 @@
 # Patrick Nisble
 # github.com/acereca
 #
-# Version: 1
+# Version: 2
+
+[ -f ~/.zprofile.local ] && source ~/.fzf.zsh
+source ~/.zprofile.local
 
 # PATH setup {{{
 export PATH="/opt/cuda/bin/:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:$HOME:/bin:$HOME/.local/bin:$HOME/.gem/ruby/2.5.0/bin"
-export IDF_PATH="/home/patrick/gitlab/esp32/esp-idf/"
 # }}}
 
 # Default programs {{{
 export EDITOR=/usr/bin/nvim
-export TERMINAL=/usr/bin/kitty
+export TERMINAL=/usr/bin/alacritty
 export BROWSER=/usr/bin/brave
 export READER=/usr/bin/zathura
 # }}}
@@ -35,7 +37,10 @@ export LESSHISTFILE="-"
 export ZDOTDIR="$HOME/.config/zsh"
 export SSB_HOME="$HOME/.config"
 # }}}
-#
+
+# QT / GTK {{{
 export QT_QPA_PLATFORMTHEME=qt5ct
 export GTK_THEME=Matcha-dark-azul
+# }}}
+
 export ZDOTDIR=$HOME

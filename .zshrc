@@ -37,7 +37,7 @@ fpath=($HOME/github/scripts/completion $fpath)
 for f in $ZDOTDIR/.zshrc.d/*.zsh; do source $f; done
 
 # load ssh-agent
-pgrep ssh-agent 1> /dev/null || eval $(ssh-agent -s) 1> /dev/null
+#pgrep ssh-agent 1> /dev/null || eval $(ssh-agent -s -a /run/user/1000/keyring/ssh) 1> /dev/null
 
 # aliases {{{
 alias icat="kitty icat"
@@ -65,7 +65,6 @@ alias ssht="tmux-cssh -cs"
 
 alias vim='nvim'
 alias v='nvim'
-alias vu='nvim ~/github/ubib/ubib.bib -c "lcd ~/github/ubib"'
 alias sv="sudo nvim"
 
 alias sctl="sudo systemctl"
@@ -97,3 +96,5 @@ alias s!!="sudo !!"
 [ -f $ZDOTDIR/.fzf.zsh ] && source $ZDOTDIR/.fzf.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+alias unlock='export BW_SESSION="$(bw unlock --raw)"'
