@@ -22,9 +22,50 @@ def math():
 		return first != ignore
 	except StopIteration:
 		return False
+
+def env(envName):
+	try:
+		openedAbove = 0
+		closedAbove = 0
+		for i in range(int(vim.eval("line('.')"))-1, 0, -1):
+			line = vim.eval("getline({})".format(i))
+			if '\\begin{' + envName + '}' in line:
+				openedAbove += 1
+			if '\\end{' + envName + '}' in line:
+				closedAbove += 1
+
+		return openedAbove > closedAbove
+	except Exception:
+		return False
 endglobal
 
-# Math mode
+# in envs {{{
+context "env('itemize')"
+priority 90
+snippet "    --> " "item[-->]" rA
+\item[$\rightarrow$] $0
+endsnippet
+
+context "env('itemize')"
+priority 100
+snippet "item\s*--> " "item[-->]" rA
+item[$\rightarrow$] $0
+endsnippet
+
+context "env('itemize')"
+priority 90
+snippet "    ==> " "item[==>]" rA
+\item[$\Rightarrow$] $0
+endsnippet
+
+context "env('itemize')"
+priority 100
+snippet "item\s*==> " "item[==>]" rA
+item[$\Rightarrow$] $0
+endsnippet
+# }}}
+
+# Math mode {{{
 context "math()"
 priority 10
 snippet // "\frac" iA
@@ -59,7 +100,7 @@ endsnippet
 
 context "math()"
 snippet _{ "_{}" iA
-_{$0}
+_{$1}$0
 endsnippet
 
 context "math()"
@@ -67,20 +108,33 @@ snippet (( "\left(\right)" iA
 \left( $1 \right)$0
 endsnippet
 
-# not math
+context "math()"
+snippet cd "\cdot" iA
+\cdot$0
+endsnippet
+# }}}
+
+# not math {{{
 context "not math()"
 snippet $$ "\(\)" iA
 $$1$$0
 endsnippet
 
 context "not math()"
-snippet ==> "\Rightarrow" iA
-$\Rightarrow$$0
+priority 10
+snippet "==> " "\Rightarrow" rA
+$\Rightarrow$ $0
 endsnippet
 
 context "not math()"
-snippet ** "\bftext" iA
-\textbf{$1}$0
+priority 10
+snippet "--> " "\Rightarrow" rA
+$\rightarrow$ $0
+endsnippet
+
+context "not math()"
+snippet ** "\textbf" iA
+\textbf{${1:${VISUAL} }}$0
 endsnippet
 
 context "not math()"
@@ -97,12 +151,23 @@ endsnippet
 
 priority 10
 context "not math()"
-snippet fig{ "\begin{itemize}\end{itemize}" iA
+snippet fig:g "\begin{itemize}\end{itemize}" iA
 \begin{figure}[ht]
 	\centering
-	${1:\includegraphics[${2:width=$3\columnwidth}]{${4:<++>}}}
+	\includegraphics[${2:width=$3\columnwidth}]{${4:<++>}}
 	\caption{${5:<++>}}%
 	\label{fig:${6:`!p snip.rv = t[4].split('/')[-1].split('.')[0]`}}
+\end{figure}
+endsnippet
+
+snippet fig:s "\begin{itemize}\end{itemize}" iA
+\begin{figure}[ht]
+	\centering
+	\resizebox{${1:w}}{${2:`!p snip.rv = 'h' if t[1] == '!' else '!'`}}{%
+		\includestandalone{$3}
+	}
+	\caption{${4:<++>}}%
+	\label{fig:${5:`!p snip.rv = t[3].split('/')[-1].split('.')[0]`}}
 \end{figure}
 endsnippet
 
@@ -113,8 +178,8 @@ snippet subfig{ "\begin{subfigure}[c]{.49\columnwidth}" iA
 \end{subfigure}
 endsnippet
 
-snippet inc:sa "resizebox + includestandalone"
-\resizebox{${1:w}}{${2:`!p snip.rv = 'h' if t[1] == ! else '!'`}}{%
+snippet inc:s "resizebox + includestandalone" iA
+\resizebox{${1:w}}{${2:`!p snip.rv = 'h' if t[1] == '!' else '!'`}}{%
 	\includestandalone{$3}
 }
 \vspace{\fill}$0
@@ -124,6 +189,14 @@ context "not math()"
 snippet ref: "\autoref{...}" iA
 \autoref{$0}
 endsnippet
+
+context "not math()"
+snippet	ssec "\subsection" i
+\subsection{$1}%
+\label{sec:`!p snip.rv = t[1].lower().replace(' ', '_')`}
+$0
+endsnippet
+# }}}
 
 # Tikz {{{
 priority 10
