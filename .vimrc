@@ -1,11 +1,10 @@
 " VIM Config file
 " Patrick Nisble
-" Last modified: 2018|12|21
+" Last modified: 2020|09|09
 
 " Plugins {{{
 set nocompatible
 filetype plugin on
-"set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin("~/.config/nvim/plugged")
 
     " Syntax
@@ -20,7 +19,9 @@ call plug#begin("~/.config/nvim/plugged")
     Plug 'ledger/vim-ledger'
     Plug 'nathangrigg/vim-beancount'
     Plug 'mboughaba/i3config.vim'
-    Plug 'vim-scripts/OMNeTpp4.x-NED-Syntax-file' | au BufNewFile,BufRead *.ned set syntax=ned
+    Plug 'rrethy/vim-hexokinase'
+    let g:Hexokinase_highlighters = ['virtual']
+
 
     " local vimrcs
     Plug 'thinca/vim-localrc'
@@ -36,7 +37,6 @@ call plug#begin("~/.config/nvim/plugged")
 
     " text formatting
     Plug 'dhruvasagar/vim-table-mode'
-    "Plug 'jiangmiao/auto-pairs'
     Plug 'Yggdroot/indentLine'
     Plug 'tpope/vim-surround'
     Plug 'godlygeek/tabular'
@@ -67,7 +67,9 @@ call plug#begin("~/.config/nvim/plugged")
 	Plug 'junegunn/fzf.vim'
 
     " Loupe
-    Plug 'wincent/loupe'
+    "Plug 'wincent/loupe'
+    "
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
     " unimPaired
     "Plug 'tpope/vim-unimpaired'
@@ -158,9 +160,9 @@ let g:coc_global_extensions = [
   \ 'coc-html',
   \ 'coc-css',
   \ 'coc-prettier',
+  \ 'coc-python',
   \ 'coc-json',
   \ 'coc-angular',
-  \ 'coc-texlab',
   \ 'coc-markdownlint'
   \ ]
   "\ 'coc-pyright',
@@ -258,22 +260,13 @@ augroup end
 command! -nargs=0 Format :call CocAction('format')
 
 " Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 " use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-"}}}
-
-" deoplete {{{
-"let g:deoplete#enable_at_startup = 1
-"if !exists('g:deoplete#omni#input_patterns')
-  "let g:deoplete#omni#input_patterns = {}
-"endif
-"inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
 "}}}
 
 " SimpylFold {{{
@@ -368,44 +361,17 @@ let g:neomake_python_flake8_maker = {
               \   '-shell-escape',
               \ ]
               \}
+    let g:vimtex_compiler_latexrun = {
+        \ 'build_dir' : '',
+        \ 'options' : [
+        \   '-verbose-cmds',
+        \   '--latex-cmd="xelatex"',
+        \   '--latex-args="-synctex=1 -shell-escape"',
+        \ ],
+        \}
 
     let g:vimtex_view_method = 'zathura'
 " }}}
-
-" Quicktex {{{ "
-let g:quicktex_tex = {
-    \' '         : "\<ESC>/<+.*+>\<CR>\"_c/+>/e\<CR>",
-    \'displ'     : '\( <+++> \) <++>',
-    \'mline'     : '\[ <+++> \] <++>',
-    \'inl'       : '$ <+++> $ <++>',
-    \'SI'        : '\SI{<+++>}{<++>} <++>',
-    \'al'        : "\\begin{align}\<CR><+++>\<CR>\\end{align}<++>",
-    \'itemize'   : "\\begin{itemize}\<CR>\\item <+++>\<CR>\\end{itemize}<++>",
-    \'eq'        : "\\begin{equation}\<CR><+++>\<CR>\\end{equation}<++>",
-    \'figure'    : "\\begin{figure}\<CR><+++>\<CR>\\caption{<++>}\<CR>\\end{figure}<++>",
-    \'includesa' : "\\resizebox{!}{.5\paperheight}{%\<CR>\\includestandalone{<+++>}\<CR>}<++>",
-    \'==>'       : "$\\Rightarrow$ ",
-    \'-->'       : "$\\rightarrow$ ",
-    \'||'        : "\verb|<+++>|",
-\}
-
-let g:quicktex_math = {
-    \' '    : "\<ESC>/<+.*+>\<CR>\"_c/+>/e\<CR>",
-    \'SI'   : '\SI{<+++>}{<++>} <++>',
-    \'set'  : '\{ <+++> \} <++>',
-    \'frac' : '\frac{<+++>}{<++>} <++>',
-    \'sqrt' : '\sqrt{<+++>} <++>',
-    \'sub'  : '\<Del>_{<+++>} <++>',
-    \'pow'  : '\<Del>^{<+++>} <++>',
-    \'nabla': '\nabla',
-    \'del'  : '\partial',
-    \'in'   : '\in ',
-    \'==>'  : "\\Rightarrow ",
-    \'-->'  : "\\rightarrow ",
-    \'___'   : "_\text{<+++>}",
-    \'__'   : "_{<+++>}",
-\}
-" }}} Quicktex "
 
 " YouCompleteMe {{{
 let g:ycm_key_list_previous_completion=['<Up>']
@@ -418,11 +384,9 @@ let g:ycm_key_list_previous_completion=['<Up>']
 " }}}
 
 " NeoSnippets.vim {{{
-    "inoremap <silent><expr><CR> pumvisible() ? deoplete#close_popup()."<Plug>(neosnippet_expand_or_jump)" : "<CR>"
     imap <C-CR>     <Plug>(neosnippet_expand_or_jump)
     smap <C-CR>     <Plug>(neosnippet_expand_or_jump)
     xmap <C-CR>     <Plug>(neosnippet_expand_target)
-    "let g:neosnippet#snippets_directory="~/.vim/snippets"
 " }}}
 
 " Powerline {{{
@@ -486,8 +450,8 @@ let g:strfstr = '%Y|%m|%d'
     if has('nvim')
         set background=dark
     endif
-        colorscheme nord
-    highlight Normal ctermbg=none
+    colorscheme nord
+    highlight Normal ctermbg=NONE guibg=NONE
     if (empty($TMUX))
         if (has("nvim"))
             "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
@@ -562,6 +526,6 @@ let g:strfstr = '%Y|%m|%d'
         nmap <leader>r :Rg
 
         set timeout
-        set timeoutlen=200
+        set timeoutlen=100
     " }}}
 " }}}

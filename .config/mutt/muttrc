@@ -9,6 +9,8 @@ macro index <f4> '<sync-mailbox><refresh><enter-command>source ~/.config/mutt/gi
 macro index <f5> '<sync-mailbox><refresh><enter-command>source ~/.config/mutt/stud.muttrc<enter><change-folder>!<enter>'
 
 set editor=/usr/bin/nvim
+#set date_format="%D"
+set index_format='%4C %Z %<[y?%<[m?%<[d?%[%H:%M ]&%[%b %d]>&%[%b %d]>&%[%m/%y ]> %-15.15L (%?l?%4l&%4c?) %s'
 
 ## Abook
 set query_command= "abook --mutt-query '%s'"
@@ -21,7 +23,7 @@ set message_cachedir = ~/.cache/mutt/messages
 #source "~/.mutt/purgecache.sh '$message_cachedir'|"
 
 # sorting
-set sort_aux       = date-received
+set sort_aux       = last-date-received
 set sort           = reverse-threads
 set sort_browser   = date
 set sort_re
@@ -33,5 +35,8 @@ set sidebar_width   = 20
 source colors.muttrc
 
 # Notify
-set new_mail_command="dunstify --timeout=100000 --icon='actions/mail-unread' \
+set new_mail_command="mpv /usr/share/sounds/purple/receive.wav;\
+notify-send -t 10000 --icon='mail-unread' \
 'New Email [%f]' '%n new messages, %u unread.' &"
+
+auto_view text/html

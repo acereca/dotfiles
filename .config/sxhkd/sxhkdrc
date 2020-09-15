@@ -5,8 +5,8 @@ super + shift + x
 	amixer -q -D pulse sset Master {5%-,10%-,5%+,10%+,toggle,toggle} && pkill -RTMIN+10 i3blocks
 
 {super + F8, super + F9, XF86MonBrightnessDown, XF86MonBrightnessUp}
-#xbacklight {- 1, + 1, - 5, + 5} && pkill -RTMIN+11 i3blocks && xbacklight -get > $HOME/.config/i3/brightness
-	$HOME/github/scripts/lightctl.py -r {-1, 1, -5, 5}
+	xbacklight {- 1, + 1, - 5, + 5} && pkill -RTMIN+11 i3blocks && xbacklight -get > $HOME/.config/i3/brightness
+	#$HOME/github/scripts/lightctl.py -r {-1, 1, -5, 5}
 
 super + alt + {Up, Down}
 	setxkbmap {us, de} -option caps:escape && pkill -RTMIN+12 i3blocks
@@ -23,6 +23,9 @@ super + c ; {c,f,b,m}
 
 super + {_,shift +} t
 	{tabbed, $HOME/github/scripts/tabc.sh add}
+
+super + Print
+	flameshot gui
 
 # Start script
 super + {_, alt + } m

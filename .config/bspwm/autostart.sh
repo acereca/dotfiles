@@ -10,7 +10,8 @@ setxkbmap -option ctrl:nocaps
 xsetwacom --set 19 MapToOutput 1920x1080+0+768
 
 # Compositor
-#picom &
+killall picom; picom &
+killall redshift; redshift &
 
 # BG
 feh --bg-tile $HOME/Pictures/bg_i3 --no-xinerama

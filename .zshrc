@@ -97,4 +97,21 @@ alias s!!="sudo !!"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-alias unlock='export BW_SESSION="$(bw unlock --raw)"'
+alias unlock='touch /tmp/.bwsession;\
+    chmod 600 /tmp/.bwsession;\
+    bw status | grep unlocked > /dev/null || bw unlock --raw > /tmp/.bwsession;\
+    export BW_SESSION=$(cat /tmp/.bwsession)'
+
+lfcd () {
+    tmp="$(mktemp)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        if [ -d "$dir" ]; then
+            if [ "$dir" != "$(pwd)" ]; then
+                cd "$dir"
+            fi
+        fi
+    fi
+}

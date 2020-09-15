@@ -1,13 +1,6 @@
-;;=========================================================;
-;                Caligula's polybar config.               ;
-;=========================================================;
-; To refresh while editing do: $ polybar -r rome
-
-;----------------------------------------------------------
-;			C O L O R S
-;----------------------------------------------------------
 include-file = $HOME/.config/polybar/local
 include-file = $HOME/.config/polybar/nord
+[colors]
 
 ;----------------------------------------------------------
 ;			G L O B A L
@@ -17,30 +10,29 @@ include-file = $HOME/.config/polybar/nord
 margin-top    = 0
 margin-bottom = 0
 
-[bar/rome]
-monitor           = ${env:MONITOR:DP-1}
-;monitor-fallback  = ${env:MONITOR:eDP-1}
-;dpi               = ${xrdb:Xft.dpi:136}
+[bar/main]
+monitor           = ${env:MONITOR:eDP-1-1}
+;monitor-fallback  = eDP-1-1
 bottom            = false
 height            = 22
 width             = 100%
 offset-x          = 0%
 offset-y          = 0%
 fixed-center      = true
-background        = ${colors.xcolor0}
-foreground        = ${colors.xcolor1}
+background        = ${colors.barbackground}
+foreground        = ${colors.foreground}
 
 overline-size   = 0
-overline-color  = ${colors.xcolor7}
+overline-color  = ${colors.background}
 underline-size  = 0
-underline-color = ${colors.xcolor7}
+underline-color = ${colors.background}
 ;label-name-overline = ${colors.colorname}
 ;format-param-underline = ${colors.colorname}
 
 border-bottom-size      = 0
-border-bottom-color     = ${colors.xcolor7}
+border-bottom-color     = ${colors.background}
 border-top-size         = 0
-border-top-color        = ${colors.xcolor7}
+border-top-color        = ${colors.background}
 border-color-foreground = ${colors.peach}
 
 spacing = 0
@@ -54,30 +46,30 @@ module-margin-right = 0
 ;----------------------------------------------------------
 ;			F O N T S
 ;----------------------------------------------------------
-font-0 = Fira Code:size=11:antialias=true;2
 
-font-1 = Fira Code:size=11:antialias=true;3
 ;font-2 = Font Awesome 5 Free:size=11;3
-font-2 = Fira Code:size=11:antialias=true;2
 ; font-1 = Powerline:size=10;1
-font-3 = Font Awesome 5 Free Solid:size=10;2
-font-4 = Terminus:size=18;0
+font-0 = Font Awesome 5 Free Solid:size=10;2
+font-2 = Fira Code:size=11:antialias=true;3
+font-1 = Fira Code Nerd Font:size=11:antialias=true;2
+font-3 = Fira Code:size=11:antialias=true;2
+font-4 = Font Awesome 5 Free:size=8;2
 font-5 = Monospace:size=28;3
-font-6 = Font Awesome 5 Brands:size=11;1
+font-6 = Font Awesome 5 Brands:size=8;1
 ; Extra symbols: http://fontawesome.io/cheatsheet/
 
 
-;----------------------------------------------------------
 ;			  T R A Y
+;----------------------------------------------------------
 ;----------------------------------------------------------
 
 tray-position = right
 tray-padding = 1
-;tray-transparent = false
 tray-maxsize = 50
 ;tray-offset-x = 21%
-tray-foreground = ${colors.xcolor7}
-tray-background = ${colors.xcolor0}
+;tray-type = 
+tray-foreground = ${colors.foreground}
+tray-background = ${colors.barbackground}
 
 wm-restack       = bspwm
 override-redirect = true
@@ -128,22 +120,23 @@ enable-click = false
 ; Create scroll handlers used to cycle desktops
 ; Default: true
 enable-scroll = false
-format = <label-monitor> <label-state>
+format = <label-state>
 
+label-empty-font = 2
 label-monitor = " %name%"
-label-monitor-foreground = ${colors.xcolor8}
+label-monitor-foreground = ${colors.foreground}
 
 label-active = "%icon% "
-label-active-foreground = ${colors.xcolor4}
-/*label-active-background = ${xrdb:color7}*/
+label-active-foreground = ${colors.foreground}
 
 label-occupied = " %name% "
-label-occupied-foreground = ${colors.xcolor7}
+label-occupied-foreground = ${colors.background}
 
 label-empty = " %name% "
-label-empty-foreground = ${colors.xcolor8}
+label-empty-foreground = ${colors.buffer}
 
 label-separator = ""
+label-separator-foreground = ${colors.buffer}
 
 ;----------------------------------------------------------
 ;		B S P W M   M O D U L E
@@ -157,8 +150,8 @@ interval = 5
 [module/webcam]
 type = custom/script
 interval = 5
-format-background = ${colors.xcolor8}
-format-foreground = ${colors.xcolor15}
+format-background = ${colors.foreground}
+format-foreground = ${colors.background}
 exec = ~/github/scripts/polybar/v0.sh
 
 [module/bspwm2]
@@ -168,21 +161,21 @@ format = <label-state>
 pin-workspaces = false
 
 label-focused = %index%
-label-focused-background = ${colors.xcolor8}
-label-focused-foreground = ${colors.xcolor0}
-label-focused-underline= ${colors.xcolor0}
+label-focused-background = ${colors.background}
+label-focused-foreground = ${colors.foreground}
+label-focused-underline= ${colors.background}
 label-focused-padding = 1
 
 label-occupied = %index%
 label-occupied-padding = 1
-label-occupied-foreground = ${colors.xcolor7}
+label-occupied-foreground = ${colors.foreground}
 
 label-urgent = %index%!
-label-urgent-background = ${colors.xcolor0}
+label-urgent-background = ${colors.urgent}
 label-urgent-padding = 1
 
 label-empty = %index%
-label-empty-foreground = ${colors.xcolor8}
+label-empty-foreground = ${colors.buffer}
 label-empty-padding = 1
 
 [module/i3]
@@ -197,7 +190,6 @@ pin-workspaces = false
 
 ;label-mode-padding = 2
 label-mode-foreground = #000
-;label-mode-background = ${colors.xcolor1}
 ;
 ;; focused = Active workspace on focused monitor
 label-focused = %name%
@@ -237,26 +229,43 @@ label-separator-foreground = ${colors.xcolor8}
 type = custom/text
 content = "|"
 content-foreground = ${colors.darkgrey}
-content-background = ${colors.xcolor0}
+content-background = ${colors.background}
 content-padding = 1
 
 [module/LeftStripe]
 type = custom/text
 content = ""
-content-foreground = ${colors.xcolor0}
-content-background = ${colors.xcolor1}
+content-foreground = ${colors.foreground}
+content-background = ${colors.background}
+
+[module/chevronleft]
+type = custom/text
+content = " "
+content-foreground = ${colors.buffer}
+content-background = ${colors.barbackground}
+[module/chevronright]
+type = custom/text
+content = "  "
+content-foreground = ${colors.buffer}
+content-background = ${colors.barbackground}
+
+[module/arrow]
+type = custom/text
+content = " "
+content-foreground = ${colors.buffer}
+content-background = ${colors.barbackground}
 
 [module/arrow1]
 type = custom/text
 content = ""
-content-foreground = ${colors.xcolor6}
-content-background = ${colors.xcolor0}
+content-foreground = ${colors.background}
+content-background = ${colors.barbackground}
 
 [module/arrow2]
 type = custom/text
-content = " "
-content-foreground = ${colors.xcolor2}
-content-background = ${colors.xcolor6}
+content = ""
+content-foreground = ${colors.background}
+content-background = ${colors.barbackground}
 
 [module/arrow3]
 type = custom/text
@@ -404,26 +413,26 @@ toggle-off-foreground = #66
 ;----------------------------------------------------------
 
 [module/backlight]
-type = internal/xbacklight
+type = internal/backlight
 ; To list available cards use: $ ls -1 /sys/class/backlight/
-;card = intel_backlight
-format-prefix = "  "
-format-prefix-foreground = ${colors.xcolor15}
-format-prefix-background = ${colors.xcolor6}
+card = intel_backlight
+format-prefix =
+format-prefix-foreground = ${colors.foreground}
+format-prefix-background = ${colors.barbackground}
 
-format = <ramp><label>
-format-font = 2
-format-foreground = ${colors.xcolor3}
+format = <ramp> <label>
+;format-font = 2
+format-foreground = ${colors.foreground}
 label = %percentage%%
 label-font = 2
-label-background = ${colors.xcolor6}
-label-foreground = ${colors.xcolor15}
+label-background = ${colors.barbackground}
+label-foreground = ${colors.foreground}
 
-ramp-0 = 🌕
-ramp-1 = 🌔
-ramp-2 = 🌓
-ramp-3 = 🌒
-ramp-4 = 🌑
+ramp-0 = " "
+ramp-2 = " "
+ramp-1 = " "
+ramp-3 = " "
+ramp-4 = " "
 
 [module/blight]
 type = custom/script
@@ -455,11 +464,11 @@ ramp-4 = 🌑
 type = internal/cpu
 interval = .5
 
-format = " <label>"
+format = "  <label>"
 ;format = <ramp-coreload><label> 
 ;format-prefix = ""
-format-foreground = ${colors.xcolor15}
-format-background = ${colors.xcolor3}
+format-foreground = ${colors.foreground}
+format-background = ${colors.barbackground}
 
 label = %percentage:2%%
 label-font = 2
@@ -474,8 +483,6 @@ ramp-coreload-5 = ▆
 ramp-coreload-6 = ▇
 ;ramp-coreload-7 = █
 
-
-
 ;----------------------------------------------------------
 ;	      W I R E L E S S    N E T W O R K
 ;----------------------------------------------------------
@@ -489,14 +496,14 @@ interval = 0.3
 format-connected = <label-connected>
 format-disconnected = <label-disconnected>
 
-label-connected = "  %essid%"
+label-connected = "   %essid%"
 ;label-connected = "  %essid%  %local_ip%  %downspeed:8%  %upspeed:8%"
-label-connected-foreground = ${colors.xcolor15}
-label-connected-background = ${colors.xcolor2}
+label-connected-foreground = ${colors.foreground}
+label-connected-background = ${colors.barbackground}
 label-connected-font = 2
 label-disconnected = " "
-label-disconnected-foreground = ${colors.xcolor15}
-label-disconnected-background = ${colors.xcolor2}
+label-disconnected-foreground = ${colors.buffer}
+label-disconnected-background = ${colors.barbackground}
 label-disconnected-font = 2
 
 ramp-signal-0 = ▁
@@ -564,8 +571,8 @@ label-disconnected-font = 2
 type = internal/date
 interval = 1
 
-format-foreground = ${colors.xcolor15}
-format-background = ${colors.xcolor8}
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
 
 date = " %Y|%m|%d"
 date-alt = ""
@@ -590,30 +597,31 @@ speaker-soundcard = default
 headphone-soundcard = default
 mapping = true
 
-format-volume = <ramp-volume><label-volume>
+format-volume = " <ramp-volume><label-volume> "
 ;     
 
+label-font = 2
 label-volume = %percentage%
-label-volume-foreground = ${colors.xcolor15}
-label-volume-background = ${colors.xcolor6}
+label-volume-foreground = ${colors.foreground}
+label-volume-background = ${colors.barbackground}
 label-volume-font = 2
-label-muted = "  muted"
-label-muted-foreground = ${colors.xcolor15}
-label-muted-background = ${colors.xcolor6}
+label-muted = "  muted"
+label-muted-foreground = ${colors.buffer}
+label-muted-background = ${colors.barbackground}
 label-muted-font = 2
 
 ramp-volume-0 = "  "
-ramp-volume-0-foreground = ${colors.xcolor15}
-ramp-volume-0-background = ${colors.xcolor6}
+ramp-volume-0-foreground = ${colors.foreground}
+ramp-volume-0-background = ${colors.barbackground}
 ramp-volume-1 = "  "
-ramp-volume-1-foreground = ${colors.xcolor15}
-ramp-volume-1-background = ${colors.xcolor6}
+ramp-volume-1-foreground = ${colors.foreground}
+ramp-volume-1-background = ${colors.barbackground}
 ramp-volume-2 = "  "
-ramp-volume-2-foreground = ${colors.xcolor15}
-ramp-volume-2-background = ${colors.xcolor6}
+ramp-volume-2-foreground = ${colors.foreground}
+ramp-volume-2-background = ${colors.barbackground}
 ramp-volume-3 = "  "
-ramp-volume-3-foreground = ${colors.xcolor15}
-ramp-volume-3-background = ${colors.xcolor6}
+ramp-volume-3-foreground = ${colors.foreground}
+ramp-volume-3-background = ${colors.barbackground}
 
 bar-volume-width = 10
 bar-volume-background = #495858
@@ -639,30 +647,30 @@ type = internal/battery
 ; To list battery & adapter: $ ls -1 /sys/class/power_supply/
 battery = BAT0
 adapter = AC0
-full-at = 99
+full-at = 98
 
 format-charging = <animation-charging> <label-charging>
-format-charging-foreground = ${colors.xcolor7}
-format-charging-background = ${colors.xcolor3}
-format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-foreground = ${colors.xcolor15}
-format-discharging-background = ${colors.xcolor3}
+format-charging-foreground = ${colors.nord7}
+format-charging-background = ${colors.barbackground}
+format-discharging = <ramp-capacity>  <label-discharging>
+format-discharging-foreground = ${colors.foreground}
+format-discharging-background = ${colors.barbackground}
 format-full = <label-full>
-format-full-foreground = ${colors.xcolor15}
-format-full-background = ${colors.xcolor3}
+format-full-foreground = ${colors.foreground}
+format-full-background = ${colors.barbackground}
 
-label-charging = "%percentage%% "
+label-charging = "  %percentage%%"
 label-charging-font = 2
-label-charging-foreground = ${colors.xcolor15}
+label-charging-foreground = ${colors.success}
 label-discharging = "%percentage%% "
-label-discharging-foreground = ${colors.xcolor15}
+label-discharging-foreground = ${colors.foreground}
 label-discharging-font = 2
-label-full = "  %percentage%% "
-label-full-foreground = ${colors.xcolor15}
+label-full = "   %percentage%% "
+label-full-foreground = ${colors.foreground}
 label-full-font = 2
 ; 
 ramp-capacity-0 = " "
-ramp-capacity-0-background = ${colors.xcolor0}
+ramp-capacity-0-foreground = ${colors.warning}
 ramp-capacity-1 = " "
 ramp-capacity-2 = " "
 ramp-capacity-3 = " "
@@ -672,8 +680,8 @@ animation-charging-1 = " "
 animation-charging-2 = " "
 animation-charging-3 = " "
 animation-charging-4 = " "
-animation-charging-foreground = ${colors.xcolor15}
-animation-charging-framerate = 750
+animation-charging-foreground = ${colors.success}
+animation-charging-framerate = 1000
 
 
 ;----------------------------------------------------------
@@ -683,19 +691,19 @@ animation-charging-framerate = 750
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
-;hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp2_input
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp2_input
 base-temperature = 20
 warn-temperature = 65
 interval = 2
 
 format = <ramp><label>
 format-prefix = "  "
-format-prefix-background = ${colors.xcolor3}
+format-prefix-background = ${colors.barbackground}
 format-suffix = " "
-format-suffix-background = ${colors.xcolor3}
-format-foreground = ${colors.xcolor15}
-format-background = ${colors.xcolor3}
-format-lebel-background = ${colors.xcolor3}
+format-suffix-background = ${colors.barbackground}
+format-foreground = ${colors.foreground}
+format-background = ${colors.barbackground}
+format-label-background = ${colors.barbackground}
 
 format-warn = <ramp><label-warn>
 format-warn-foreground = ${colors.xcolor15}
@@ -721,7 +729,7 @@ ramp-4 = " "
 [module/temperature2]
 type = internal/temperature
 thermal-zone = 0
-;hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp2_input
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp2_input
 base-temperature = 20
 warn-temperature = 65
 interval = 2
@@ -760,6 +768,12 @@ ramp-4 = " "
 ;		      S C R I P T    M O D U L E S
 ;    https://github.com/jaagr/polybar/wiki/Module:-script
 ;----------------------------------------------------------
+[module/ssh]
+type = custom/script
+exec = cons=$(ss | grep -i ssh) && echo " $(echo $cons | wc -l)" || echo ""
+label-font = 2
+
+interval = 10
 
 [module/mpv]
 type = custom/script
@@ -778,11 +792,18 @@ label-foreground = ${colors.xcolor7}
 [module/gpu]
 type = custom/script
 exec = nvidia-smi --format=csv --query-gpu=utilization.gpu | tail -1 | awk '{print $1}'
-interval = 3
+interval = 4
 
-label = "  %output%% "
-label-foreground = ${colors.xcolor15}
-label-background = ${colors.xcolor3}
+label-font = 2
+label = "   %output:2%%"
+label-foreground = ${colors.foreground}
+label-background = ${colors.barbackground}
+
+[module/bwlock]
+type = custom/script
+exec = BW_SESSION=$(cat /tmp/.bwsession 2> /dev/null || echo "") bw unlock --check 2> /dev/null > /dev/null && echo " " || echo " "
+interval = 10
+
 
 ;#########################################################;
 ;                 E N D    O F    F I L E                 :

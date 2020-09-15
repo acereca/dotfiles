@@ -4,8 +4,7 @@
 #
 # Version: 2
 
-[ -f ~/.zprofile.local ] && source ~/.fzf.zsh
-source ~/.zprofile.local
+[ -f ~/.zprofile.local ] && source ~/.zprofile.local
 
 # PATH setup {{{
 export PATH="/opt/cuda/bin/:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:$HOME:/bin:$HOME/.local/bin:$HOME/.gem/ruby/2.5.0/bin"

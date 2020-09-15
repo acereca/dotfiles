@@ -1,18 +1,19 @@
 if ps ax | grep -v grep | grep polybar > /dev/null
 then
-    pkill polybar
+    killall polybar
 else
-    return
-fi 
+    echo ;
+fi
 
 if type "xrandr"; then
   for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-    MONITOR=$m polybar --reload rome &
+    echo $m;
+    MONITOR=$m polybar --reload main &
   done
   sleep 1
   xdo lower -N "Polybar"
 else
-  polybar --reload rome &
+  polybar --reload main &
   sleep 1
   xdo lower -N "Polybar"
 fi
