@@ -16,6 +16,7 @@ FOLDERLIST="
     .config/ranger
     .config/rofi
     .config/sxhkd
+    .config/zathura
     .zshrc.d
 "
 
@@ -34,19 +35,19 @@ DIRECTLINKS="
 "
 
 DEPLIST="
-    chromium
-    clamav
-    code
-    compton
-    evince
-    firefox
-    fzf
+    brave
     bspwm
+    clamav
+    evince
+    fzf
     inotify-tools
+    keepassxc
     kitty
     mpv
+    neomutt
     neovim
     otf-fira-code
+    picom
     python-pip
     qrencode
     ranger
@@ -56,11 +57,13 @@ DEPLIST="
     texlive-langextra
     texlive-latexextra
     texlive-science
-    thunderbird
+    texlive-ieeetran
     tmux
     trash-cli
     ttf-droid
     neovim
+    zathura
+    zathura-pdf-poppler
     zsh
 "
 

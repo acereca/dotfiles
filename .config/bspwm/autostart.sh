@@ -6,7 +6,7 @@ $HOME/github/dotfiles/polybar_multimon.sh
 # Keybindings
 pkill -SIGUSR1 sxhkd || systemctl --user restart sxhkd
 setxkbmap -option compose:ralt
-setxkbmap -option ctrl:nocaps
+setxkbmap -option caps:escape
 xsetwacom --set 19 MapToOutput 1920x1080+0+768
 
 # Compositor
