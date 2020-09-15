@@ -8,7 +8,7 @@ function! LNScreengrab()
     if filereadable(s:subdir . "/img/" . s:time .".png")
         let fail=append( line('.') , "![](./img/" . s:time . ".png)")
         let nline=line('.') + 1
-        call cursor( nline, 2)
+        call cursor( nline, 3)
     endif
 endfunction
 

@@ -1,6 +1,6 @@
 " VIM Config file
 " Patrick Nisble
-" Last modified: 2020|09|09
+" Last modified: 2020|09|15
 
 " Plugins {{{
 set nocompatible
@@ -71,6 +71,8 @@ call plug#begin("~/.config/nvim/plugged")
     "
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
+
     " unimPaired
     "Plug 'tpope/vim-unimpaired'
 
@@ -85,34 +87,23 @@ call plug#begin("~/.config/nvim/plugged")
     " Completion
     Plug 'SirVer/UltiSnips' | Plug 'honza/vim-snippets'
 
-    "" fallback plugins for non neovim setups
-    if !has('nvim')
-        Plug 'Valloric/YouCompleteMe'
-
-        "LaTeX
-        Plug 'LaTeX-Box-Team/LaTeX-Box'
-    endif
 
     "" NeoVim specific
-    if has('nvim')
-        Plug 'vim-airline/vim-airline'
-        Plug 'vim-airline/vim-airline-themes'
-        Plug 'edkolev/tmuxline.vim'
-		Plug 'Shougo/neoinclude.vim'
-        Plug 'lervag/vimtex'
-        "Plug 'brennier/quicktex'
-        Plug 'neomake/neomake'
-        Plug 'neoclide/coc.nvim', {'branch': 'release'}
-        "
-        Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
-    endif
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'edkolev/tmuxline.vim'
+    Plug 'Shougo/neoinclude.vim'
+    Plug 'lervag/vimtex'
+    "Plug 'brennier/quicktex'
+    Plug 'neomake/neomake'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    "
+    Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 
 call plug#end()
 
-if has('nvim')
-    if $SOCK != ""
-        call serverstart($SOCK)
-    endif
+if $SOCK != ""
+    call serverstart($SOCK)
 endif
 
 filetype plugin indent on
@@ -145,10 +136,11 @@ let g:ale_cpp_clang_options="-std=c++2a -fmodules-ts"
 let g:ale_cpp_clangcheck_options="-std=c++2a -fmodules-ts"
 let g:ale_linters = {
     \'python': ['flake8', 'pylint'],
-    \'tex': ['chktex'],
+    \'tex': ['chktex', 'lacheck'],
     \}
 let g:ale_fixers = {
     \'python': ['yapf'],
+    \'tex': ['latexindent'],
     \}
 nmap <F10> :ALEFix<CR>
 " }}}
@@ -275,18 +267,23 @@ let g:SimpylFold_docstring_preview = 1
 
 " NEOMAKE {{{
 call neomake#configure#automake('w')
-let g:neomake_open_list = 0
+let g:neomake_open_list = 2
 let g:neomake_cpp_enabled_makers=['make']
 let g:neomake_cpp_clang_args = ["-std=c++17", "-Wall"]
 let g:neomake_python_flake8_maker = {
         \ 'args':['--ignore=E501']
     \}
+let g:neomake_tex_make_maker = {
+    \ 'exe': 'make',
+    \ 'args': [],
+    \ }
+let g:neomake_tex_enabled_makers=['make']
 
 " }}}
 
 " vim-airline {{{
     let g:airline_powerline_fonts = 1
-    let g:airline_theme = 'minimalist'
+    let g:airline_theme = 'nord'
     let g:airline#extensions#tabline#enabled = 1
 
     let g:airline#extensions#tmuxline#enabled = 1
@@ -344,6 +341,16 @@ let g:neomake_python_flake8_maker = {
     let g:vimtex_complete_enabled=1
 
     let g:vimtex_compiler_progname = "nvim"
+    let g:vimtex_compiler_method = "latexrun"
+    let g:vimtex_compiler_latexrun = {
+        \ 'backend' : 'nvim',
+        \ 'background' : 1,
+        \ 'build_dir' : '',
+        \ 'options' : [
+        \   '--latex-args="-synctex=1 -shell-escape"',
+        \   '--latex-cmd=xelatex',
+        \ ],
+        \}
     let g:vimtex_compiler_latexmk = {
               \ 'backend' : 'nvim',
               \ 'background' : 1,
@@ -352,7 +359,6 @@ let g:neomake_python_flake8_maker = {
               \ 'continuous' : 1,
               \ 'executable' : 'latexmk',
               \ 'options' : [
-              \   '-pdf',
               \   '-bibtex',
               \   '-verbose',
               \   '-file-line-error',
@@ -378,7 +384,7 @@ let g:ycm_key_list_previous_completion=['<Up>']
 " }}}
 
 " UltiSnips {{{
-    let g:UltiSnipsExpandTrigger="<s-tab>"
+    let g:UltiSnipsExpandTrigger="<tab>"
     let g:UltiSnipsJumpForwardTrigger="<tab>"
     let g:UltiSnipsJumpBackwardTrigger="<c-tab>"
 " }}}
@@ -518,6 +524,9 @@ let g:strfstr = '%Y|%m|%d'
         inoremap <c-S> <c-o>:update<CR>
         imap <c-s> <esc>:update<CR>
         vnoremap <c-s> <c-c>:update<CR>
+
+        " Refactor
+        nmap <leader><F2> <Plug>(coc-rename)
 
         "fzf
         nmap <leader>f :Files<cr>
