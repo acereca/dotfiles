@@ -47,10 +47,10 @@ module-margin-right = 0
 ;			F O N T S
 ;----------------------------------------------------------
 
-font-0 = Fira Code:size=11:antialias=true;3
-font-1 = Fira Code Nerd Font:size=11:antialias=true;2
-font-2 = Font Awesome 5 Free Solid:size=10;2
-font-6 = Font Awesome 5 Brands:size=8;1
+font-0 = Fira Code:size=11:antialias=true;2
+font-1 = Font Awesome 5 Free Solid:size=10;1
+;font-0 = Fira Code Nerd Font:size=11:antialias=true;2
+;font-6 = Font Awesome 5 Brands:size=8;1
 ;font-3 = Fira Code:size=11:antialias=true;2
 ;font-4 = Font Awesome 5 Free:size=8;2
 ;font-5 = Monospace:size=28;3
@@ -119,17 +119,18 @@ enable-click = false
 enable-scroll = false
 format = <label-state>
 
-label-empty-font = 2
 label-monitor = " %name%"
 label-monitor-foreground = ${colors.foreground}
 
 label-active = "%icon% "
+;label-active-font = 2
 label-active-foreground = ${colors.foreground}
 
 label-occupied = " %name% "
 label-occupied-foreground = ${colors.background}
 
 label-empty = " %name% "
+;label-empty-font = 0
 label-empty-foreground = ${colors.buffer}
 
 label-separator = ""
@@ -192,7 +193,7 @@ label-mode-foreground = #000
 label-focused = %name%
 label-focused-background = ${colors.xcolor0}
 label-focused-foreground = ${colors.xcolor15}
-label-focused-font = 2
+;label-focused-font = 2
 ;label-focused-underline = ${colors.xcolor4}
 label-focused-padding = 1
 ;
@@ -201,14 +202,14 @@ label-unfocused = %index%
 label-unfocused-background = ${colors.xcolor0}
 label-unfocused-foreground = ${colors.xcolor8}
 label-unfocused-padding = 1
-label-unfocused-font = 2
+;label-unfocused-font = 2
 ;
 ;; visible = Active workspace on unfocused monitor
 label-visible = %index%
 label-visible-background = ${colors.xcolor0}
 label-visible-foreground = ${colors.xcolor7}
 label-visible-padding = ${self.label-focused-padding}
-label-visible-font = 2
+;label-visible-font = 2
 ;
 ;; urgent = Workspace with urgency hint set
 label-urgent = %index%
@@ -343,7 +344,7 @@ blacklist-0 = num lock
 
 format = <label-layout>
 label-layout = "   %layout%"
-label-layout-font = 2
+;label-layout-font = 2
 label-layout-foreground = ${colors.xcolor15}
 label-layout-background = ${colors.xcolor6}
 label-indicator-padding = 1
@@ -421,7 +422,7 @@ format = <ramp> <label>
 ;format-font = 2
 format-foreground = ${colors.foreground}
 label = %percentage%%
-label-font = 2
+;label-font = 2
 label-background = ${colors.barbackground}
 label-foreground = ${colors.foreground}
 
@@ -441,9 +442,9 @@ format-prefix-foreground = ${colors.xcolor15}
 format-prefix-background = ${colors.xcolor6}
 
 format = <label>
-format-font = 2
+;format-font = 2
 format-foreground = ${colors.xcolor3}
-label-font = 2
+;label-font = 2
 label-background = ${colors.xcolor6}
 label-foreground = ${colors.xcolor15}
 
@@ -468,7 +469,7 @@ format-foreground = ${colors.foreground}
 format-background = ${colors.barbackground}
 
 label = %percentage:2%%
-label-font = 2
+;label-font = 2
 ;   
 
 ramp-coreload-0 = ▁
@@ -497,11 +498,11 @@ label-connected = "   %essid%"
 ;label-connected = "  %essid%  %local_ip%  %downspeed:8%  %upspeed:8%"
 label-connected-foreground = ${colors.foreground}
 label-connected-background = ${colors.barbackground}
-label-connected-font = 2
+;label-connected-font = 2
 label-disconnected = " "
 label-disconnected-foreground = ${colors.buffer}
 label-disconnected-background = ${colors.barbackground}
-label-disconnected-font = 2
+;label-disconnected-font = 2
 
 ramp-signal-0 = ▁
 ramp-signal-1 = ▂
@@ -525,11 +526,11 @@ label-connected = "  %essid%"
 ;label-connected = "  %essid%  %local_ip%  %downspeed:8%  %upspeed:8%"
 label-connected-foreground = ${colors.xcolor15}
 label-connected-background = ${colors.xcolor2}
-label-connected-font = 2
+;label-connected-font = 2
 label-disconnected = " "
 label-disconnected-foreground = ${colors.xcolor15}
 label-disconnected-background = ${colors.xcolor2}
-label-disconnected-font = 2
+;label-disconnected-font = 2
 
 ramp-signal-0 = ▁
 ramp-signal-1 = ▂
@@ -553,11 +554,11 @@ interval = 1.0
 label-connected = "   %local_ip%"
 label-connected-foreground = ${colors.xcolor15}
 label-connected-background = ${colors.xcolor2}
-label-connected-font = 2
+;label-connected-font = 2
 label-disconnected = "  %ifname% "
 label-disconnected-foreground = ${colors.xcolor15}
 label-disconnected-background = ${colors.xcolor2}
-label-disconnected-font = 2
+;label-disconnected-font = 2
 
 
 ;----------------------------------------------------------
@@ -580,7 +581,7 @@ time= " %H:%M:%S"
 ;time = "%I:%M:%S %p"
 ;time-alt = " %z %Z"
 label = " %date%  %time% "
-label-font = 2
+;label-font = 2
 
 ;----------------------------------------------------------
 ;			V O L U M E
@@ -597,15 +598,15 @@ mapping = true
 format-volume = " <ramp-volume><label-volume> "
 ;     
 
-label-font = 2
+;label-font = 2
 label-volume = %percentage%
 label-volume-foreground = ${colors.foreground}
 label-volume-background = ${colors.barbackground}
-label-volume-font = 2
+;label-volume-font = 2
 label-muted = "  muted"
 label-muted-foreground = ${colors.buffer}
 label-muted-background = ${colors.barbackground}
-label-muted-font = 2
+;label-muted-font = 2
 
 ramp-volume-0 = "  "
 ramp-volume-0-foreground = ${colors.foreground}
@@ -657,14 +658,14 @@ format-full-foreground = ${colors.foreground}
 format-full-background = ${colors.barbackground}
 
 label-charging = "  %percentage%%"
-label-charging-font = 2
+;label-charging-font = 2
 label-charging-foreground = ${colors.success}
 label-discharging = "%percentage%% "
 label-discharging-foreground = ${colors.foreground}
-label-discharging-font = 2
+;label-discharging-font = 2
 label-full = "   %percentage%% "
 label-full-foreground = ${colors.foreground}
-label-full-font = 2
+;label-full-font = 2
 ; 
 ramp-capacity-0 = " "
 ramp-capacity-0-foreground = ${colors.warning}
@@ -712,8 +713,8 @@ format-warn-suffix-background = ${colors.xcolor1}
 
 label = %temperature-c%
 label-warn = %temperature-c%!
-label-font = 2
-label-warn-font = 2
+;label-font = 2
+;label-warn-font = 2
 label-warn-background = ${colors.xcolor1}
 
 ramp-0 = " "
@@ -750,8 +751,8 @@ format-warn-suffix-background = ${colors.xcolor1}
 
 label = %temperature-c%
 label-warn = %temperature-c%!
-label-font = 2
-label-warn-font = 2
+;label-font = 2
+;label-warn-font = 2
 label-warn-background = ${colors.xcolor1}
 
 ramp-0 = " "
@@ -768,7 +769,7 @@ ramp-4 = " "
 [module/ssh]
 type = custom/script
 exec = cons=$(ss | grep -i ssh) && echo " $(echo $cons | wc -l)" || echo ""
-label-font = 2
+;label-font = 2
 
 interval = 10
 
@@ -781,7 +782,7 @@ interval = 1
 
 format = <label>
 label = "   %output%"
-label-font = 2
+;label-font = 2
 label-padding = 1
 label-foreground = ${colors.xcolor7}
 
@@ -791,7 +792,7 @@ type = custom/script
 exec = nvidia-smi --format=csv --query-gpu=utilization.gpu | tail -1 | awk '{print $1}'
 interval = 4
 
-label-font = 2
+;label-font = 2
 label = "   %output:2%%"
 label-foreground = ${colors.foreground}
 label-background = ${colors.barbackground}
