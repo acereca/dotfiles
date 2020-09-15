@@ -10,7 +10,7 @@ setxkbmap -option caps:escape
 xsetwacom --set 19 MapToOutput 1920x1080+0+768
 
 # Compositor
-killall picom; picom &
+killall picom; sleep .1; picom &
 killall redshift; redshift &
 
 # BG

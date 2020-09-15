@@ -1,9 +1,4 @@
-if ps ax | grep -v grep | grep polybar > /dev/null
-then
-    killall polybar
-else
-    echo ;
-fi
+killall polybar || echo ""
 
 if type "xrandr"; then
   for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
