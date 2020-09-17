@@ -155,7 +155,8 @@ let g:coc_global_extensions = [
   \ 'coc-python',
   \ 'coc-json',
   \ 'coc-angular',
-  \ 'coc-markdownlint'
+  \ 'coc-markdownlint',
+  \ 'coc-snippets'
   \ ]
   "\ 'coc-pyright',
 

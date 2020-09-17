@@ -14,9 +14,8 @@ s   ../../.ssh/config
 t   ~/.tmux.conf
 tm   .config/tmuxinator/
 
-v   .vimrc
-vft .vim/ftplugin/
-vs  .vim/snippets/
+v   .config/nvim/init.vim
+vc  .config/nvim
 
 z   .zshrc
 zd  .zshrc.d

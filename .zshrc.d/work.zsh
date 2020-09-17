@@ -10,3 +10,9 @@ virtuoso() {
             echo "What?";;
     esac
 }
+
+dintef() {
+    cd $HOME/work/dintef/tools/clients
+    git pull
+    nvim $(fd "(\.py|\.cpp|\.h)" | fzf)
+}
