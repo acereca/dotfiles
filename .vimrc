@@ -532,7 +532,7 @@ let g:strfstr = '%Y|%m|%d'
         nmap <leader>f :Files<cr>
         nmap <leader>/ :BLines<cr>
         nmap <leader>b :Buffers<cr>
-        nmap <leader>r :Rg
+        nmap <leader>r :Rg 
 
         set timeout
         set timeoutlen=100
