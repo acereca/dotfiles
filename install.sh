@@ -5,12 +5,10 @@
 #setup
 
 FOLDERLIST="
-    .vim/autoload
-    .vim/ftplugin
-    .vim/after
     .config/bspwm
     .config/kitty
     .config/mutt
+    .config/nvim
     .config/polybar
     .config/qutebrowser
     .config/ranger
@@ -26,23 +24,22 @@ DIRECTLINKS="
     .bashrc
     .gitconfig
     .pinerc
-    .vimrc
     .Xdefaults
     .zprofile
     .zshrc
     .oh-my-zshrc
     .oh-my-zsh/themes/bgnoster.zsh-theme
+    .tmux.conf
 "
 
 DEPLIST="
+    alacritty
     brave
     bspwm
     clamav
     evince
     fzf
     inotify-tools
-    keepassxc
-    kitty
     mpv
     neomutt
     neovim
@@ -50,7 +47,6 @@ DEPLIST="
     picom
     python-pip
     qrencode
-    ranger
     rsync
     texlive-core
     texlive-fontsextra
@@ -61,7 +57,6 @@ DEPLIST="
     tmux
     trash-cli
     ttf-droid
-    neovim
     zathura
     zathura-pdf-poppler
     zsh
