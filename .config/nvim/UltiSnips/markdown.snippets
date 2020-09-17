@@ -49,7 +49,7 @@ snippet // "comment" A
 $0
 endsnippet
 
-snippet dndItem "D&D Homebrew Item Component"
+snippet dnd_item "D&D Homebrew Item Component"
 <Item
 	image="../items/img/$1"
 	:info="{
@@ -64,4 +64,36 @@ snippet dndItem "D&D Homebrew Item Component"
 $0
 
 </Item>
+endsnippet
+
+snippet dnd_monster "D&D Homebrew Monster Statblock"
+<statblock
+	title="$1"
+		${2::combat="{
+			'Armor Class': '$3',
+			'Hit Points': '$4'
+		}" }${5::scores="{
+			STR: ${6:10}, DEX: ${7:10}, CON: ${8:10}, INT: ${9:10}, WIS: ${10:10}, CHA: ${11:10}
+		}" }${12::stats="{
+			'Saving Throws':'$13',
+			'Skills': '$14',
+			'Damage Resistances': '$15',
+			'Senses':'$16',
+			'Languages':'$17',
+			'Challenge': $18
+		}"}>
+
+<p slot="short">${19:short description}</p>
+
+#### $20
+$21
+
+### Actions
+
+#### $22
+$23
+
+</statblock>
+
+$0
 endsnippet
