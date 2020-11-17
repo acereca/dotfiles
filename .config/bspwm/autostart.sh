@@ -7,7 +7,11 @@ $HOME/github/dotfiles/polybar_multimon.sh
 pkill -SIGUSR1 sxhkd || systemctl --user restart sxhkd
 setxkbmap -option compose:ralt
 setxkbmap -option caps:escape
-xsetwacom --set 19 MapToOutput 1920x1080+0+768
+
+# Tablets
+xsetwacom --set 18 MapToOutput 1920x1080+1920+0 # Pen
+xsetwacom --set 19 MapToOutput 1920x1080+1920+0 # Touch
+xsetwacom --set 20 MapToOutput 1920x1080+1920+0 # Eraser
 
 # Compositor
 killall picom; sleep .1; picom &

@@ -59,8 +59,7 @@ call plug#begin("~/.config/nvim/plugged")
     "Plug 'ctrlpvim/ctrlp.vim'
 
     " ALE
-    "Plug 'w0rp/ale'
-    Plug 'dense-analysis/ale'
+    "Plug 'dense-analysis/ale'
 
     "fzf
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -70,8 +69,6 @@ call plug#begin("~/.config/nvim/plugged")
     "Plug 'wincent/loupe'
     "
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-
-    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 
     " unimPaired
     "Plug 'tpope/vim-unimpaired'
@@ -111,8 +108,13 @@ filetype plugin indent on
 
 " pandoc{{{
 augroup pandoc_syntax
-	au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+    au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
 augroup END
+
+function! s:pandocappend()
+    noautocmd set filetype+=.pandoc
+endfunction
+
 let g:pandoc#syntax#conceal#use = 0
 let conceallevel = 3
 let g:tex_conceal=""
@@ -132,8 +134,8 @@ let g:Syntastic_python_checkers = ["flake8"]
 " ALE {{{
 let g:ale_sign_error = ''
 let g:ale_sign_warning = ''
-let g:ale_cpp_clang_options="-std=c++2a -fmodules-ts"
-let g:ale_cpp_clangcheck_options="-std=c++2a -fmodules-ts"
+let g:ale_cpp_clang_options="-std=c++2a -fmodules-ts -I../lib"
+let g:ale_cpp_clangcheck_options="-std=c++2a -fmodules-ts -I../lib"
 let g:ale_linters = {
     \'python': ['flake8', 'pylint'],
     \'tex': ['chktex', 'lacheck'],
@@ -227,9 +229,9 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 "nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
-  autocmd!
+  "autocmd!
   " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  "@autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
@@ -268,7 +270,7 @@ let g:SimpylFold_docstring_preview = 1
 
 " NEOMAKE {{{
 call neomake#configure#automake('w')
-let g:neomake_open_list = 2
+let g:neomake_open_list = 0
 let g:neomake_cpp_enabled_makers=['make']
 let g:neomake_cpp_clang_args = ["-std=c++17", "-Wall"]
 let g:neomake_python_flake8_maker = {
@@ -353,28 +355,21 @@ let g:neomake_tex_enabled_makers=['make']
         \ ],
         \}
     let g:vimtex_compiler_latexmk = {
-              \ 'backend' : 'nvim',
-              \ 'background' : 1,
-              \ 'build_dir' : '',
-              \ 'callback' : 1,
-              \ 'continuous' : 1,
-              \ 'executable' : 'latexmk',
-              \ 'options' : [
-              \   '-bibtex',
-              \   '-verbose',
-              \   '-file-line-error',
-              \   '-synctex=1',
-              \   '-interaction=batchmode',
-              \   '-shell-escape',
-              \ ]
-              \}
-    let g:vimtex_compiler_latexrun = {
+        \ 'backend' : 'nvim',
+        \ 'background' : 1,
         \ 'build_dir' : '',
+        \ 'callback' : 1,
+        \ 'continuous' : 1,
+        \ 'executable' : 'latexmk',
         \ 'options' : [
-        \   '-verbose-cmds',
-        \   '--latex-cmd="xelatex"',
-        \   '--latex-args="-synctex=1 -shell-escape"',
-        \ ],
+        \   '-bibtex',
+        \   '-verbose',
+        \   '-file-line-error',
+        \   '-synctex=1',
+        \   '-interaction=batchmode',
+        \   '-shell-escape',
+        \   '-xelatex',
+        \ ]
         \}
 
     let g:vimtex_view_method = 'zathura'
@@ -394,15 +389,6 @@ let g:ycm_key_list_previous_completion=['<Up>']
     imap <C-CR>     <Plug>(neosnippet_expand_or_jump)
     smap <C-CR>     <Plug>(neosnippet_expand_or_jump)
     xmap <C-CR>     <Plug>(neosnippet_expand_target)
-" }}}
-
-" Powerline {{{
-    if !has('nvim')
-        let g:powerline_pycmd = "py3"
-        set rtp+=/usr/lib/python*/site-packages/powerline/bindings/vim
-        "let g:powerline_left_sep = "\uE0b4"
-        set laststatus=2
-    endif
 " }}}
 
 " custom behaviour {{{
@@ -454,16 +440,11 @@ let g:strfstr = '%Y|%m|%d'
     let python_highlight_all=1
     let g:onedark_terminal_italics=1
     syntax on
-    if has('nvim')
-        set background=dark
-    endif
+    set background=dark
     colorscheme nord
     highlight Normal ctermbg=NONE guibg=NONE
     if (empty($TMUX))
-        if (has("nvim"))
-            "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-            let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-        endif
+        let $NVIM_TUI_ENABLE_TRUE_COLOR=1
         if (has("termguicolors"))
             set termguicolors
         endif
@@ -476,6 +457,7 @@ let g:strfstr = '%Y|%m|%d'
     let mapleader = "\<Space>"
 
     " general keymaps {{{
+        nnoremap <leader><leader> za
 
         nnoremap ; :
         vnoremap ; :
@@ -512,12 +494,12 @@ let g:strfstr = '%Y|%m|%d'
         inoremap <c-k> <up>
         inoremap <c-l> <right>
 
-        nmap <a-l> :bnext<CR>
-        nmap <a-h> :bprevious<CR>
-        nmap <a-j> :tabNext<CR>
-        nmap <a-k> :tabprevious<CR>
-        nmap <c-l> <c-w>l
-        nmap <c-h> <c-w>h
+        nmap <m-l> :bnext<CR>
+        nmap <m-h> :bprevious<CR>
+        nmap <m-j> :tabNext<CR>
+        nmap <m-k> :tabprevious<CR>
+        "nmap <c-l> <c-w>l
+        "nmap <c-h> <c-w>h
 
         imap <c-s> <nop>
         imap <c-u> <nop>
@@ -537,5 +519,12 @@ let g:strfstr = '%Y|%m|%d'
 
         set timeout
         set timeoutlen=100
+
+        " Temrinal Mode
+        tnoremap <esc> <c-\><c-n>
     " }}}
+" }}}
+
+" LUA TESTING {{{
+lua require("personal")
 " }}}

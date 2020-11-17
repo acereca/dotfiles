@@ -1,4 +1,5 @@
 global !p
+import fileinput
 texMathZones = ['texMathZone' + x for x in ['A', 'AS', 'B', 'BS', 'C', 'CS',
 'D', 'DS', 'E', 'ES', 'F', 'FS', 'G', 'GS', 'H', 'HS', 'I', 'IS', 'J', 'JS',
 'K', 'KS', 'L', 'LS', 'DS', 'V', 'W', 'X', 'Y', 'Z', 'AmsA', 'AmsB', 'AmsC',
@@ -37,6 +38,11 @@ def env(envName):
 		return openedAbove > closedAbove
 	except Exception:
 		return False
+
+def addToGlossary(index, abr, descr):
+	newline = f"\\newacronym{{{index}}}{{{abr}}}{{{descr}}}\n"
+	with open("glossary.tex", "a") as f:
+		f.write(newline)
 endglobal
 
 # in envs {{{
@@ -217,6 +223,7 @@ snippet v> "->, bend left" iA
 endsnippet
 
 # Circuitikz {{{
+context "env('circuitikz')"
 snippet "\(([a-zA-Z0-9._-]+)\)\-\|\(([a-zA-Z0-9._-]+)\)" "circuitikz right angle connection" r
 \draw(`!p
 snip.rv = match.group(1)
@@ -227,6 +234,15 @@ snip.rv = match.group(2)
 `) to[short,-*] (`!p
 snip.rv = match.group(2)
 `);
+endsnippet
+
+context "env('circuitikz')"
+snippet . "circuitikz node"
+\draw(${1:pos}) node[${2:type}] (${3:id}) {${4:label}};
+endsnippet
+context "env('circuitikz')"
+snippet : "circuitikz node (mirrored on x)"
+\draw(${1:pos}) node[${2:type}, xscale=-1] (${3:id}) {\scalebox{-1}[1]{${4:label}}};
 endsnippet
 # }}}
 
@@ -249,3 +265,5 @@ snippet "col(um)?([0-9]+)x([0-9]+)" "two columns for Beamer frame" r
 endsnippet
 # }}}
 
+# glossary entry creation (assumes glossary.tex file in path {{{
+# }}}

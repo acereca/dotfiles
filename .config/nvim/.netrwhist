@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='scp://sus/~/work/dintef/tools/clients/sus/gui/'
+let g:netrw_dirhist_6='scp://sus/~/work/dintef/tools/clients/sus/'
+let g:netrw_dirhist_5='scp://sus/~/work/dintef/tools/clients/'
+let g:netrw_dirhist_4='scp://sus/~/work/dintef/tools/'
+let g:netrw_dirhist_3='scp://sus/~/work/dintef/'
+let g:netrw_dirhist_2='scp://sus/~/work/'
+let g:netrw_dirhist_1='scp://sus//work/'
