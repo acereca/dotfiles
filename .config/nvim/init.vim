@@ -342,7 +342,7 @@ let g:neomake_tex_enabled_makers=['make']
     let g:vimtex_complete_enabled=1
 
     let g:vimtex_compiler_progname = "nvim"
-    let g:vimtex_compiler_method = "latexrun"
+    "let g:vimtex_compiler_method = "latexrun"
     let g:vimtex_compiler_latexrun = {
         \ 'backend' : 'nvim',
         \ 'background' : 1,
