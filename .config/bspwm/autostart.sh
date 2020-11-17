@@ -18,7 +18,7 @@ killall picom; sleep .1; picom &
 killall redshift; redshift &
 
 # BG
-feh --bg-tile $HOME/Pictures/bg_i3 --no-xinerama
+feh --bg-fill $HOME/Pictures/bg_i3 --no-xinerama
 
 # Lockscreen
 xset s off

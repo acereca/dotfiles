@@ -40,3 +40,5 @@ notify-send -t 10000 --icon='mail-unread' \
 'New Email [%f]' '%n new messages, %u unread.' &"
 
 auto_view text/html
+
+macro index,pager G "<pipe-message>mbsync -a<return>" "Refresh Mail Cache"

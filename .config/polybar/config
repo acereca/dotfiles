@@ -570,7 +570,7 @@ type = internal/date
 interval = 1
 
 format-foreground = ${colors.foreground}
-format-background = ${colors.background}
+format-background = ${colors.barbackground}
 
 date = " %Y|%m|%d"
 date-alt = ""
@@ -799,7 +799,7 @@ label-background = ${colors.barbackground}
 
 [module/bwlock]
 type = custom/script
-exec = BW_SESSION=$(cat /tmp/.bwsession 2> /dev/null || echo "") bw unlock --check 2> /dev/null > /dev/null && echo " " || echo " "
+exec = BW_SESSION=$(cat /tmp/.bwsession 2> /dev/null || echo "") bw unlock --check 2> /dev/null > /dev/null && echo "" || echo ""
 interval = 10
 
 
