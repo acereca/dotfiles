@@ -1,4 +1,5 @@
 {
     "python.jediEnabled": false,
-    "python.setLinter": "flake8"
+    "python.setLinter": "flake8",
+    "suggest.enablePreview": true
 }

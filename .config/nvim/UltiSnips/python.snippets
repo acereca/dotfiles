@@ -1,0 +1,17 @@
+snippet !scipy "Scipy stack setup" b
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+plt.style.use("ggplot")
+
+plt.savef
+endsnippet
+
+snippet !multipdf "Multipdf template for Matplotlib" b
+import matplotlib.backends.backend_pdf as mpp
+with mpp.PdfPages("$1") as pdf:
+	$0
+    pdf.savefig()
+    plt.close()
+endsnippet

@@ -2,7 +2,7 @@ global !p
 import fileinput
 texMathZones = ['texMathZone' + x for x in ['A', 'AS', 'B', 'BS', 'C', 'CS',
 'D', 'DS', 'E', 'ES', 'F', 'FS', 'G', 'GS', 'H', 'HS', 'I', 'IS', 'J', 'JS',
-'K', 'KS', 'L', 'LS', 'DS', 'V', 'W', 'X', 'Y', 'Z', 'AmsA', 'AmsB', 'AmsC',
+'K', 'KS', 'L', 'LS', 'V', 'W', 'X', 'Y', 'Z', 'AmsA', 'AmsB', 'AmsC',
 'AmsD', 'AmsE', 'AmsF', 'AmsG', 'AmsAS', 'AmsBS', 'AmsCS', 'AmsDS', 'AmsES',
 'AmsFS', 'AmsGS' ]]
 
@@ -14,15 +14,21 @@ texIgnoreMathZoneIds = vim.eval('map('+str(texIgnoreMathZones)+", 'hlID(v:val)')
 ignore = texIgnoreMathZoneIds[0]
 
 def math():
-	synstackids = vim.eval("synstack(line('.'), col('.') - (col('.')>=2 ? 1 : 0))")
-	try:
-		first = next(
-            i for i in reversed(synstackids)
-            if i in texIgnoreMathZoneIds or i in texMathZoneIds
-        )
-		return first != ignore
-	except StopIteration:
-		return False
+	if env('align'):
+		return True
+	else:
+		synstackids = vim.eval("synstack(line('.'), col('.') - (col('.')>=2 ? 1 : 0))")
+		try:
+			first = next(
+				i for i in reversed(synstackids)
+				if i in texIgnoreMathZoneIds or i in texMathZoneIds
+			)
+			return first != ignore
+		except StopIteration:
+			return False
+		if not set(texIgnoreMathZoneIds).isdisjoint(synstackids):
+			return False
+		#return not set(texMathZoneIds).isdisjoint(synstackids)
 
 def env(envName):
 	try:
@@ -139,13 +145,18 @@ $\rightarrow$ $0
 endsnippet
 
 context "not math()"
-snippet ** "\textbf" iA
+snippet ** "\textbf" i
 \textbf{${1:${VISUAL} }}$0
 endsnippet
 
 context "not math()"
 snippet "    -- " "\item" wrA
 \item $0
+endsnippet
+
+context "not math()"
+snippet "\*\*(.*)\*\*" "bold" rA
+{\bfseries `!p snip.rv = match.group(1)`}
 endsnippet
 
 context "not math()"
@@ -157,7 +168,7 @@ endsnippet
 
 priority 10
 context "not math()"
-snippet fig:g "\begin{itemize}\end{itemize}" iA
+snippet fig:g "\begin{itemize}\end{itemize}" i
 \begin{figure}[ht]
 	\centering
 	\includegraphics[${2:width=$3\columnwidth}]{${4:<++>}}
@@ -166,7 +177,7 @@ snippet fig:g "\begin{itemize}\end{itemize}" iA
 \end{figure}
 endsnippet
 
-snippet fig:s "\begin{itemize}\end{itemize}" iA
+snippet fig:s "\begin{itemize}\end{itemize}" i
 \begin{figure}[ht]
 	\centering
 	\resizebox{${1:w}}{${2:`!p snip.rv = 'h' if t[1] == '!' else '!'`}}{%
@@ -178,13 +189,13 @@ snippet fig:s "\begin{itemize}\end{itemize}" iA
 endsnippet
 
 priority 100
-snippet subfig{ "\begin{subfigure}[c]{.49\columnwidth}" iA
+snippet subfig{ "\begin{subfigure}[c]{.49\columnwidth}" i
 \begin{subfigure}[b]{.49\columnwidth}
 	${1:${VISUAL}}
 \end{subfigure}
 endsnippet
 
-snippet inc:s "resizebox + includestandalone" iA
+snippet inc:s "resizebox + includestandalone" i
 \resizebox{${1:w}}{${2:`!p snip.rv = 'h' if t[1] == '!' else '!'`}}{%
 	\includestandalone{$3}
 }

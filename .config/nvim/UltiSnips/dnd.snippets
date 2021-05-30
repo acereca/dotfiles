@@ -1,13 +1,17 @@
 snippet dnd_item "D&D Homebrew Item Component"
-<Item
-	image="../items/img/$1"
+---
+title: $1
+---
+
+<Item :title="$frontmatter.title"
+	image="../img/$2"
 	:info="{
-		type: '${2:Wondrous Item}',
-		rarity: '$3',
-		${4:source: '$5',
-		page: $6,
-		}${7:cost: '$8',}
-		${9:attune: ${10:true}}
+		type: '${3:Wondrous Item}',
+		rarity: '$4',
+		${5:source: '$6',
+		page: $7,
+		}${8:cost: '$9',
+		}${10:attune: ${11:true}}
 	}">
 
 $0
