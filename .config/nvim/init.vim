@@ -1,32 +1,45 @@
 " VIM Config file
 " Patrick Nisble
-" Last modified: 2020|09|15
+" Last modified: 2021|05|30
 
 " Sets {{{
-set updatetime=300
-set timeout
-set timeoutlen=200
-set nobackup
-set nowritebackup
+    set timeout
+    set timeoutlen=200
+    set updatetime=300
+    set nobackup
+    set nowritebackup
 
-""" don't give |ins-completion-menu| messages.
-set shortmess+=c
+    """ don't give |ins-completion-menu| messages.
+    set shortmess+=c
 
-""" always show signcolumns
-set signcolumn=yes
+    """ always show signcolumns
+    set signcolumn=yes
 
-set nocompatible
-set conceallevel=0
+    set nocompatible
+    set conceallevel=0
 
-set hidden " buffer hidden if modified
-set number relativenumber
+    set hidden " buffer hidden if modified
+    set number relativenumber
 
-set clipboard+=unnamedplus
-set tabstop=4 softtabstop=0 shiftwidth=4 smarttab
-set expandtab
-set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<
-set splitbelow
-set breakindent
+    set clipboard+=unnamedplus
+    set tabstop=4 softtabstop=0 shiftwidth=4 smarttab
+    set expandtab
+    set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<
+    set splitbelow
+    set breakindent
+
+    " Search behaviour
+    set ignorecase
+    set smartcase
+    set incsearch
+
+    set scrolloff=8
+
+    " turn off swap files {{{
+        set noswapfile
+        set nobackup
+        set nowb
+    " }}}
 " }}}
 
 " Plugins {{{
@@ -126,12 +139,6 @@ let g:pandoc#syntax#conceal#use = 0
 let g:tex_conceal=""
 " }}}
 
-
-" aliasing {{{
-"cnoreabbrev W w
-"cnoreabbrev Q q
-"}}}
-
 " global std for stfrtime string {{{
 let g:strfstr = '%Y|%m|%d'
 " run everytime needs to set b:updateModified Date in ftplugin
@@ -157,11 +164,6 @@ let g:indentLine_char="▏"
 let g:indentLine_color_term = 0
 "  }}}
 
-" turn off swap files {{{
-    set noswapfile
-    set nobackup
-    set nowb
-" }}}
 
 " coloring {{{
     let python_highlight_all=1
