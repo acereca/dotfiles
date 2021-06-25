@@ -1,6 +1,6 @@
 [global]
 
-    font = Fira Code 12
+    font = Fira Code 14
 
     # Allow a small subset of html markup in notifications and formats:
     #   <b>bold</b>
@@ -12,7 +12,7 @@
     # <http://developer.gnome.org/pango/stable/PangoMarkupFormat.html>.
     # If markup is not allowed, those tags will be stripped out of the
     # message.
-    allow_markup = yes
+    markup = full
 
     # Treat incoming notifications as plain text
     plain_text = no
@@ -46,7 +46,7 @@
     # Show age of message if message is older than show_age_threshold
     # seconds.
     # Set to -1 to disable.
-    show_age_threshold = 60
+    show_age_threshold = 10
 
     # Split notifications into multiple lines if they don't fit into
     # geometry.
@@ -72,7 +72,7 @@
 
     # Shrink window if it's smaller than the width.  Will be ignored if
     # width is 0.
-    shrink = yes
+    shrink = no
 
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing window manager is
@@ -85,7 +85,7 @@
     idle_threshold = 120
 
     # Which monitor should the notifications be displayed on.
-    monitor = 1
+    monitor = 0
 
     # Display notification on focused monitor.  Possible modes are:
     #   mouse: follow mouse pointer
@@ -153,11 +153,16 @@
     icon_position = left
 
     # Paths to default icons.
-    icon_folders = /usr/share/icons/Arc-Maia/status/16/:/usr/share/icons/Arc-Maia/apps/16/:/usr/share/icons/Arc-Maia/devices/16/:/usr/share/icons/Arc-Maia/actions/16/
+    icon_folders = /usr/share/icons/Arc-Maia/status/16/:/usr/share/icons/Arc-Maia/apps/16/:/usr/share/icons/Arc-Maia/devices/16/:/usr/share/icons/Arc-Maia/actions/16/:/home/patrick/.local/share/icons/
+
+    text_icon_padding = 20
+    max_icon_size = 50
+
+    corner_radius = 5
 
 [frame]
-    width = 2
-    color = "#4d679a"
+    width = 3
+    color = "#d8dee9"
 
 [shortcuts]
 
@@ -183,18 +188,18 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#383a3b"
-    foreground = "#ffffff"
+    background = "#d8dee9"
+    foreground = "#81a1c1"
     timeout = 10
 
 [urgency_normal]
-    background = "#383a3b"
-    foreground = "#ffffff"
+    background = "#d8dee9"
+    foreground = "#2e3440"
     timeout = 10
 
 [urgency_critical]
-    background = "#383a3b"
-    foreground = "#ffffff"
+    background = "#bf616a"
+    foreground = "#d8dee9"
     timeout = 0
 
 
@@ -259,3 +264,20 @@
 [pa-applet]
 		appname = *pa-applet*
 		format = "%p"
+
+[sound-normal]
+    msg_urgency = normal
+    script = ~/.config/dunst/notify.sh
+
+[sound-urgent]
+    msg_urgency = critical
+    script = ~/.config/dunst/critical.sh
+
+[pomo.py]
+    appname = *Pomodoro Script*
+    background = "#b48ead"
+
+[pomo.py/low]
+    appname = *Pomodoro Script*
+    msg_urgency = low
+    foreground = "#d8dee9"
