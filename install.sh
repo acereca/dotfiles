@@ -13,6 +13,7 @@ FOLDERLIST="
     .config/qutebrowser
     .config/ranger
     .config/rofi
+    .config/dunst
     .config/sxhkd
     .config/zathura
     .zshrc.d
@@ -38,16 +39,18 @@ DEPLIST="
     bspwm
     clamav
     evince
+    fd
     fzf
     inotify-tools
     mpv
-    neomutt
     neovim
-    otf-fira-code
+    ttf-fira-code
     picom
     python-pip
     qrencode
+    ripgrep
     rsync
+    sound-theme-elementary
     texlive-core
     texlive-fontsextra
     texlive-langextra
@@ -71,10 +74,16 @@ sudo pacman --noconfirm -S $DEPLIST
 
 echo -e "\n\\e[1;32m=> NOW LINKING FOLDERS\\e[0m"
 for d in $FOLDERLIST; do
-    ln -sfvi "$DOTFILES_DIR/$d" $HOME/$(dirname $d);
+    if [[ ! ( -h "$HOME/$d" ) ]];
+    then
+        ln -svi "$DOTFILES_DIR/$d" $HOME/$(dirname $d);
+    fi
 done
 
 echo -e "\n\\e[1;32m=> NOW LINKING FILES\\e[0m"
 for file in $DIRECTLINKS; do
-    ln -sfvi "$DOTFILES_DIR/$file" "$HOME/$(dirname $file)";
+    if [[ ! ( -h "$HOME/$file" ) ]];
+    then
+        ln -svi "$DOTFILES_DIR/$file" "$HOME/$(dirname $file)";
+    fi
 done
