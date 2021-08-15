@@ -40,6 +40,7 @@ for f in $ZDOTDIR/.zshrc.d/*.zsh; do source $f; done
 #pgrep ssh-agent 1> /dev/null || eval $(ssh-agent -s -a /run/user/1000/keyring/ssh) 1> /dev/null
 
 # aliases {{{
+alias fav='cat ~/.zshrc.d/favs | fzf'
 alias icat="kitty icat"
 
 alias tm="tmux -f $HOME/.config/tmux/normal.conf new-session -As main"
@@ -63,8 +64,8 @@ alias z="zathura"
 
 alias ssht="tmux-cssh -cs"
 
-alias vim='nvim'
-alias v='nvim'
+alias n='NVIM_LISTEN_ADDRESS=/tmp/nvr nvr'
+alias v="nvim"
 alias sv="sudo nvim"
 
 alias sctl="sudo systemctl"
@@ -91,16 +92,21 @@ _comp_options+=(globdots)  # include hidden
 
 alias s!!="sudo !!"
 
-[ -f  ~/.oh-my-zshrc ] && source ~/.oh-my-zshrc && plugins=(tmux)
+plugins=(tmux pipenv)
 
-[ -f $ZDOTDIR/.fzf.zsh ] && source $ZDOTDIR/.fzf.zsh
+[ -f  ~/.oh-my-zshrc ] && source ~/.oh-my-zshrc
+
+
+[ -f $ZDOTDIR/.fzf.zsh ] && source $ZDOTDIR/.fzf.zsh && export FZF_ALT_C_COMMAND="fd -t d . $HOME"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 alias unlock='touch /tmp/.bwsession;\
     chmod 600 /tmp/.bwsession;\
-    bw status | grep unlocked > /dev/null || bw unlock --raw > /tmp/.bwsession;\
+    BW_SESSION=$(cat /tmp/.bwsession) bw status | grep unlocked > /dev/null || bw unlock --raw > /tmp/.bwsession;\
     export BW_SESSION=$(cat /tmp/.bwsession)'
+
+alias freecad="QT_SCALE_FACTOR=1.1 freecad"
 
 lfcd () {
     tmp="$(mktemp)"
