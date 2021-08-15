@@ -188,6 +188,20 @@ snippet fig:s "\begin{itemize}\end{itemize}" i
 \end{figure}
 endsnippet
 
+snippet fig:t 
+\begin{figure}[H]
+	\begin{center}
+		\scalebox{${1:.8}}{%
+			\input{tikz/$2}
+		}
+	\end{center}
+	\caption{%
+		${3}
+	}%
+	\label{fig:${4:`!p snip.rv = t[3].split('/')[-1].split('.')[0]`}}
+\end{figure}
+endsnippet
+
 priority 100
 snippet subfig{ "\begin{subfigure}[c]{.49\columnwidth}" i
 \begin{subfigure}[b]{.49\columnwidth}

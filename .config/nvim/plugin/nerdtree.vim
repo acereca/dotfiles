@@ -1,3 +1,3 @@
 " NERDTree
-let NERDTreeWinSize=20
+let NERDTreeWinSize=40
 nnoremap <leader>n :NERDTreeToggle<CR>

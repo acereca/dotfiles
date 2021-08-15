@@ -1,17 +1,64 @@
-snippet !scipy "Scipy stack setup" b
+snippet ___scipy "Scipy stack setup" b
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import scipy.optimize as opt
 
 plt.style.use("ggplot")
 
-plt.savef
+$0
 endsnippet
 
-snippet !multipdf "Multipdf template for Matplotlib" b
+snippet ___ "create a barebones script" b
+#! /usr/bin/python3
+
+"""${1:NEW SCRIPT}"""
+
+if __name__ == "__main__":
+    $0
+endsnippet
+
+snippet ___multipdf "Multipdf template for Matplotlib" b
 import matplotlib.backends.backend_pdf as mpp
+
 with mpp.PdfPages("$1") as pdf:
-	$0
+    $0
     pdf.savefig()
     plt.close()
+endsnippet
+
+snippet ()) "Auto multiline paren" A
+(
+	$0
+)
+endsnippet
+
+snippet (( "Auto multiline paren" A
+(
+	$0
+)
+endsnippet
+
+snippet []] "Auto multiline bracket" A
+[
+	$0
+]
+endsnippet
+
+snippet [[ "Auto multiline bracket" A
+[
+	$0
+]
+endsnippet
+
+snippet {}} "Auto multiline brace" A
+{
+	$0
+}
+endsnippet
+
+snippet {{ "Auto multiline brace" A
+{
+	$0
+}
 endsnippet

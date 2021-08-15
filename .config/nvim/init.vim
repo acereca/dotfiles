@@ -35,6 +35,9 @@
 
     set scrolloff=8
 
+    set ttyfast
+    set termguicolors
+
     " turn off swap files {{{
         set noswapfile
         set nobackup
@@ -60,7 +63,7 @@ call plug#begin("~/.config/nvim/plugged")
     Plug 'mboughaba/i3config.vim'
     Plug 'Glench/Vim-Jinja2-Syntax'
     Plug 'posva/vim-vue'
-    Plug 'vim-python/python-syntax'
+    " Plug 'vim-python/python-syntax'
     Plug 'vhda/verilog_systemverilog.vim'
 
     " Behaviour
@@ -70,26 +73,34 @@ call plug#begin("~/.config/nvim/plugged")
     Plug 'alvan/vim-closetag'
     Plug 'mattn/emmet-vim'
     Plug 'lervag/vimtex'                            "  ./plugin/vimtex.vim
-    Plug 'neomake/neomake'                          "  ./plugin/neomake.vim
+    " Plug 'neomake/neomake'                          "  ./plugin/neomake.vim
+    " " Plug 'vim-syntastic/syntastic'                 "  ./plugin/syntastic.vim
+    " Plug 'dense-analysis/ale'                      "  ./plugin/ale.vim
+    " " Plug 'puremourning/vimspector'                  "  ./plugin/vimspector.vim
+
+    " Completion
     Plug 'neoclide/coc.nvim', {'branch': 'release'} "  ./plugin/coc.vim
-    "Plug 'vim-syntastic/syntastic'                 "  ./plugin/syntastic.vim
-    "Plug 'dense-analysis/ale'                      "  ./plugin/ale.vim
-    Plug 'puremourning/vimspector'                  "  ./plugin/vimspector.vim
 
     " git
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
 
     " visual
-    Plug 'joshdick/onedark.vim'
+    " Plug 'joshdick/onedark.vim'
     Plug 'arcticicestudio/nord-vim'
     Plug 'bronson/vim-trailing-whitespace'
-    Plug 'rrethy/vim-hexokinase'
+    " Plug 'rrethy/vim-hexokinase'
+    " let g:Hexokinase_highlighters = [ 'background' ]
+
+    " Vim Script
+    Plug 'nvim-lua/plenary.nvim'
+    " Plug 'folke/todo-comments.nvim'
+
 
     " text formatting
     Plug 'psf/black', {'branch': 'stable'}
     Plug 'dhruvasagar/vim-table-mode'
-    Plug 'Yggdroot/indentLine'
+    " Plug 'Yggdroot/indentLine'
     Plug 'tpope/vim-surround'
     Plug 'godlygeek/tabular'
     Plug 'preservim/nerdcommenter' " ./plugin/nerdcommenter.vim
@@ -102,8 +113,9 @@ call plug#begin("~/.config/nvim/plugged")
     Plug 'junegunn/fzf.vim'
 
     " Python
-    Plug 'tmhedberg/SimpylFold' " ./plugin/simpylfold.vim
-    Plug 'vim-scripts/indentpython.vim'
+    " Plug 'tmhedberg/SimpylFold' " ./plugin/simpylfold.vim
+    " Plug 'vim-scripts/indentpython.vim'
+    Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
     " Previews
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " ./plugin/markdown-preview.nvim.vim
@@ -118,6 +130,9 @@ call plug#begin("~/.config/nvim/plugged")
     Plug 'Shougo/neoinclude.vim'
 
 call plug#end()
+
+let g:gitgutter_sign_allow_clobber = 0
+let g:gitgutter_sign_priority = 0
 
 if $SOCK != ""
     call serverstart($SOCK)
@@ -150,7 +165,7 @@ function! Foldtext_generator()
     let nl = v:foldend - v:foldstart + 1
     let comment = substitute(getline(v:foldstart+1),"^ *","",1)
     let linetext = substitute(getline(v:foldstart),"^ *","",1)
-    let txt = '+ ' . nl . 'ℓ: ' . linetext
+    let txt = '> ' . nl . 'ℓ: ' . linetext . " "
     return txt
 endfunction
 
@@ -178,7 +193,8 @@ let g:indentLine_color_term = 0
             set termguicolors
         endif
     endif
-    highlight Folded guifg=#7C869A
+    highlight Folded guifg=#7C869A guibg=NONE
+    highlight SignColumn guibg=NONE
 " }}}
 
 " keymaps {{{
@@ -203,6 +219,9 @@ let g:indentLine_color_term = 0
         nmap <leader>h :bprevious<CR>
 
         nmap <leader>o :wincmd f<CR>
+
+        " nunmap <C-q>
+        nmap <C-q> :q
 
         " remove arrow bindings
         map <up> <nop>
@@ -244,3 +263,58 @@ let g:indentLine_color_term = 0
 " LUA TESTING {{{
 lua require("personal")
 " }}}
+
+
+" lua << EOF
+  " require("todo-comments").setup {
+      " signs = true, -- show icons in the signs column
+      " -- keywords recognized as todo comments
+      " keywords = {
+          " FIX = {
+              " icon = " ", -- icon used for the sign, and in search results
+              " color = "error", -- can be a hex color, or a named color (see below)
+              " alt = { "FIXME", "BUG", "FIXIT", "FIX", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
+              " -- signs = false, -- configure signs for some keywords individually
+              " },
+          " TODO = { icon = " ", color = "info" },
+          " HACK = { icon = " ", color = "warning" },
+          " WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+          " PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+          " NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
+          " },
+      " -- highlighting of the line containing the todo comment
+      " -- * before: highlights before the keyword (typically comment characters)
+      " -- * keyword: highlights of the keyword
+      " -- * after: highlights after the keyword (todo text)
+      " highlight = {
+          " before = "", -- "fg" or "bg" or empty
+          " keyword = "wide", -- "fg", "bg", "wide" or empty. (wide is the same as bg, but will also highlight surrounding characters)
+          " after = "fg", -- "fg" or "bg" or empty
+          " pattern = [[.*<(KEYWORDS)\s*:]], -- pattern used for highlightng (vim regex)
+          " comments_only = true, -- uses treesitter to match keywords in comments only
+          " },
+      " -- list of named colors where we try to extract the guifg from the
+      " -- list of hilight groups or use the hex color if hl not found as a fallback
+      " colors = {
+          " error = { "LspDiagnosticsDefaultError", "ErrorMsg", "#DC2626" },
+          " warning = { "LspDiagnosticsDefaultWarning", "WarningMsg", "#FBBF24" },
+          " info = { "LspDiagnosticsDefaultInformation", "#2563EB" },
+          " hint = { "LspDiagnosticsDefaultHint", "#10B981" },
+          " default = { "Identifier", "#7C3AED" },
+          " },
+      " search = {
+          " command = "rg",
+          " args = {
+              " "--color=never",
+              " "--no-heading",
+              " "--with-filename",
+              " "--line-number",
+              " "--column",
+              " },
+          " -- regex that will be used to match keywords.
+          " -- don't replace the (KEYWORDS) placeholder
+          " pattern = [[\b(KEYWORDS):]], -- ripgrep regex
+          " -- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
+          " },
+      " }
+" EOF
