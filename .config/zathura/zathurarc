@@ -2,7 +2,6 @@
 set synctex true
 set synctex-editor-command "nvr --remote-silent +%{line} %{input}"
 
-
 # color
 set highlight-color "#086db2"
 set highlight-transparency 0.3
@@ -13,5 +12,5 @@ set default-fg "#000000"
 set recolor-lightcolor          "#303440"
 set recolor-darkcolor           "#ffffff"
 
-set recolor                     "true"
+# set recolor                     "true"
 set recolor-keephue             "true"
