@@ -14,8 +14,8 @@ xsetwacom --set 19 MapToOutput 1920x1080+1920+0 # Touch
 xsetwacom --set 20 MapToOutput 1920x1080+1920+0 # Eraser
 
 # Compositor
-killall picom; sleep .1; picom &
-killall redshift; redshift &
+killall picom; sleep .1; picom --experimental-backend &
+#killall redshift; redshift &
 
 # BG
 feh --bg-fill $HOME/Pictures/bg_i3 --no-xinerama
@@ -41,6 +41,10 @@ xss-lock -- i3lock -t \
 
 # tray
 pgrep nm-applet || nm-applet &
+
+# audio
+#$HOME/.config/bspwm/audio.sh & disown
+
 
 # Environment
 pgrep ssh-agent 1> /dev/null || eval $(ssh-agent -s -a /run/user/1000/keyring/ssh) 1> /dev/null

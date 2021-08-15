@@ -30,3 +30,12 @@ bspc rule -a "Zathura" state=tiled
 bspc rule -a "zoom" state=tiled desktop=^8
 bspc rule -a "clockify" desktop=^10
 bspc rule -a "linphone" state=floating desktop=^8
+
+# X2GO
+bspc rule -a "x2goclient" desktop=^7
+bspc rule -a "X2GoAgent" desktop=^7
+bspc rule -a "virtuoso" state=floating desktop^7
+bspc rule -a "Element" desktop=^3
+bspc rule -a "Thunderbird" desktop=^3
+#bspc rule -a "virtuoso:*:*Schematic Editor*" state=tiled desktop^7
+bspc config external_rules_command $HOME/.config/bspwm/rules.sh
